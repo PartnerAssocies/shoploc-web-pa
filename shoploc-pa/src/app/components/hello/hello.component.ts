@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {HelloService} from '../../services/hello.serive';
 @Component({
   selector: 'app-hello',
   templateUrl: './hello.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
 
-  constructor() { }
+  message :String;
+  constructor(private helloService: HelloService) { }
 
   ngOnInit(): void {
+    this.helloService.getHelloMessage().subscribe(res =>{
+      this.message = res;
+    });
   }
 
 }

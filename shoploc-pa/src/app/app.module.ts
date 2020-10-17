@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HelloService } from './services/hello.serive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    HelloService  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
