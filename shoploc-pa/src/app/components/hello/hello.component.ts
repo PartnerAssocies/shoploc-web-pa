@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HelloService} from '../../services/hello.serive';
+import {HelloService} from '../../services/hello.service';
 @Component({
   selector: 'app-hello',
   templateUrl: './hello.component.html',
