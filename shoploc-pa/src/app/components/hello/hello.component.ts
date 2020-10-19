@@ -7,12 +7,12 @@ import {HelloService} from '../../services/hello.service';
 })
 export class HelloComponent implements OnInit {
 
-  message :String;
+  message :any;
   constructor(private helloService: HelloService) { }
 
   ngOnInit(): void {
-    this.helloService.getHelloMessage().subscribe(res =>{
-      this.message = res;
+    this.helloService.getHelloMessage().subscribe(data => {
+        this.message = data;
     });
   }
 

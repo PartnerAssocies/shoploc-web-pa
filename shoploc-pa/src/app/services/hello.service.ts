@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HelloService {
-    constructor(private http: HttpClient) { }
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -13,8 +12,10 @@ export class HelloService {
         })
     };
 
-  getHelloMessage() : Observable<String> {
-      return this.http.get<String>(environment.shopLocApiURL.concat('/'));
+    constructor(private http: HttpClient) { }
+
+  getHelloMessage(){
+    return this.http.get(environment.shopLocApiURL.concat('/'), {responseType: 'text'});
   }
 
 }
