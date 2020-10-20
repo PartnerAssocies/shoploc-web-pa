@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+# Original source: https://github.com/prahladyeri/enforce-git-message/
+# Extended with BREAKING CHANGE, exclamation mark support (!) and space before " : " for French people
+
+import re, sys, os
+
+examples = """+ fix: correction du bug de navbar
++ 479c48b test : ajout de tests unitaire sur le module
++ a992020 feat : ajout du nouveau module
++ b818120  BREAKING CHANGE : suppression du module
+"""
+
+def main():
+    pattern = r'(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|BREAKING CHANGE)?!?\s?:\s.*'
+    filename = sys.argv[1]
+    ss = open(filename, 'r').read()
+    m = re.match(pattern, ss)
+    if m == None:
+        print("\nCOMMIT FAILED!")
+        print("\nLe format du message de commit est incorrect. Refferez vous à la doc ou inspirez vous des exmples ci dessous : ")
+        print("\n" + examples)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
