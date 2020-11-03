@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  shopLocApiURL: 'http://localhost:8080'
+  shopLocApiURL: '172.28.100.2:8080'
 };
