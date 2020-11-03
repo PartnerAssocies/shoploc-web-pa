@@ -5,17 +5,16 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HelloService {
-
-    httpOptions = {
-        headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        })
-    };
-
-    constructor(private http: HttpClient) { }
+    
+  constructor(private http: HttpClient) { }
 
   getHelloMessage(){
-    return this.http.get(environment.shopLocApiURL.concat('/'), {responseType: 'text'});
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin' : '*'
+    });
+
+    return this.http.get(environment.shopLocApiURL.concat('/'),{headers, responseType: 'text'});
   }
 
 }
