@@ -1,34 +1,39 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
+        <div class="col-md-12 min-vh-100 flex-column justify-content-center">
             <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-
-                    <!-- form card login -->
+                <div class="col-lg-5 col-md-8 mx-auto">
+                    <div class="mt-3 text-center">
+                        <img src="assets/icons/shoploc_logo-200x200.png" class="mx-auto d-block img-fluid" alt="logo Shoploc"/>
+                    </div>
+                    
+                    <p [hidden]="!inError" class="alert alert-danger ">
+                        {{errorMessage}}
+                    </p>
                     <div class="card rounded shadow shadow-sm">
-                        <div class="card-header">
+                        <div class="card-header text-center">
                             <h3 class="mb-0">Connexion</h3>
-                        </div>
+                        </div> 
                         <div class="card-body">
+                           
                             <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg rounded-0" name="email" id="email" placeholder="Adresse e-mail">
                                 </div>
                                 <div class="form-group">                                    
                                     <input type="password" class="form-control form-control-lg rounded-0" id="password"  placeholder="Mot de passe">
+                                    <small id="mdp-oublie" class="form-text text-muted"><a href="/resetPassword">Mot de passe oublié</a></small>
                                 </div>
-                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Connexion</button>
+                                <button type="submit" class="btn btn-info w-100" id="btnLogin">Connexion</button>
                             </form>
+                            <div class="row justify-content-center mt-3">
+                                <label for="link-reset-password" class="text-secondary mr-1">Pas encore de compte ? </label>
+                                <a href="/singup" id="link-reset-password"> S'incire ici</a>
+                            </div>
                         </div>
-                        <!--/card-block-->
                     </div>
-                    <!-- /form card login -->
                 </div>
             </div>
-            <!--/row-->
         </div>
-        <!--/col-->
     </div>
-    <!--/row-->
 </div>
-<!--/container-->

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'hello', component: HelloComponent },
-  { path: 'login', component: LoginComponent}
+  { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
+  { path: 'login', component: LoginComponent},
+  { path: '', component: HelloComponent},
 ];
 
 @NgModule({
