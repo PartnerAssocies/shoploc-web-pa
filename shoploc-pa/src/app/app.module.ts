@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +30,8 @@ import { environment } from '../environments/environment';
     AppComponent,
     HelloComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SignupComponent
   ],
   imports: [
     AppRoutingModule,
@@ -42,6 +44,8 @@ import { environment } from '../environments/environment';
     MatToolbarModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     HelloService,
