@@ -24,7 +24,8 @@ export class AuthService {
 	public currentUser: Observable<CurrentUser>;
 
     constructor(private http: HttpClient, private hashService: HashService) {
-
+        this.currentUserSubject = new BehaviorSubject<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')));
+		this.currentUser = this.currentUserSubject.asObservable();
     }
 
     /**
@@ -41,11 +42,14 @@ export class AuthService {
      */
     public login(username: string, passwordNotHashed: string){
         const password = this.hashService.hashPassword(passwordNotHashed);
-        const url = environment.shopLocApiURL.concat("/login");
-        const body = {username, password};
-        return this.http.post<CurrentUser>(url, body, this.httpOptions)
+        const url = environment.shopLocApiURL
+                    .concat("/auth/login?username=")
+                    .concat(username)
+                    .concat("&password=")
+                    .concat(password);
+        return this.http.post<CurrentUser>(url,null,this.httpOptions)
             .pipe(map(user => {
-                if(user && user.accessToken && user.refreshToken){
+                if(user && user.accessToken && user.refreshToken && user.role){
                     localStorage.setItem("currentUser",JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }

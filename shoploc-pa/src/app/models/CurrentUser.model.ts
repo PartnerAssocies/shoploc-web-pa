@@ -7,7 +7,6 @@ export class CurrentUser {
         public accessToken: string,
         public refreshToken: string,
         public userId:string,
-        public prenom:string,
         public role:string
     ) {}
 }
