@@ -2,6 +2,9 @@
 import { AuthService }  from './services/auth.service';
 import { HashService } from './services/hash.service';
 import { HelloService } from './services/hello.service';
+import { UserService } from './services/user.service';
+import { LieuService } from './services/lieu.service';
+
 
 // Import Component
 import { AppComponent } from './app.component';
@@ -51,6 +54,8 @@ import { environment } from '../environments/environment';
     HelloService,
     AuthService,
     HashService,  
+    UserService,
+    LieuService
   ],
   bootstrap: [AppComponent]
 })
