@@ -14,15 +14,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatIconModule} from '@angular/material/icon'; 
-import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 // Import Autres
 import { environment } from '../environments/environment';
+import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { environment } from '../environments/environment';
   providers: [
     HelloService,
     AuthService,
-    HashService,  
+    HashService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]
 })
