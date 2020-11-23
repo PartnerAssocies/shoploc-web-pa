@@ -22,7 +22,7 @@ export class UserService {
      * @param user 
      */
     registerUser(user: User): Observable<User> {
-        return this.http.post<User>('http://localhost:8080/client/register', user, this.httpOptions);
+        return this.http.post<User>('http://172.28.100.2:8080/client/register', user, this.httpOptions);
     }
 
 }
