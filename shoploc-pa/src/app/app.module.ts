@@ -2,12 +2,16 @@
 import { AuthService }  from './services/auth.service';
 import { HashService } from './services/hash.service';
 import { HelloService } from './services/hello.service';
+import { UserService } from './services/user.service';
+import { LieuService } from './services/lieu.service';
+
 
 // Import Component
 import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +34,8 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     AppComponent,
     HelloComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SignupComponent
   ],
   imports: [
     AppRoutingModule,
@@ -43,10 +48,14 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     MatToolbarModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     HelloService,
     AuthService,
+    UserService,
+    LieuService,
     HashService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],
