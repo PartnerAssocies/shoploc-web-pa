@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   lieu: Lieu;
-  errorMessage: String;
+  errorMessage: string;
   inError: boolean
 
   constructor(private formBuilder: FormBuilder,
@@ -87,8 +87,8 @@ export class SignupComponent implements OnInit {
         formValue['prenom']
       )
 
-      this.userService.registerUser(newUser).subscribe(res => {
-        console.log(res);
+      this.userService.registerUser(newUser).subscribe(response => {
+        console.log(response);
         this.router.navigate(['/login']);
       }, (err: HttpErrorResponse) => {
         this.inError = true;
