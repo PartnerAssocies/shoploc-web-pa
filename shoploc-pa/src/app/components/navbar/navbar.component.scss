@@ -1,0 +1,12 @@
+.shoploc-nav-bar{
+    position: fixed;
+    bottom: 0; 
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    background-color: white;
+    box-shadow:        2px 2px 4px 5px #ccc;
+}
+
+

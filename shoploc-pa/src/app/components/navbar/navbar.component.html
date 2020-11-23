@@ -1,0 +1,29 @@
+<mat-toolbar class="shoploc-nav-bar">
+    <button *ngIf="'CLIENT' == role || 'COMMERCANT' == role" (click)="navigateClickAndCollect()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>shopping_basket</mat-icon>
+    </button>
+    <button *ngIf="'ADMIN' == role" (click)="navigateGestionCommercant()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>store</mat-icon>
+    </button>
+    <button *ngIf="'COMMERCANT' == role || 'ADMIN' == role" (click)="navigateStats()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>bar_chart</mat-icon>
+    </button>
+    <button *ngIf="'CLIENT' == role" (click)="navigateVFP()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>verified</mat-icon>
+    </button>
+    <button *ngIf="'CLIENT' == role || 'COMMERCANT' == role || 'ADMIN' == role" (click)="navigateHome()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>home</mat-icon>
+    </button>
+    <button *ngIf="'CLIENT' == role" (click)="navigatePorteMonnaie()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>euro_symbol</mat-icon>
+    </button>
+    <button *ngIf="'COMMERCANT' == role" (click)="navigateGestionsProduits()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>add_business</mat-icon>
+    </button>
+    <button *ngIf="'ADMIN' == role" (click)="navigateMenuNotification()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>add_alert</mat-icon>
+    </button>
+    <button *ngIf="'CLIENT' == role || 'COMMERCANT' == role || 'ADMIN' == role" (click)="navigateMenuProfile()" class="shoploc-nav-bar-element"  mat-icon-button>
+        <mat-icon>account_circle</mat-icon>
+    </button>
+</mat-toolbar>

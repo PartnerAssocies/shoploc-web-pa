@@ -15,4 +15,4 @@ Voici les étapes à suivre pour récupérer et lancer le projet en local :
 * Puis déplacer vous dans le dossier "shoploc-pa".
 * Lancez la commande "npm install". (cette opération peut prendre un peu de temps)
 * Lancez la commane "ng serve". (cette opération peut prendre un peu de temps)
-* C'est bon, l'application est lancé sur le port 4200 ! 
+* C'est bon, l'application est lancé sur le port 4200 !  
