@@ -15,9 +15,9 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  errorMessage: String;
-  inError:Boolean;
-  isWait: Boolean;
+  errorMessage: string;
+  inError:boolean;
+  isWait: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 

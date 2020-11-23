@@ -61,7 +61,11 @@ export class AuthService {
      * Refresh le token de l'utilisateur connecté
      */
     public refresh(){
-        
+        const url = environment
+            .shopLocApiURL
+            .concat("/refresh/")
+            .concat(this.currentUserValue.refreshToken);
+		return this.http.post<string>(url,this.httpOptions);
     }
 
     /**
