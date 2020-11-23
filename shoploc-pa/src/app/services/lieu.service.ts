@@ -24,7 +24,7 @@ export class LieuService {
      * @returns l'entité Lieu créée
      */
     createLieu(lieu: LieuBody): Observable<Lieu> {
-        return this.http.post<Lieu>('http://localhost:8080/lieu/create', lieu, this.httpOptions);
+        return this.http.post<Lieu>('http://172.28.100.2:8080/lieu/create', lieu, this.httpOptions);
     }
 
 }
