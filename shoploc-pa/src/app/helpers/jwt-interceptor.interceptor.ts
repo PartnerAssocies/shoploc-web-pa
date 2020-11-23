@@ -33,9 +33,8 @@ export class JwtInterceptor implements HttpInterceptor {
      * Vérifie si une requête à besoin de l'authentification à partir de son url.
      * @param String url 
      */
-    private needAuthentication(url : String) : Boolean{
+    private needAuthentication(url : string) : boolean{
         const suburl = url.substring(url.lastIndexOf("/"));
-        console.log("suburl : " + suburl);
         var i;
         for(i = 0; i < this.authorizedPath.length; i++){
             console.log(this.authorizedPath[i]);
