@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
+import { environment } from 'src/environments/environment';
 
 /**
  * Service qui gère les actions liées aux User
@@ -22,7 +23,7 @@ export class UserService {
      * @param user 
      */
     registerUser(user: User): Observable<User> {
-        return this.http.post<User>('http://172.28.100.2:8080/client/register', user, this.httpOptions);
+        return this.http.post<User>(environment.shopLocApiURL.concat("/client/register"), user, this.httpOptions);
     }
 
 }

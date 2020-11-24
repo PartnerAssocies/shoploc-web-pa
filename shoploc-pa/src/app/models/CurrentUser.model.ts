@@ -6,7 +6,7 @@ export class CurrentUser {
     constructor(
         public accessToken: string,
         public refreshToken: string,
-        public userId:string,
+        public username:string,
         public role:string
     ) {}
 }

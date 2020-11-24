@@ -37,7 +37,6 @@ export class JwtInterceptor implements HttpInterceptor {
         const suburl = url.substring(url.lastIndexOf("/"));
         var i;
         for(i = 0; i < this.authorizedPath.length; i++){
-            console.log(this.authorizedPath[i]);
             if(suburl.includes(this.authorizedPath[i])){
                 return false;
             }
