@@ -17,6 +17,7 @@ import {Md5} from 'ts-md5/dist/md5';
      * @param String password 
      */
     hashPassword(password:string):string{
-        return new Md5().appendStr(password).end().toString()
+      const hashedString = new Md5().appendStr(password).end().toString();
+      return hashedString.concat(hashedString.substring(0,5));
     }
 }

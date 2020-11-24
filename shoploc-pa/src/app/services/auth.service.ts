@@ -63,7 +63,7 @@ export class AuthService {
     public refresh(){
         const url = environment
             .shopLocApiURL
-            .concat("/refresh/")
+            .concat("/auth/refresh/")
             .concat(this.currentUserValue.refreshToken);
 		return this.http.post<string>(url,this.httpOptions);
     }

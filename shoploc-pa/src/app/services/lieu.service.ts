@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Lieu } from '../models/Lieu.model';
 import { LieuBody } from '../models/LieuBody.model';
+import { environment } from 'src/environments/environment';
 
 /**
  * Service pour gérer les actions liées à l'entité Lieu
@@ -24,7 +25,7 @@ export class LieuService {
      * @returns l'entité Lieu créée
      */
     createLieu(lieu: LieuBody): Observable<Lieu> {
-        return this.http.post<Lieu>('http://172.28.100.2:8080/lieu/create', lieu, this.httpOptions);
+        return this.http.post<Lieu>(environment.shopLocApiURL.concat("/lieu/create"), lieu, this.httpOptions);
     }
 
 }
