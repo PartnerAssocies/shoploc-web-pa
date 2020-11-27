@@ -23,6 +23,7 @@ import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -50,6 +51,7 @@ import { CommercantSignUpComponent } from './components/commercant-sign-up/comme
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatSlideToggleModule,
     MatToolbarModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
