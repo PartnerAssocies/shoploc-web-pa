@@ -8,6 +8,7 @@ import { LieuService } from './services/lieu.service';
 
 // Import Component
 import { AppComponent } from './app.component';
+import { ClientSignUpComponent } from './components/client-sign-up/client-sign-up.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -28,6 +29,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
+import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     HelloComponent,
     LoginComponent,
     NavbarComponent,
-    SignupComponent
+    SignupComponent,
+    ClientSignUpComponent,
+    CommercantSignUpComponent
   ],
   imports: [
     AppRoutingModule,

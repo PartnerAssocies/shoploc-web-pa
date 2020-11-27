@@ -13,48 +13,16 @@
                     <!-- form card signup -->
                     <div class="card rounded shadow shadow-sm">
                         <div class="card-header">
-                            <h3 class="mb-0">Inscription</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="mb-0">Inscription</h3> 
+                                </div>
+                                <div class="col">
+                                    <span id="swich-text" class="float-right mb-0 align-bottom d-inline">Vous êtes commerçant ? </span>
+                                </div>                              
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmitForm()">
-                                <div class="form-group">
-                                    <label for="nom">Nom :</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="nom" id="nom" formControlName="nom">
-                                </div>
-                                <div class="form-group">
-                                    <label for="prenom">Prénom :</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="prenom" id="prenom" formControlName="prenom">
-                                </div>
-                                <div class="form-group">
-                                    <label for="username">Adresse mail :</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="username" id="username" formControlName="username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Mot de passe : </label>                                   
-                                    <input type="password" class="form-control form-control-lg rounded-0" id="password" formControlName="password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirmPassword">Confirmer mot de passe : </label>                                   
-                                    <input type="password" class="form-control form-control-lg rounded-0" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword">
-                                    <p class="text-danger" *ngIf="this.signupForm.value['password'] !== this.signupForm.value['confirmPassword']">
-                                        Les mots de passe ne sont pas identiques
-                                    </p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="adresse">Adresse :</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="adresse" id="adresse" formControlName="adresse">
-                                </div>
-                                <div class="form-group">
-                                    <label for="ville">Ville :</label>
-                                    <input type="text" class="form-control form-control-lg rounded-0" name="ville" id="ville" formControlName="ville">
-                                </div>
-                                <input type="hidden" id="role" name="role" value="CLIENT" formControlName="role">
-                                <input type="hidden" id="coordX" name="coordX" value="0">
-                                <input type="hidden" id="coordY" name="coordY" value="0">
-                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnSignup" [disabled]="signupForm.invalid">S'inscrire</button>
-                            </form>
-                        </div>
-                        <!--/card-block-->
+                        <app-client-sign-up></app-client-sign-up>
                     </div>
                     <!-- /form card signup -->
                 </div>
