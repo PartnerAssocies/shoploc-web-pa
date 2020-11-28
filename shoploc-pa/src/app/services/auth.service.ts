@@ -72,6 +72,12 @@ export class AuthService {
      * Déconnecte l'utilisatgeur
      */
     public logout(){
-
+        const url = environment.shopLocApiURL
+            .concat("/auth/revoke/")
+            .concat(this.currentUserValue.refreshToken);
+        return this.http.delete(url).subscribe(response => {
+            localStorage.removeItem('currentUser');
+            this.currentUserSubject.next(null);
+        });
     }
 }

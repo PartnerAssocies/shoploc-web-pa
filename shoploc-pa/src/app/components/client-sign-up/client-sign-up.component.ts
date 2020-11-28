@@ -86,10 +86,10 @@ export class ClientSignUpComponent implements OnInit {
           formValue['nom'],
           formValue['prenom']
         )
-  
-        this.userService.registerUser(newUser).subscribe(response => {
+          
+        this.userService.registerClient(newUser).subscribe(response => {
           console.log(response);
-          this.router.navigate(['/login']);
+          this.router.navigate(["/login"], {queryParams: { message: 'signupclientok' }});
         }, (err: HttpErrorResponse) => {
           this.inError = true;
           this.errorMessage = err.error.message;

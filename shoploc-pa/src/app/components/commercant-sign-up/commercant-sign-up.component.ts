@@ -4,6 +4,9 @@ import { UserService } from 'src/app/services/user.service';
 import { LieuService } from 'src/app/services/lieu.service';
 import { Router } from '@angular/router';
 import { HashService } from 'src/app/services/hash.service';
+import { LieuBody } from 'src/app/models/LieuBody.model';
+import { CommercantRequestBody } from 'src/app/models/CommercantRequestBody.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-commercant-sign-up',
@@ -74,6 +77,7 @@ export class CommercantSignUpComponent implements OnInit {
    * @param etape l'étape du formulaire qui est submit
    */
   onSubmitForm(etape:string){
+    // Cas où change d'étape dans le formulaire
     if("etape-1" == etape){
       this.etape1 = false;
       this.etape2 = true;
@@ -90,6 +94,50 @@ export class CommercantSignUpComponent implements OnInit {
       return;
     }
 
+    // Cas où on valide le formulaire
+    this.inError = false;
+    const formEtape1Value = this.etape1Form.value;
+    const formEtape2Value = this.etape2Form.value;
+    const formEtape3Value = this.etape3Form.value;
+    const formEtapeFinalValue = this.etapeFinalForm.value;
+
+    // On créé l'adresse du commercant
+    const newLieu = new LieuBody (
+      formEtape2Value['adresse'],
+      +0,
+      +0,
+      formEtape2Value['ville']
+    )
+
+    this.lieuService.createLieu(newLieu).subscribe(res => {
+      // On créé maintenant l'utilisateur à partir du lieu renvoyé
+      const commercant = new CommercantRequestBody(
+        formEtape1Value['username'],
+        formEtape1Value['password'],
+        formEtape1Value['nom'],
+        "EN_ATTENTE",
+        res.lid,
+        +formEtape3Value['siret'],
+        formEtapeFinalValue['description']
+      )
+
+      this.userService.registerCommercant(commercant).subscribe(response =>{
+        this.router.navigate(["/login"], {queryParams: { message: 'signupcommercantok' }});
+      },(error: HttpErrorResponse) => {
+        if (error.status === 226) {
+          this.inError = true;
+          this.errorMessage = "L'email renseigné est déjà utilisé";
+          return;
+        }
+        if (error.status === 304) {
+          this.inError = true;
+          this.errorMessage = "Une erreur est survenue. L'inscription ne s'est pas finalisé correctement";
+          return;
+        }
+        this.inError = true;
+        this.errorMessage = "Une erreur est survenue.";
+      })
+    })
     
   }  
 

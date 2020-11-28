@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { first } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 /**
  * Component pour l'écran de connexion
@@ -19,6 +21,8 @@ export class LoginComponent implements OnInit {
   inError:boolean;
   isWait: boolean;
   returnUrl: string;
+  message : string;
+  isMessaged : boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, 
               private router: Router, private activateRoute: ActivatedRoute) { }
@@ -28,6 +32,9 @@ export class LoginComponent implements OnInit {
     this.inError = false;
     this.errorMessage = "";
     this.returnUrl = "";
+    this.message = "";
+    this.isMessaged = false;
+    this.checkMessage();
   }
 
   /**
@@ -55,7 +62,7 @@ export class LoginComponent implements OnInit {
         this.inError = true;
         return;
       }
-
+    
     this.isWait = true;
     const formValue = this.loginForm.value;
     const email = formValue["email"];
@@ -80,11 +87,39 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log("[onSubmitForm] authentification échoué");
+        if (error instanceof HttpErrorResponse && error.status === 423) {
+          this.isWait = false;
+          this.errorMessage = "Votre compte n'a pas encore été validé."
+          this.inError = true;
+          return;
+        } 
         this.isWait = false;
         this.errorMessage = "Informations de connexion incorrectes."
         this.inError = true;
       }
     );
+  }
+
+  /**
+   * Check dans les paramètre de l'url si on doit afficher un message ou non
+   */
+  checkMessage(){
+    const param = this.activateRoute.queryParams.subscribe(params => {
+      if(!params && !params['message']){
+        return;
+      }
+      if(params['message'] == "signupclientok"){
+        this.message = "Votre inscription a réussi";
+        this.isMessaged = true;
+        return;
+      }
+      if(params['message'] == "signupcommercantok"){
+        this.message = "Votre demande d'inscription a été envoyé";
+        this.isMessaged = true;
+        return;
+      }
+      
+    });
   }
 }
 

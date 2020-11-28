@@ -10,6 +10,9 @@
                     <p [hidden]="!inError" class="alert alert-danger" id="error-message">
                         {{errorMessage}}
                     </p>
+                    <p [hidden]="!isMessaged" class="alert alert-success " id="message">
+                        {{message}}
+                    </p>
                     <div class="card rounded shadow shadow-sm">
                         <div class="card-header text-center">
                             <h3 class="mb-0">Connexion</h3>
