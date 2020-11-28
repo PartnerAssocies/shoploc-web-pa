@@ -1,7 +1,7 @@
 /**
  * Objet pour représenter un lieu (envoyé au server)
  */
-export class LieuBody {
+export class LieuRequestBody {
 
     constructor(
         public adresse: string,

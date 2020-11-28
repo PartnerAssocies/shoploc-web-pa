@@ -1,7 +1,7 @@
 /**
  * Objet pour représenter un lieu (entité)
  */
-export class Lieu {
+export class LieuResponseBody {
 
     constructor(
         public lid: number,

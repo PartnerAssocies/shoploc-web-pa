@@ -4,7 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { LieuService } from 'src/app/services/lieu.service';
 import { Router } from '@angular/router';
 import { HashService } from 'src/app/services/hash.service';
-import { LieuBody } from 'src/app/models/html/requestBody/LieuRequestBody.model';
+import { LieuRequestBody } from 'src/app/models/html/requestBody/LieuRequestBody.model';
 import { CommercantRequestBody } from 'src/app/models/html/requestBody/CommercantRequestBody.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -102,7 +102,7 @@ export class CommercantSignUpComponent implements OnInit {
     const formEtapeFinalValue = this.etapeFinalForm.value;
 
     // On créé l'adresse du commercant
-    const newLieu = new LieuBody (
+    const newLieu = new LieuRequestBody (
       formEtape2Value['adresse'],
       +0,
       +0,

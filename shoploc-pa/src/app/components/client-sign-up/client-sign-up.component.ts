@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LieuBody } from 'src/app/models/LieuBody.model';
-import { Lieu } from 'src/app/models/Lieu.model';
+import { LieuRequestBody } from 'src/app/models/html/requestBody/LieuRequestBody.model';
+import { LieuResponseBody } from 'src/app/models/html/responseBody/LieuResponseBody.model';
 import { UserService } from 'src/app/services/user.service';
 import { LieuService } from 'src/app/services/lieu.service';
 import { User } from 'src/app/models/User.model';
@@ -20,7 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ClientSignUpComponent implements OnInit {
 
   signupForm: FormGroup;
-  lieu: Lieu;
+  lieu: LieuResponseBody;
   errorMessage: string;
   inError: boolean
 
@@ -67,7 +67,7 @@ export class ClientSignUpComponent implements OnInit {
       this.inError = false;
       const formValue = this.signupForm.value;
       console.log(formValue);
-      const newLieu = new LieuBody (
+      const newLieu = new LieuRequestBody (
         formValue['adresse'],
         +formValue['coordX'],
         +formValue['coord'],
