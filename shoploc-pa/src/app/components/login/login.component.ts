@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { first } from 'rxjs/operators';
 
@@ -18,13 +18,16 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   inError:boolean;
   isWait: boolean;
+  returnUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, 
+              private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
     this.inError = false;
     this.errorMessage = "";
+    this.returnUrl = "";
   }
 
   /**
@@ -64,7 +67,16 @@ export class LoginComponent implements OnInit {
       data => {
         console.log("[onSubmitForm] authentification réussi");
         this.isWait = false;
-        this.router.navigate(["/"]);
+        const param = this.activateRoute.queryParams.subscribe(params => {
+          console.log(params);
+          this.returnUrl = params['returnUrl'];
+          console.log(this.returnUrl);
+        });
+        if(this.returnUrl !== undefined){
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       error => {
         console.log("[onSubmitForm] authentification échoué");
