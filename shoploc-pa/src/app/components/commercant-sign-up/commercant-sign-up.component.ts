@@ -98,7 +98,21 @@ export class CommercantSignUpComponent implements OnInit {
    * @param String etape : l'étape à laquelle on veut retourner 
    */
   retour(etape:string){
-
+    if("etape-1" == etape){
+      this.etape1 = true;
+      this.etape2 = false;
+      return;
+    }
+    if("etape-2" == etape){
+      this.etape2 = true;
+      this.etape3 = false;
+      return;
+    }
+    if("etape-3" == etape){
+      this.etape3 = true;
+      this.etapeFinal = false;
+      return;
+    }
   }
 
   /**
