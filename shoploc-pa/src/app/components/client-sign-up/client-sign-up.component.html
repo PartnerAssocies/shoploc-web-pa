@@ -35,6 +35,9 @@
         <input type="hidden" id="role" name="role" value="CLIENT" formControlName="role">
         <input type="hidden" id="coordX" name="coordX" value="0">
         <input type="hidden" id="coordY" name="coordY" value="0">
+        <p [hidden]="!inError" class="alert alert-danger" id="error-message">
+            {{errorMessage}}
+        </p>
         <button type="submit" class="btn btn-info btn-lg float-right" id="btnSignup" [disabled]="signupForm.invalid">S'inscrire</button>
     </form>
 </div>

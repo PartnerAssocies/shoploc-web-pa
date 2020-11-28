@@ -67,7 +67,9 @@ export class CommercantSignUpComponent implements OnInit {
       siret : ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(14), Validators.maxLength(14)]]
     });
 
-    this.etapeFinalForm =this.formBuilder.group({});
+    this.etapeFinalForm =this.formBuilder.group({
+      description : ['']
+    });
   }
 
   /**
@@ -108,18 +110,18 @@ export class CommercantSignUpComponent implements OnInit {
       +0,
       formEtape2Value['ville']
     )
-
+    
     this.lieuService.createLieu(newLieu).subscribe(res => {
       // On créé maintenant l'utilisateur à partir du lieu renvoyé
       const commercant = new CommercantRequestBody(
         formEtape1Value['username'],
-        formEtape1Value['password'],
+        this.hashService.hashPassword(formEtape1Value['password']),
         formEtape1Value['nom'],
         "EN_ATTENTE",
         res.lid,
         +formEtape3Value['siret'],
         formEtapeFinalValue['description']
-      )
+      );
 
       this.userService.registerCommercant(commercant).subscribe(response =>{
         this.router.navigate(["/login"], {queryParams: { message: 'signupcommercantok' }});
