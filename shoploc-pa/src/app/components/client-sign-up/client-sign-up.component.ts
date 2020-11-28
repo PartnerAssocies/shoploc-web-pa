@@ -91,8 +91,18 @@ export class ClientSignUpComponent implements OnInit {
           console.log(response);
           this.router.navigate(["/login"], {queryParams: { message: 'signupclientok' }});
         }, (err: HttpErrorResponse) => {
+          if (err.status === 226) {
+            this.inError = true;
+            this.errorMessage = "L'email renseigné est déjà utilisé";
+            return;
+          }
+          if (err.status === 304) {
+            this.inError = true;
+            this.errorMessage = "Une erreur est survenue. L'inscription ne s'est pas finalisé correctement";
+            return;
+          }
           this.inError = true;
-          this.errorMessage = err.error.message;
+          this.errorMessage = "Une erreur est survenue.";
         })
       }, (err: HttpErrorResponse) => {
         this.inError = true;
