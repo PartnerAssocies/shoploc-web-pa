@@ -1,27 +1,25 @@
 <div class="container ">
     <div class="row">
-        <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto fixed-top">
+        <div class="col-md-12 min-vh-100 flex-column justify-content-center">
+            <div class="row align-top">
+                <div class="col-lg-6 col-md-8 mx-auto">
                     <div class="mt-3 text-center">
                         <img src="assets/icons/shoploc_logo.png" class="mx-auto d-block img-fluid" alt="logo Shoploc"/>
                     </div>
                     <!-- form card signup -->
                     <div class="card rounded shadow shadow-sm">
                         <div class="card-header">
-                            <div class="row" style="padding-bottom: 5%;">
-                                <div class="col">
+                            <div class="row">
+                                <div class="col-sm-5">
                                     <h3 class="mb-0">Inscription</h3> 
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <div class="row">
-                                        <span id="swich-text" class="float-right mb-0 align-bottom d-inline" style="padding-left: 5%">Vous êtes commerçant ? </span>
-                                        <span><mat-slide-toggle class="example-margin" id="signUpType" value="signUpType" style="padding-left: 40%"
-                                            (change)="onToggleChange()" color="primary"></mat-slide-toggle></span>
-                                    </div>    
-                                </div>                              
+                                <div class="col-sm">
+                                    <span id="swich-text" class="mb-0 align-bottom d-inline">Vous êtes commerçant ? </span>
+                                    <mat-slide-toggle class="example-margin float-right" id="signUpType" value="signUpType"
+                                            (change)="onToggleChange()" color="primary"></mat-slide-toggle>
+                                </div>           
                             </div>
                         </div>
                         <div [ngSwitch]="signUpType">

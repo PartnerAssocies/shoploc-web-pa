@@ -1,1 +1,54 @@
-<p>commercant-sign-up works!</p>
+<div class="card-body">
+    <form *ngIf="etape1" class="form" [formGroup]="etape1Form" (ngSubmit)="onSubmitForm('etape-1')">
+        <div class="form-group">
+            <label for="nom">Nom du commerce :</label>
+            <input type="text" class="form-control form-control-lg rounded-0" name="nom" id="nom" formControlName="nom">
+        </div>
+        <div class="form-group">
+            <label for="username">Adresse mail :</label>
+            <input type="text" class="form-control form-control-lg rounded-0" name="username" id="username" formControlName="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe : </label>                                   
+            <input type="password" class="form-control form-control-lg rounded-0" id="password" formControlName="password">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirmer mot de passe : </label>                                   
+            <input type="password" class="form-control form-control-lg rounded-0" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword">
+            <p class="text-danger" *ngIf="this.etape1Form.value['password'] !== this.etape1Form.value['confirmPassword']">
+                Les mots de passe ne sont pas identiques
+            </p>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg float-right mb-3" id="btn-next-1" [disabled]="etape1Form.invalid"> Suivant </button>
+    </form>
+
+    <form *ngIf="etape2" class="form" [formGroup]="etape2Form" (ngSubmit)="onSubmitForm('etape-2')">
+        <div class="form-group">
+            <label for="adresse">Adresse :</label>
+            <input type="text" class="form-control form-control-lg rounded-0" name="adresse" id="adresse" formControlName="adresse">
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville :</label>
+            <input type="text" class="form-control form-control-lg rounded-0" name="ville" id="ville" formControlName="ville">
+        </div>
+        <button type="button" class="btn btn-info btn-lg float-left mb-3" id="btn-retour-1" (click)="retour('etape-1')"> Retour </button>
+        <button type="submit" class="btn btn-success btn-lg float-right mb-3" id="btn-next-2" [disabled]="etape2Form.invalid"> Suivant </button>
+    </form>
+
+    <form *ngIf="etape3" class="form" [formGroup]="etape3Form" (ngSubmit)="onSubmitForm('etape-3')">
+        <div class="form-group">
+            <label for="siret">Numéro de SIRET :</label>
+            <input type="text" class="form-control form-control-lg rounded-0" name="siret" id="siret" formControlName="siret">
+        </div>
+        <button type="submit" class="btn btn-success btn-lg float-right mb-3" id="btn-next-3" [disabled]="etape3Form.invalid"> Suivant </button>
+    </form>
+
+    <form *ngIf="etapeFinal" class="form" [formGroup]="etapeFinalForm" (ngSubmit)="onSubmitForm('etape-final')">
+        <div class="form-group">
+            <label for="description">Décrivez votre commerce en quelques mots :</label>
+            <input type="textaera" class="form-control form-control-lg rounded-0" name="description" id="description" formControlName="description">
+        </div>
+        <input type="hidden" id="role" name="role" value="EN_ATTENTE" formControlName="role">
+        <button type="submit" class="btn btn-success btn-lg float-right mb-3" id="btn-next-final" [disabled]="etapeFinalForm.invalid"> S'inscire </button>
+    </form>
+</div>
