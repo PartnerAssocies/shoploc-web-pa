@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
 import { environment } from 'src/environments/environment';
-import { CommercantRequestBody } from '../models/CommercantRequestBody.model';
+import { CommercantRequestBody } from '../models/html/requestBody/CommercantRequestBody.model';
+import { CommercantResponseBody } from '../models/html/responseBody/CommercantResponseBody.model';
 
 /**
  * Service qui gère les actions liées aux User
@@ -31,10 +32,10 @@ export class UserService {
      * Enregistre un nouveau Commerçant en base de données
      * @param user l'utilisateur à enregistrer
      */
-    registerCommercant(user : CommercantRequestBody): Observable<CommercantRequestBody>{
+    registerCommercant(user : CommercantRequestBody): Observable<CommercantResponseBody>{
         const url = environment.shopLocApiURL
             .concat("/commercant/register");
-        return this.http.post<CommercantRequestBody>(url,user,this.httpOptions);
+        return this.http.post<CommercantResponseBody>(url,user,this.httpOptions);
     }
 
 }
