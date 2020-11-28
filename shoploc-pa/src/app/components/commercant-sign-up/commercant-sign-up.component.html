@@ -47,7 +47,7 @@
     <form *ngIf="etapeFinal" class="form" [formGroup]="etapeFinalForm" (ngSubmit)="onSubmitForm('etape-final')">
         <div class="form-group">
             <label for="description">Décrivez votre commerce en quelques mots :</label>
-            <input type="textaera" class="form-control form-control-lg rounded-0" name="description" id="description" formControlName="description">
+            <textarea type="textarea" class="form-control form-control-lg rounded-0" name="description" id="description" rows="5" formControlName="description"></textarea>
         </div>
         <button type="button" class="btn btn-light btn-lg float-left mb-3" id="btn-retour-3" (click)="retour('etape-3')"> Retour </button>
         <button type="submit" class="btn btn-info btn-lg float-right mb-3" id="btn-next-final" [disabled]="etapeFinalForm.invalid"> S'inscire </button>
