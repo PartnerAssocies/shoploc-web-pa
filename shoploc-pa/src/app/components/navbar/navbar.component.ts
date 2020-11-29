@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { CurrentUser } from 'src/app/models/CurrentUser.model';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   public role : string;
+  public currentUser : CurrentUser;
 
   constructor(
     private router: Router,
@@ -18,7 +20,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //this.role = this.authenticationService.currentUserValue.role;
-    this.role = "CLIENT";
+    console.log(this.authenticationService.currentUserValue.role);
+    this.role = this.authenticationService.currentUserValue.role;
   }
 
   /**
@@ -92,6 +95,6 @@ export class NavbarComponent implements OnInit {
    * Pour tous les users
    */
   public navigateMenuProfile(){
-
+    this.router.navigate(['profil']);
   }
 }

@@ -26,6 +26,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -55,6 +57,8 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     MatIconModule,
     MatSlideToggleModule,
     MatToolbarModule,
+    MatDividerModule,
+    MatListModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ReactiveFormsModule,
