@@ -23,6 +23,7 @@ export class ClientSignUpComponent implements OnInit {
   lieu: LieuResponseBody;
   errorMessage: string;
   inError: boolean
+  isWait: boolean;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService,
@@ -34,6 +35,7 @@ export class ClientSignUpComponent implements OnInit {
       this.initForm();
       this.errorMessage = "";
       this.inError = false;
+      this.isWait = false;
     }
   
     /**
@@ -64,6 +66,7 @@ export class ClientSignUpComponent implements OnInit {
      * Si la création est ok on redirige vers l'écran de connexion
      */
     onSubmitForm(){
+      this.isWait = true;
       this.inError = false;
       const formValue = this.signupForm.value;
       console.log(formValue);
@@ -88,9 +91,11 @@ export class ClientSignUpComponent implements OnInit {
         )
           
         this.userService.registerClient(newUser).subscribe(response => {
+          this.isWait = false;
           console.log(response);
           this.router.navigate(["/login"], {queryParams: { message: 'signupclientok' }});
         }, (err: HttpErrorResponse) => {
+          this.isWait = false;
           if (err.status === 226) {
             this.inError = true;
             this.errorMessage = "L'email renseigné est déjà utilisé";

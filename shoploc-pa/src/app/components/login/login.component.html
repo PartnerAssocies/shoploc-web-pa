@@ -27,7 +27,12 @@
                                     <input type="password" class="form-control form-control-lg rounded-0" formControlName="password" id="password"  placeholder="Mot de passe">
                                     <small id="mdp-oublie" class="form-text text-muted"><a href="/resetPassword">Mot de passe oublié</a></small>
                                 </div>
-                                <button type="submit" class="btn btn-info w-100" id="btnLogin">Connexion</button>
+                                <button type="submit" class="btn btn-info w-100" id="btnLogin" *ngIf="!isWait">Connexion</button>
+                                <div class="row justify-content-center" *ngIf="isWait">
+                                    <div class="spinner-border" role="status">
+                                      <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
                             </form>
                             <div class="row justify-content-center mt-3">
                                 <label for="link-reset-password" class="text-secondary mr-1">Pas encore de compte ? </label>

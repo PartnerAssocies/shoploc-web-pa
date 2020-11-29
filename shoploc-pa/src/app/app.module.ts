@@ -13,6 +13,8 @@ import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +32,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
-import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CommercantSignUpComponent } from './components/commercant-sign-up/comme
     NavbarComponent,
     SignupComponent,
     ClientSignUpComponent,
-    CommercantSignUpComponent
+    CommercantSignUpComponent,
+    ProfilComponent
   ],
   imports: [
     AppRoutingModule,

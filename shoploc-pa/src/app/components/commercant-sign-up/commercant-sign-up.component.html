@@ -53,6 +53,11 @@
             {{errorMessage}}
         </p>
         <button type="button" class="btn btn-light btn-lg float-left mb-3" id="btn-retour-3" (click)="retour('etape-3')"> Retour </button>
-        <button type="submit" class="btn btn-info btn-lg float-right mb-3" id="btn-next-final" [disabled]="etapeFinalForm.invalid"> S'inscire </button>
+        <button type="submit" class="btn btn-info btn-lg float-right mb-3" id="btn-next-final" *ngIf="!isWait" [disabled]="etapeFinalForm.invalid"> S'inscire </button>
+        <div class="float-right pr-2 pt-1" *ngIf="isWait">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+        </div>
     </form>
 </div>

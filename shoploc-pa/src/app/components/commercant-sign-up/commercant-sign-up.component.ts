@@ -22,6 +22,7 @@ export class CommercantSignUpComponent implements OnInit {
 
   errorMessage: string;
   inError: boolean;
+  isWait: boolean;
 
   public etape1: boolean;
   public etape2:boolean;
@@ -42,6 +43,7 @@ export class CommercantSignUpComponent implements OnInit {
     this.etape2 = false;
     this.etape3 = false;
     this.etapeFinal = false;
+    this.isWait = false;
   }
 
    /**
@@ -97,6 +99,7 @@ export class CommercantSignUpComponent implements OnInit {
     }
 
     // Cas où on valide le formulaire
+    this.isWait = true;
     this.inError = false;
     const formEtape1Value = this.etape1Form.value;
     const formEtape2Value = this.etape2Form.value;
@@ -112,6 +115,7 @@ export class CommercantSignUpComponent implements OnInit {
     )
     
     this.lieuService.createLieu(newLieu).subscribe(res => {
+      console.log("here4");
       // On créé maintenant l'utilisateur à partir du lieu renvoyé
       const commercant = new CommercantRequestBody(
         formEtape1Value['username'],
@@ -124,21 +128,30 @@ export class CommercantSignUpComponent implements OnInit {
       );
 
       this.userService.registerCommercant(commercant).subscribe(response =>{
+        console.log("here");
+        this.isWait = false;
         this.router.navigate(["/login"], {queryParams: { message: 'signupcommercantok' }});
       },(error: HttpErrorResponse) => {
+        console.log(error);
+        this.isWait = false;
         if (error.status === 226) {
+          console.log("here3");
           this.inError = true;
           this.errorMessage = "L'email renseigné est déjà utilisé";
           return;
         }
         if (error.status === 304) {
+          console.log("here2");
           this.inError = true;
           this.errorMessage = "Une erreur est survenue. L'inscription ne s'est pas finalisé correctement";
           return;
         }
+        console.log("here6");
         this.inError = true;
         this.errorMessage = "Une erreur est survenue.";
       })
+    },(error: HttpErrorResponse) => {
+      console.log("here5");
     })
     
   }  
