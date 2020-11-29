@@ -1,29 +1,29 @@
 <mat-toolbar class="shoploc-nav-bar">
-    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role" (click)="navigateClickAndCollect()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role" id="shopBasket" (click)="navigateClickAndCollect()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>shopping_basket</mat-icon>
     </button>
-    <button *ngIf="'ROLE_ADMIN' == role" (click)="navigateGestionCommercant()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_ADMIN' == role" id="store" (click)="navigateGestionCommercant()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>store</mat-icon>
     </button>
-    <button *ngIf="'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" (click)="navigateStats()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" id="barChart" (click)="navigateStats()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>bar_chart</mat-icon>
     </button>
-    <button *ngIf="'ROLE_CLIENT' == role" (click)="navigateVFP()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_CLIENT' == role" id="verified" (click)="navigateVFP()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>verified</mat-icon>
     </button>
-    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" (click)="navigateHome()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" id="home" (click)="navigateHome()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>home</mat-icon>
     </button>
-    <button *ngIf="'ROLE_CLIENT' == role" (click)="navigatePorteMonnaie()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_CLIENT' == role" id="euroSymbol" (click)="navigatePorteMonnaie()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>euro_symbol</mat-icon>
     </button>
-    <button *ngIf="'ROLE_COMMERCANT' == role" (click)="navigateGestionsProduits()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_COMMERCANT' == role" id="addBusiness" (click)="navigateGestionsProduits()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>add_business</mat-icon>
     </button>
-    <button *ngIf="'ROLE_ADMIN' == role" (click)="navigateMenuNotification()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_ADMIN' == role" id="addAlert" (click)="navigateMenuNotification()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>add_alert</mat-icon>
     </button>
-    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" (click)="navigateMenuProfile()" class="shoploc-nav-bar-element"  mat-icon-button>
+    <button *ngIf="'ROLE_CLIENT' == role || 'ROLE_COMMERCANT' == role || 'ROLE_ADMIN' == role" id="accountCircle" (click)="navigateMenuProfile()" class="shoploc-nav-bar-element"  mat-icon-button>
         <mat-icon>account_circle</mat-icon>
     </button>
 </mat-toolbar>
