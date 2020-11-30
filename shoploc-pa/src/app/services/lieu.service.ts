@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Lieu } from '../models/Lieu.model';
-import { LieuBody } from '../models/LieuBody.model';
+import { LieuResponseBody } from '../models/html/responseBody/LieuResponseBody.model';
+import { LieuRequestBody } from '../models/html/requestBody/LieuRequestBody.model';
 import { environment } from 'src/environments/environment';
 
 /**
@@ -24,8 +24,8 @@ export class LieuService {
      * @param lieu 
      * @returns l'entité Lieu créée
      */
-    createLieu(lieu: LieuBody): Observable<Lieu> {
-        return this.http.post<Lieu>(environment.shopLocApiURL.concat("/lieu/create"), lieu, this.httpOptions);
+    createLieu(lieu: LieuRequestBody): Observable<LieuResponseBody> {
+        return this.http.post<LieuResponseBody>(environment.shopLocApiURL.concat("/lieu/create"), lieu, this.httpOptions);
     }
 
 }

@@ -8,10 +8,13 @@ import { LieuService } from './services/lieu.service';
 
 // Import Component
 import { AppComponent } from './app.component';
+import { ClientSignUpComponent } from './components/client-sign-up/client-sign-up.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +25,9 @@ import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -29,13 +35,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HelloComponent,
     LoginComponent,
     NavbarComponent,
-    SignupComponent
+    SignupComponent,
+    ClientSignUpComponent,
+    CommercantSignUpComponent,
+    ProfilComponent
   ],
   imports: [
     AppRoutingModule,
@@ -45,7 +55,10 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatSlideToggleModule,
     MatToolbarModule,
+    MatDividerModule,
+    MatListModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ReactiveFormsModule,
