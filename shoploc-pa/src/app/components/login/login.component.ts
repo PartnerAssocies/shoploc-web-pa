@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
       data => {
         console.log("[onSubmitForm] authentification réussi");
         this.isWait = false;
-        const param = this.activateRoute.queryParams.subscribe(params => {
+        this.activateRoute.queryParams.subscribe(params => {
           console.log(params);
           this.returnUrl = params['returnUrl'];
           console.log(this.returnUrl);
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
    * Check dans les paramètre de l'url si on doit afficher un message ou non
    */
   checkMessage(){
-    const param = this.activateRoute.queryParams.subscribe(params => {
+    this.activateRoute.queryParams.subscribe(params => {
       if(!params && !params['message']){
         return;
       }
