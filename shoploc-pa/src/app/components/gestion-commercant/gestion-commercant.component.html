@@ -1,0 +1,19 @@
+<div>
+    <div class="row">
+        <div class="col">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col">
+            <h1 class="text-center">Gestion des inscriptions commerçants</h1>
+        </div>
+        <div class="col"></div> 
+    </div>
+    <mat-list>
+        <mat-list-item *ngFor="let demand of demands">
+            <app-demande-commercant [username] = "demand.username"></app-demande-commercant>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</div>

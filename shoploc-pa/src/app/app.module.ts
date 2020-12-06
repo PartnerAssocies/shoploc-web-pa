@@ -15,6 +15,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
+import { GestionCommercantComponent } from './components/gestion-commercant/gestion-commercant.component';
+import { DemandeCommercantComponent } from './components/demande-commercant/demande-commercant.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -45,7 +47,9 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     SignupComponent,
     ClientSignUpComponent,
     CommercantSignUpComponent,
-    ProfilComponent
+    ProfilComponent,
+    GestionCommercantComponent,
+    DemandeCommercantComponent
   ],
   imports: [
     AppRoutingModule,

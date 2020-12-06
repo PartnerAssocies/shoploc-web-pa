@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //this.role = this.authenticationService.currentUserValue.role;
-    console.log(this.authenticationService.currentUserValue.role);
     this.role = this.authenticationService.currentUserValue.role;
   }
 
@@ -38,7 +37,7 @@ export class NavbarComponent implements OnInit {
    * Uniquement pour le role ADMIN
    */
   public navigateGestionCommercant(){
-
+    this.router.navigate(['gestionCommercant']);
   }
 
   /**
