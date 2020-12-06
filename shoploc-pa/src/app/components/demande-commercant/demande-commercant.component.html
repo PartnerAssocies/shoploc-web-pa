@@ -1,13 +1,34 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <p>{{username}}</p>
-        </div>
-        <div class="col-3">
-            <button class="btn btn-primary" id="btnAcceptSignUp">Valider</button>
-        </div>
-        <div class="col-3">
-            <button class="btn btn-danger" id="btnRefuseSignUp">Refuser</button>
-        </div>
-    </div>    
+<div class="row">
+    <div class="col-5">
+        <p class="font-weight-bold">Demande de : </p>
+    </div>
+    <div class="col-7">
+        <p>{{username}}</p>
+    </div>
 </div>
+<div class="row">
+    <div class="col-5">
+        <p class="font-weight-bold">Numéro de SIRET : </p>
+    </div>
+    <div class="col-7">
+        <p>{{siret}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <p>{{description}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col justify-content-center d-flex">
+        <button mat-icon-button (click)="refuseCommercant()" id="btnRefuseSignUp">
+            <mat-icon [ngStyle]="{'color':'red'} "class="h1" >highlight_off</mat-icon>
+        </button>
+    </div>
+    <div class="col justify-content-center d-flex">
+        <button mat-icon-button (click)="valideCommercant()" id="btnAcceptSignUp" class="green-text">
+            <mat-icon [ngStyle]="{'color':'green'}" class="h1">check_circle_outline</mat-icon>
+        </button>
+    </div>
+</div>   
+

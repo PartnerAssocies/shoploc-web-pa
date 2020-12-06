@@ -5,6 +5,7 @@ import { User } from '../models/User.model';
 import { environment } from 'src/environments/environment';
 import { CommercantRequestBody } from '../models/html/requestBody/CommercantRequestBody.model';
 import { CommercantResponseBody } from '../models/html/responseBody/CommercantResponseBody.model';
+import { CommercantData } from '../models/data/CommercantData.model';
 
 /**
  * Service qui gère les actions liées aux User
@@ -36,6 +37,32 @@ export class UserService {
         const url = environment.shopLocApiURL
             .concat("/commercant/register");
         return this.http.post<CommercantResponseBody>(url,user,this.httpOptions);
+    }
+
+    /**
+     * Récupère tous les commerçant "En_ATTENTE"
+     * C'est à dire tous les commerçants dont l'inscription n'a pas encore été validé
+     */
+    getCommercantEnAttente() : Observable<CommercantData[]>{
+        const url = environment.shopLocApiURL
+            .concat("/commercant/");
+            return this.http.get<CommercantData[]>(url);
+    }
+
+    /**
+     * Valid l'inscription d'un commercant
+     * @param username : string, le username du commercant
+     */
+    acceptCommercant(username : string) : any{
+        console.log("accepte " + username)
+    }
+
+    /**
+     * Refuse l'inscription d'un commercant
+     * @param username  : string, le username du commercant
+     */
+    refuseCommercant(username : string) : any{
+        console.log("refuser " + username)
     }
 
 }

@@ -1,19 +1,27 @@
-<div>
-    <div class="row">
-        <div class="col">
-            <button mat-icon-button (click)="back()" class="float-left">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-2 float-left">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col text-center">
+                <h3 class="mb-0 h3">Gestion des inscriptions commerçants</h3>
+            </div>
+            <div class="col-sm-2">
+            </div>  
         </div>
-        <div class="col">
-            <h1 class="text-center">Gestion des inscriptions commerçants</h1>
+    </div> 
+    <div class="card-body">
+        <div *ngIf="demands.length > 0">
+            <div *ngFor="let demand of demands">
+                <div class="w-100 demande-commercant" id="demande-{{demand.username}}">
+                    <app-demande-commercant [username]="demand.username" [description]="demand.description"
+                        [siret]="demand.siret"></app-demande-commercant>
+                </div>
+            </div>
         </div>
-        <div class="col"></div> 
-    </div>
-    <mat-list>
-        <mat-list-item *ngFor="let demand of demands">
-            <app-demande-commercant [username] = "demand.username"></app-demande-commercant>
-            <mat-divider></mat-divider>
-        </mat-list-item>
-    </mat-list>
+    </div>    
 </div>
+<app-navbar></app-navbar>

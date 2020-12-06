@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-demande-commercant',
@@ -9,10 +10,23 @@ export class DemandeCommercantComponent implements OnInit {
 
   @Input()
   username: string;
+  @Input()
+  description:string;
+  @Input()
+  siret:number;
 
-  constructor() { }
+  constructor(
+    private userService : UserService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  valideCommercant(){
+    this.userService.acceptCommercant(this.username);
+  }
+
+  refuseCommercant(){
+    this.userService.refuseCommercant(this.username);
+  }
 }
