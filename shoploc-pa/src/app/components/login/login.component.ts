@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid){
         this.errorMessage = "Remplissez tous les champs du formulaire de connexion."
         this.inError = true;
+        this.isMessaged = false;
         return;
       }
     
@@ -91,11 +92,13 @@ export class LoginComponent implements OnInit {
           this.isWait = false;
           this.errorMessage = "Votre compte n'a pas encore été validé."
           this.inError = true;
+          this.isMessaged = false;
           return;
         } 
         this.isWait = false;
         this.errorMessage = "Informations de connexion incorrectes."
         this.inError = true;
+        this.isMessaged = false;
       }
     );
   }
@@ -111,11 +114,13 @@ export class LoginComponent implements OnInit {
       if(params['message'] == "signupclientok"){
         this.message = "Votre inscription a réussi";
         this.isMessaged = true;
+        this.inError = false;
         return;
       }
       if(params['message'] == "signupcommercantok"){
         this.message = "Votre demande d'inscription a été envoyé";
         this.isMessaged = true;
+        this.inError = false;
         return;
       }
       
