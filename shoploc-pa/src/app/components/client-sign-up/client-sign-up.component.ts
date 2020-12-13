@@ -96,12 +96,12 @@ export class ClientSignUpComponent implements OnInit {
           this.router.navigate(["/login"], {queryParams: { message: 'signupclientok' }});
         }, (err: HttpErrorResponse) => {
           this.isWait = false;
-          if (err.status === 226) {
+          if (err.status === 409) {
             this.inError = true;
             this.errorMessage = "L'email renseigné est déjà utilisé";
             return;
           }
-          if (err.status === 304) {
+          if (err.status === 417) {
             this.inError = true;
             this.errorMessage = "Une erreur est survenue. L'inscription ne s'est pas finalisé correctement";
             return;
