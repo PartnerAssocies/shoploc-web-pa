@@ -199,4 +199,8 @@ export class CommercantSignUpComponent implements OnInit {
       }
     }
 
+    get username(){return this.etape1Form.get('username')}
+
+    get siret(){return this.etape3Form.get('siret')}
+
 }

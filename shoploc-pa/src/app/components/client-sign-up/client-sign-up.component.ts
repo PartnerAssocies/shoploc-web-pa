@@ -137,4 +137,5 @@ export class ClientSignUpComponent implements OnInit {
       }
     }
 
+    get username(){return this.signupForm.get('username')}
 }
