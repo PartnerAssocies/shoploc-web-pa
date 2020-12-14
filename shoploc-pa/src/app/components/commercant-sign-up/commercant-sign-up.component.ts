@@ -128,30 +128,25 @@ export class CommercantSignUpComponent implements OnInit {
       );
 
       this.userService.registerCommercant(commercant).subscribe(response =>{
-        console.log("here");
         this.isWait = false;
         this.router.navigate(["/login"], {queryParams: { message: 'signupcommercantok' }});
       },(error: HttpErrorResponse) => {
         console.log(error);
         this.isWait = false;
-        if (error.status === 226) {
-          console.log("here3");
+        if (error.status === 409) {
           this.inError = true;
           this.errorMessage = "L'email renseigné est déjà utilisé";
           return;
         }
-        if (error.status === 304) {
-          console.log("here2");
+        if (error.status === 417) {
           this.inError = true;
           this.errorMessage = "Une erreur est survenue. L'inscription ne s'est pas finalisé correctement";
           return;
         }
-        console.log("here6");
         this.inError = true;
         this.errorMessage = "Une erreur est survenue.";
       })
     },(error: HttpErrorResponse) => {
-      console.log("here5");
     })
     
   }  
@@ -198,5 +193,9 @@ export class CommercantSignUpComponent implements OnInit {
         }
       }
     }
+
+    get username(){return this.etape1Form.get('username')}
+
+    get siret(){return this.etape3Form.get('siret')}
 
 }
