@@ -4,6 +4,7 @@ import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { CommercantListComponent } from './components/commercant-list/commercant-list.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: HelloComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}},
   { path: 'signup', component: SignupComponent },
-  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}}
+  { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}},
+  { path: 'commercant-list', component:  CommercantListComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 ];
 
 @NgModule({
