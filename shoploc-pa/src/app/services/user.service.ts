@@ -44,7 +44,7 @@ export class UserService {
      */
     getListCommercant(): Observable<CommercantData[]>{
         const url = environment.shopLocApiURL
-            .concat("/commercant/");
+            .concat("/commercant/listall");
         return this.http.get<CommercantData[]>(url);
     }
 
