@@ -36,6 +36,13 @@ export class AuthService {
     }
 
     /**
+     * Vide le current USer
+     */
+    public emptyCurrentUserValue() {
+        this.currentUserSubject.next(null);
+    }
+
+    /**
      * Tente de connecter l'utilisateur représenté par le coupe username/passwrod passé en paramètre
      * @param String username 
      * @param String passwordNotHashed 
@@ -75,9 +82,6 @@ export class AuthService {
         const url = environment.shopLocApiURL
             .concat("/auth/revoke/")
             .concat(this.currentUserValue.refreshToken);
-        return this.http.delete(url).subscribe(response => {
-            localStorage.removeItem('currentUser');
-            this.currentUserSubject.next(null);
-        });
+        return this.http.delete(url);
     }
 }
