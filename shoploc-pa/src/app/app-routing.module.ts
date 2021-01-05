@@ -9,9 +9,9 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent , canActivate: [AuthGuard], data: {expectedRole: 'NOT_LOGGED'}},
   { path: '', component: HelloComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}},
-  { path: 'signup', component: SignupComponent },
+  { path: 'signup', component: SignupComponent , canActivate: [AuthGuard], data: {expectedRole: 'NOT_LOGGED'} },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}},
   { path: 'commercant-list', component:  CommercantListComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 ];
