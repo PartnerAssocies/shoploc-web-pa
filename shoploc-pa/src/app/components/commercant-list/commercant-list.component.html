@@ -8,6 +8,11 @@
         </div>
     </div> 
     <div class="card-body">
+        <div *ngIf="commercants.length < 1">
+            <div class="col-12">
+                <p class="h1 text-info font-weight-light"> Aucun commercants disponibles </p>
+            </div>
+        </div>
         <div *ngIf="commercants.length > 0">
             <div *ngFor="let commercant of commercants">
                 <div class="w-100 commercant" id="commercant-{{commercant.username}}">
