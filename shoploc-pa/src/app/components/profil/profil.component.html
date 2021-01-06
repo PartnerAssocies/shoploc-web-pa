@@ -1,24 +1,26 @@
- <div>
-    <div class="row">
-        <div class="col">
-            <button mat-icon-button (click)="back()" class="float-left">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-2 float-left">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-10 float-left">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Mon Profil</p>
+            </div>
         </div>
-        <div class="col">
-            <h1 class="text-center">Profil</h1>
-        </div>
-        <div class="col">
-            
-        </div> 
+    </div> 
+    <div class="card-body">
+        <mat-list>
+            <mat-list-item>Item 1</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Item 2</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <button type="button" class="btn btn-danger" id="logout" color ="red" (click)="logout()">Logout</button>
+            </mat-list-item>
+        </mat-list>
     </div>
-    <mat-list>
-        <mat-list-item>Item 1</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 2</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-            <button type="button" class="btn btn-danger" id="logout" color ="red" (click)="logout()">Logout</button>
-        </mat-list-item>
-    </mat-list>
 </div>
+<app-navbar></app-navbar>

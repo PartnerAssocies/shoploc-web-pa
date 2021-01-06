@@ -20,9 +20,7 @@ export class GestionCommercantComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.demands = [];
-    this.demands.push(new CommercantData("david@mail.com","secret","ROLE_EN_ATTENTE",1,"magasin 1","","magasin de david","01234567891023"));
-    this.demands.push(new CommercantData("etienne@mail.com","secret","ROLE_EN_ATTENTE",1,"magasin 2","","magasin de etienne","98745612345678"));
+    this.initDemands();
   }
 
   back(){
@@ -30,6 +28,7 @@ export class GestionCommercantComponent implements OnInit {
   }
 
   initDemands(){
+    this.demands = [];
     this.userService.getCommercantEnAttente().subscribe(response => {
       for(let commercant of response){
         this.demands.push(commercant);

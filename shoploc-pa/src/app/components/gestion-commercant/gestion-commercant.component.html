@@ -1,19 +1,22 @@
-<div class="card">
+<div class="card margin-navbar">
     <div class="card-header">
         <div class="row">
-            <div class="col-sm-2 float-left">
+            <div class="col-2 float-left">
                 <button mat-icon-button (click)="back()" class="float-left">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
             </div>
-            <div class="col text-center">
-                <h3 class="mb-0 h3">Gestion des inscriptions commerçants</h3>
+            <div class="col-10 float-left">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Demandes d'inscription</p>
             </div>
-            <div class="col-sm-2">
-            </div>  
         </div>
     </div> 
     <div class="card-body">
+        <div *ngIf="demands.length < 1">
+            <div class="col-12">
+                <p class="h1 text-info font-weight-light"> Aucune demandes de commerçants </p>
+            </div>
+        </div>
         <div *ngIf="demands.length > 0">
             <div *ngFor="let demand of demands">
                 <div class="w-100 demande-commercant" id="demande-{{demand.username}}">

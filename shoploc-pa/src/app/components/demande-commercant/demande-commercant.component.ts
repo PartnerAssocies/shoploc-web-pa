@@ -23,10 +23,14 @@ export class DemandeCommercantComponent implements OnInit {
   }
 
   valideCommercant(){
-    this.userService.acceptCommercant(this.username);
+    this.userService.acceptCommercant(this.username).subscribe(commercant => {
+      window.location.reload();
+    });
   }
 
   refuseCommercant(){
-    this.userService.refuseCommercant(this.username);
+    this.userService.refuseCommercant(this.username).subscribe(commercant => {
+      window.location.reload();
+    });
   }
 }
