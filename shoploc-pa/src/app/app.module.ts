@@ -50,13 +50,10 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     ClientSignUpComponent,
     CommercantSignUpComponent,
     ProfilComponent,
-<<<<<<< HEAD
     GestionCommercantComponent,
-    DemandeCommercantComponent
-=======
+    DemandeCommercantComponent,
     CommercantListComponent,
     CommercantListElementComponent
->>>>>>> dev
   ],
   imports: [
     AppRoutingModule,
