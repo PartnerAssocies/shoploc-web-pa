@@ -78,5 +78,13 @@ export class UserService {
         console.log(accept);
         return this.http.post<CommercantData>(url,params);
     }
+    /*
+     * Récupère la liste de tous les commerçants
+     */
+    getListCommercant(): Observable<CommercantData[]>{
+        const url = environment.shopLocApiURL
+            .concat("/commercant/listall");
+        return this.http.get<CommercantData[]>(url);
+    }
 
 }

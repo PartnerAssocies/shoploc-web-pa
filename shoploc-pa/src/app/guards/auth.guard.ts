@@ -26,11 +26,17 @@ export class AuthGuard implements CanActivate {
         const currentUser = this.authenticationService.currentUserValue;
         const expectedRole = route.data.expectedRole;
 
-        if((currentUser && currentUser.role == expectedRole) || (currentUser && "NONE" == expectedRole) || (currentUser && "ROLE_BOTH" == expectedRole)){
-            return true;
-        }
-        if(!currentUser){
-            this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
+        if(currentUser){
+            if((currentUser.role == expectedRole) || ("NONE" == expectedRole) || ("ROLE_BOTH" == expectedRole)){
+                return true;
+            }
+            this.router.navigate(['/'],{ queryParams: { returnUrl: state.url }});
+        }else{
+            if("NOT_LOGGED" == expectedRole){
+                return true;
+            }else{
+                this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
+            }
         }
         return false;
     }

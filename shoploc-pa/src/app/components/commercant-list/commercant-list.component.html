@@ -1,0 +1,27 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1">Click&Collect</h3>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div *ngIf="commercants.length < 1">
+            <div class="col-12">
+                <p class="h1 text-info font-weight-light"> Aucun commercants disponibles </p>
+            </div>
+        </div>
+        <div *ngIf="commercants.length > 0">
+            <div *ngFor="let commercant of commercants">
+                <div class="w-100 commercant" id="commercant-{{commercant.username}}">
+                    <app-commercant-list-element [libelleMagasin]="commercant.libelleMagasin" [description]="commercant.description" [lienImage]="commercant.image"
+                        [lieu]="commercant.lieu" 
+                    ></app-commercant-list-element>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<app-navbar></app-navbar>

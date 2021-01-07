@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
    * COMMERCANT : 
    */
   public navigateClickAndCollect(){
-
+    this.router.navigate(['commercant-list']);
   }
 
   /**
@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit {
    * Pour tous les users
    */
   public navigateHome(){
-    
+    this.router.navigate(['']);
   }
   
   /**
