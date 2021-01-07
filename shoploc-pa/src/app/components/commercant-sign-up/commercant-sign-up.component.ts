@@ -115,16 +115,17 @@ export class CommercantSignUpComponent implements OnInit {
     )
     
     this.lieuService.createLieu(newLieu).subscribe(res => {
-      console.log("here4");
       // On créé maintenant l'utilisateur à partir du lieu renvoyé
+      const numeroImg = (Math.floor(Math.random()) * Math.floor(3)) + 1;
       const commercant = new CommercantRequestBody(
         formEtape1Value['username'],
         this.hashService.hashPassword(formEtape1Value['password']),
         formEtape1Value['nom'],
         "EN_ATTENTE",
         res.lid,
-        +formEtape3Value['siret'],
-        formEtapeFinalValue['description']
+        formEtape3Value['siret'],
+        formEtapeFinalValue['description'],
+        'marche'.concat(numeroImg.toString()).concat('.jpg')
       );
 
       this.userService.registerCommercant(commercant).subscribe(response =>{

@@ -29,7 +29,6 @@ export class CommercantListComponent implements OnInit {
     this.commercants = [];
     this.userService.getListCommercant().subscribe(response => {
       for(let commercant of response){
-        commercant.image = 'assets/commerce/'.concat(commercant.image);
         this.commercants.push(commercant);
       }
     });

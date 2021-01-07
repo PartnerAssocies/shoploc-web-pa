@@ -5,7 +5,8 @@ export class CommercantRequestBody {
         public libelleMagasin: string,
         public role: string,
         public lieuId: number,
-        public siret: number,
-        public description : string
+        public siret: string,
+        public description : string,
+        public image : string
     ){}
 }
