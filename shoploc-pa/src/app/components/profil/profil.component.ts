@@ -21,8 +21,8 @@ export class ProfilComponent implements OnInit {
     this.authService.logout().subscribe(response => {
       localStorage.removeItem('currentUser');
       this.authService.emptyCurrentUserValue();
-      this.route.navigate(['login'])
-  });;
+      this.route.navigate(['login']);
+  });
   }
 
   back(){
