@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { CommercantSignUpComponent } from './components/commercant-sign-up/commercant-sign-up.component';
+import { CommercantListComponent } from './components/commercant-list/commercant-list.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
+import { CommercantListElementComponent } from './components/commercant-list-element/commercant-list-element.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     SignupComponent,
     ClientSignUpComponent,
     CommercantSignUpComponent,
-    ProfilComponent
+    ProfilComponent,
+    CommercantListComponent,
+    CommercantListElementComponent
   ],
   imports: [
     AppRoutingModule,

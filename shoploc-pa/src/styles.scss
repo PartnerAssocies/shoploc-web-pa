@@ -1,4 +1,23 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    
+}
+
+@media (max-width: 599px){
+    .margin-navbar{
+        margin-bottom: 56px;
+    }
+}
+
+@media (min-width: 600px){
+    .margin-navbar{
+        margin-bottom: 64px;
+    }
+}
+
+
+

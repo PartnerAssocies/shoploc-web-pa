@@ -5,6 +5,7 @@ import { User } from '../models/User.model';
 import { environment } from 'src/environments/environment';
 import { CommercantRequestBody } from '../models/html/requestBody/CommercantRequestBody.model';
 import { CommercantResponseBody } from '../models/html/responseBody/CommercantResponseBody.model';
+import { CommercantData } from '../models/data/CommercantData.model';
 
 /**
  * Service qui gère les actions liées aux User
@@ -36,6 +37,15 @@ export class UserService {
         const url = environment.shopLocApiURL
             .concat("/commercant/register");
         return this.http.post<CommercantResponseBody>(url,user,this.httpOptions);
+    }
+
+    /**
+     * Récupère la liste de tous les commerçants
+     */
+    getListCommercant(): Observable<CommercantData[]>{
+        const url = environment.shopLocApiURL
+            .concat("/commercant/listall");
+        return this.http.get<CommercantData[]>(url);
     }
 
 }
