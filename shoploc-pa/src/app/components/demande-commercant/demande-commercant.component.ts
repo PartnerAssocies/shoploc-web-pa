@@ -14,6 +14,8 @@ export class DemandeCommercantComponent implements OnInit {
   description:string;
   @Input()
   siret:number;
+  @Input()
+  libelleMagasin:string;
 
   constructor(
     private userService : UserService

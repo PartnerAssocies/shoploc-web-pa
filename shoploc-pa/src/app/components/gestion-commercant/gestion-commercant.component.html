@@ -21,7 +21,7 @@
             <div *ngFor="let demand of demands">
                 <div class="w-100 demande-commercant" id="demande-{{demand.username}}">
                     <app-demande-commercant [username]="demand.username" [description]="demand.description"
-                        [siret]="demand.siret"></app-demande-commercant>
+                        [siret]="demand.siret" [libelleMagasin]="demand.libelleMagasin"></app-demande-commercant>
                 </div>
             </div>
         </div>

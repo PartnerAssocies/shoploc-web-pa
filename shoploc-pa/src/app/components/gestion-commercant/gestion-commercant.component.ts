@@ -1,9 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { CommercantResponseBody } from 'src/app/models/html/responseBody/CommercantResponseBody.model';
 import { CommercantData } from 'src/app/models/data/CommercantData.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-gestion-commercant',
