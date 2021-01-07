@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CommercantData } from 'src/app/models/data/CommercantData.model';
-import { LieuData } from 'src/app/models/data/LieuData.model';
 import { UserService } from 'src/app/services/user.service';
 
 
