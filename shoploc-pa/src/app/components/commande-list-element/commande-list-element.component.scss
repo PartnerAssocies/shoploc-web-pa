@@ -1,0 +1,23 @@
+mat-icon {
+    transform: scale(1.5);
+    float : left; 
+}
+
+.commande{
+    transition: 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.commande:focus{
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.commande:active{
+    background-color : rgba(0, 0, 0, 0.03);
+}
+
+.active{
+    background-color : rgba(0, 0, 0, 0.03);
+}
+
