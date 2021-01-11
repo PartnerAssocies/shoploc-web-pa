@@ -12,6 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class CommercantListComponent implements OnInit {
 
   commercants : CommercantData[];
+  isEmpty : boolean;
+  isLoading : boolean;
 
   constructor(
     private _location : Location,
@@ -19,18 +21,22 @@ export class CommercantListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.initCommercant();
+    
   }
 
   /**
    * Initlialise la liste des commerçants
    */
-  initCommercant(){
+  initCommercant() {
     this.commercants = [];
     this.userService.getListCommercant().subscribe(response => {
       for(let commercant of response){
         this.commercants.push(commercant);
       }
+      this.isEmpty = this.commercants.length == 0;
+      this.isLoading = true;
     });
   }
 

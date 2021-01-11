@@ -34,6 +34,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 // Import Autres
 import { environment } from '../environments/environment';
@@ -68,6 +69,7 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     MatDividerModule,
     MatListModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
