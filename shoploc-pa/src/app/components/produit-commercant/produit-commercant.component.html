@@ -1,0 +1,27 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-1 float-left mr-4">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 ml-5">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Mes produits</p>
+            </div>
+            <div class="col-2 float-right">
+                <button type="button" class="btn btn-success" color ="green">Ajouter</button>
+            </div>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div>
+            <div>
+                <div class="w-100">
+                    <app-single-produit-commercant></app-single-produit-commercant>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<app-navbar></app-navbar>

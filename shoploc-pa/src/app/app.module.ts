@@ -19,6 +19,8 @@ import { GestionCommercantComponent } from './components/gestion-commercant/gest
 import { DemandeCommercantComponent } from './components/demande-commercant/demande-commercant.component';
 import { CommercantListComponent } from './components/commercant-list/commercant-list.component';
 import { CommercantListElementComponent } from './components/commercant-list-element/commercant-list-element.component';
+import { ProduitCommercantComponent } from './components/produit-commercant/produit-commercant.component';
+import { SingleProduitCommercantComponent } from './components/single-produit-commercant/single-produit-commercant.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +55,9 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     GestionCommercantComponent,
     DemandeCommercantComponent,
     CommercantListComponent,
-    CommercantListElementComponent
+    CommercantListElementComponent,
+    ProduitCommercantComponent,
+    SingleProduitCommercantComponent
   ],
   imports: [
     AppRoutingModule,
