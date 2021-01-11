@@ -1,0 +1,21 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1">Click&Collect</h3>
+        </div>
+    </div> 
+    <div class="card-body">
+        <mat-list>
+            <mat-list-item class="commande" (click)="nouvelleCommande()">
+                <h4 class="font-weight-light mb-0">Nouvelle Commande</h4>
+                <mat-icon class="icon-display">
+                    add_circle_outline
+                </mat-icon>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>
+<app-navbar></app-navbar>

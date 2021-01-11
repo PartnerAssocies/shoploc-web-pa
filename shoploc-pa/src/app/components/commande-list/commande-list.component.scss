@@ -1,0 +1,14 @@
+.icon-display {
+    transform: scale(2);
+    float : right;
+    margin-left : 10%;
+ }
+
+ .commande {
+    transition: 0.3s;
+ }
+
+ .commande:focus {
+    background-color: rgba(0, 0, 0, 0.15);
+
+ }

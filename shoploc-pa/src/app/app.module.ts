@@ -39,6 +39,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
+import { CommandeListComponent } from './components/commande-list/commande-list.component';
+import { CommandeListElementComponent } from './components/commande-list-element/commande-list-element.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     GestionCommercantComponent,
     DemandeCommercantComponent,
     CommercantListComponent,
-    CommercantListElementComponent
+    CommercantListElementComponent,
+    CommandeListComponent,
+    CommandeListElementComponent
   ],
   imports: [
     AppRoutingModule,
