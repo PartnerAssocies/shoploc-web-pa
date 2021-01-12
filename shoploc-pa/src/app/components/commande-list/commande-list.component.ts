@@ -48,6 +48,6 @@ export class CommandeListComponent implements OnInit {
 
   nouvelleCommande(){
     this.active = true;
-    this.router.navigate(['commande-list']);
+    this.router.navigate(['commercant-list']);
   }
 }

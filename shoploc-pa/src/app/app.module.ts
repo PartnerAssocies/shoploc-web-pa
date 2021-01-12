@@ -41,6 +41,9 @@ import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import { CommandeListComponent } from './components/commande-list/commande-list.component';
 import { CommandeListElementComponent } from './components/commande-list-element/commande-list-element.component';
+import { CommandeService } from './services/commande.service';
+import {DatePipe} from '@angular/common';
+import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
 
 
 @NgModule({
@@ -58,7 +61,8 @@ import { CommandeListElementComponent } from './components/commande-list-element
     CommercantListComponent,
     CommercantListElementComponent,
     CommandeListComponent,
-    CommandeListElementComponent
+    CommandeListElementComponent,
+    CreationCommandeClientComponent
   ],
   imports: [
     AppRoutingModule,
@@ -84,6 +88,8 @@ import { CommandeListElementComponent } from './components/commande-list-element
     UserService,
     LieuService,
     HashService,
+    CommandeService,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]

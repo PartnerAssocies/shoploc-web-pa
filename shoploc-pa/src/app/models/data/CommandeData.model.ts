@@ -1,6 +1,5 @@
 import { CommercantData } from './CommercantData.model';
 import { ClientData } from './ClientData.model';
-import { ProduitData } from './ProduitData.model';
 
 export class CommandeData {
     constructor(

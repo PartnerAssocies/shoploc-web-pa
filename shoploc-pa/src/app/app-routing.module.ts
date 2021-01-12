@@ -7,6 +7,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CommercantListComponent } from './components/commercant-list/commercant-list.component';
 import { CommandeListComponent } from './components/commande-list/commande-list.component';
+import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_BOTH'}},
   { path: 'commercant-list', component:  CommercantListComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'commande-list', component:  CommandeListComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'creation-commande-client', component:  CreationCommandeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 ];
 
 @NgModule({
