@@ -12,15 +12,15 @@
         </div>
     </div> 
     <div class="card-body">
-        <mat-list>
-            <mat-list-item>Item 1</mat-list-item>
+        <ul class="list-group list-group-flush">
+            <a class="list-group-item text-dark" *ngIf="'ROLE_COMMERCANT' == role" href="commercant-produit">Mes produits</a>
             <mat-divider></mat-divider>
-            <mat-list-item>Item 2</mat-list-item>
+            <li class="list-group-item">Item 2</li>
             <mat-divider></mat-divider>
-            <mat-list-item>
+            <li class="list-group-item">
                 <button type="button" class="btn btn-danger" id="logout" color ="red" (click)="logout()">Logout</button>
-            </mat-list-item>
-        </mat-list>
+            </li>
+        </ul>
     </div>
 </div>
 <app-navbar></app-navbar>
