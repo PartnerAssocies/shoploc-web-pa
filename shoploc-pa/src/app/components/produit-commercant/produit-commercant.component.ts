@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -26,7 +25,6 @@ export class ProduitCommercantComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduits();
-    //this.initProduits();
   }
 
   back(){
@@ -36,20 +34,6 @@ export class ProduitCommercantComponent implements OnInit {
   getAllProduits(){
     this.username = this.authService.currentUserValue.username;
     this.obsProduits = this.produitService.getListProduits(this.username);
-  }
-
-  initProduits(){
-    this.username = this.authService.currentUserValue.username;
-    console.log(this.username);
-    this.produits = [];
-    this.produitService.getListProduits(this.username).subscribe(response => {
-      console.log(response);
-      for(let produit of response){
-        this.produits.push(produit);
-      }
-    }, (err: HttpErrorResponse) => {
-      console.log(err);
-    });
   }
 
   addProduit(){

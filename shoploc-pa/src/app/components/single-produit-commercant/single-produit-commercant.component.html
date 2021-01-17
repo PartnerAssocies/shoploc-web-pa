@@ -22,16 +22,26 @@
         <p>{{fidelitePointsRequis}} points</p>
     </div>
 </div>
+<form class="form" [formGroup]="stockForm" (ngSubmit)="onSubmitForm()">
 <div class="row">
     <div class="col-5">
         <p class="text-info font-weight-light mb-0">Stock : </p>
     </div>
-    <div class="col-7">
-        <p>{{stock}} unités</p>
+    <div class="col-5">
+        <input class="form-control mb-2" type="number" id="stock" formControlName="stock"/>
+    </div> 
+    <div class="col-2">
+        <button mat-icon-button type="submit" class="green-text">
+            <mat-icon [ngStyle]="{'color':'black'}" class="h1">save</mat-icon>
+        </button>
     </div>
+</div>
+</form>
+<div class="row">
+    <p class="text-danger" [hidden]="!inError">{{error}}</p>
 </div>
 <div class="row">
     <div class="col justify-content-center d-flex">
-        <button type="button" class="btn btn-danger" color ="red">Retirer</button>
+        <button type="button" class="btn btn-danger" color ="red" (click)="deleteProduit()">Retirer</button>
     </div>
 </div>   
