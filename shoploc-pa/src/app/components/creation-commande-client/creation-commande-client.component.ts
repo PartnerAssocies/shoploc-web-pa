@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProduitData } from 'src/app/models/data/ProduitData.model';
 import { CommandeData } from 'src/app/models/data/CommandeData.model';
 import { ProduitResponseBody } from 'src/app/models/html/responseBody/ProduitResponseBody.model';
 import { Location } from '@angular/common';
