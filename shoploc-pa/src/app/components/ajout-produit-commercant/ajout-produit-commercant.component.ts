@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProduitData } from 'src/app/models/data/ProduitData.model';
@@ -44,7 +44,6 @@ export class AjoutProduitCommercantComponent implements OnInit {
   onSubmitForm(){
     this.isWait = true;
     const formValue = this.addProduitForm.value;
-    console.log(formValue);
 
     const newProduit = new ProduitData(
       formValue['libelle'],
@@ -58,12 +57,11 @@ export class AjoutProduitCommercantComponent implements OnInit {
 
     this.produitService.addProduit(newProduit).subscribe(res => {
       this.isWait = false;
-      console.log(res);
       this.router.navigate(["/commercant-produit"], {queryParams: { message: 'addproduitcommercantok' }});
-    }), (err: HttpErrorResponse) => {
+    }, (err: HttpErrorResponse) => {
       this.isWait = false;
       console.log(err.message);
-    };
+    });
   }
 
 }
