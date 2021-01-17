@@ -47,6 +47,7 @@ import { CommandeListElementComponent } from './components/commande-list-element
 import { CommandeService } from './services/commande.service';
 import {DatePipe} from '@angular/common';
 import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
+import { CreationCommandeClientProduitElementComponent } from './components/creation-commande-client-produit-element/creation-commande-client-produit-element.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { CreationCommandeClientComponent } from './components/creation-commande-
     CreationCommandeClientComponent,
     ProduitCommercantComponent,
     SingleProduitCommercantComponent,
-    AjoutProduitCommercantComponent
+    AjoutProduitCommercantComponent,
+    CreationCommandeClientProduitElementComponent
   ],
   imports: [
     AppRoutingModule,

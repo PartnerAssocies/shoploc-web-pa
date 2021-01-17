@@ -28,4 +28,35 @@ export class CommandeService {
             .concat(username);
         return this.http.get<CommandeData[]>(url);    
     }
+
+    /**
+     * Initialise une commande entre un client et un commercant
+     * @param usernameClient : string
+     * @param usernameCommercant : string
+     */
+    createCommandeForUserAndCommercant(usernameClient : string, usernameCommercant : string) : Observable<CommandeData> {
+        const url = environment.shopLocApiURL
+            .concat('/commande/create/')
+            .concat(usernameClient)
+            .concat('/')
+            .concat(usernameCommercant);
+        return this.http.post<CommandeData>(url,null);    
+    }
+
+    /**
+     * Ajoute un produit à une commande 
+     * @param commandeId : number
+     * @param productId : number
+     * @param quantite : number
+     */
+    addProductToCommande(commandeId : number, productId : number, quantite : number) : Observable<CommandeData>{
+        const url = environment.shopLocApiURL
+            .concat('/commande/')
+            .concat(commandeId.toString())
+            .concat('/addProduct/')
+            .concat(productId.toString())
+            .concat('/')
+            .concat(quantite.toString());
+        return this.http.post<CommandeData>(url,null);
+    }
 }

@@ -1,1 +1,44 @@
-<p>creation-commande-client works!</p>
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1">Click&Collect</h3>
+            
+        </div>
+    </div> 
+    <div class="card-body">    
+        <div *ngIf="isLoading" class="mt-20">
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex">
+                    <mat-spinner class="shoploc-spinner"></mat-spinner>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading && isListeProduitEmpty">
+            <div class="row">
+                <div class="col-12">
+                    <p class="font-weight-light display-4 text-info">Ce commerçant n'a pas encore renseigné de produits</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading && !isListeProduitEmpty" class="margin-liste">
+            <div class="row">
+                <div clas="col-12">
+                    <h4 class="text-info font-weight-light">{{libelleCommercant}}</h4>
+                </div>
+            </div>
+            <div *ngFor="let produit of produits">   
+                <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)">
+                  </app-creation-commande-client-produit-element>
+            </div>
+        </div>
+        <div *ngIf="commandeCreated" class="row">
+            <div class="col-12 justify-content-center d-flex">
+                <button type="button" class="btn btn-success" (click)="etapeSuivante()">Valider la commande</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-navbar></app-navbar>
