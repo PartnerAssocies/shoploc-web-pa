@@ -19,5 +19,11 @@ body {
     }
 }
 
+/**
+    Spinner de chargement : couleur des spinners par la couleur info de bootstrap
+*/
+.mat-progress-spinner circle, .mat-spinner circle { 
+    stroke: #17a2b8;
+}
 
 
