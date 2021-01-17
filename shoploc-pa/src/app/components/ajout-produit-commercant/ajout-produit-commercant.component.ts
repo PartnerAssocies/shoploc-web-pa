@@ -44,7 +44,6 @@ export class AjoutProduitCommercantComponent implements OnInit {
   onSubmitForm(){
     this.isWait = true;
     const formValue = this.addProduitForm.value;
-    console.log(formValue);
 
     const newProduit = new ProduitData(
       formValue['libelle'],
@@ -59,12 +58,11 @@ export class AjoutProduitCommercantComponent implements OnInit {
 
     this.produitService.addProduit(newProduit).subscribe(res => {
       this.isWait = false;
-      console.log(res);
       this.router.navigate(["/commercant-produit"], {queryParams: { message: 'addproduitcommercantok' }});
-    }), (err: HttpErrorResponse) => {
+    }, (err: HttpErrorResponse) => {
       this.isWait = false;
       console.log(err.message);
-    };
+    });
   }
 
 }
