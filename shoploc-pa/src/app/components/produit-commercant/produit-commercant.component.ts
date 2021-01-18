@@ -33,7 +33,7 @@ export class ProduitCommercantComponent implements OnInit {
 
   getAllProduits(){
     this.username = this.authService.currentUserValue.username;
-    this.obsProduits = this.produitService.getListProduits(this.username);
+    this.obsProduits = this.produitService.getListProduits(this.username);    
   }
 
   addProduit(){

@@ -16,7 +16,7 @@
             </div>
         </div>
     </div> 
-    <div class="card-body">
+    <div class="card-body margin-navbar">
         <div *ngIf="(obsProduits | async)?.length > 0">
             <div *ngFor="let produit of obsProduits | async" class="list-group list-group-flush">
                 <div class="w-100 commercant" id="produit-{{produit.pid}}" class="list-group list-group-flush">
