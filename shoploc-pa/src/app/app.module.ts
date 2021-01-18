@@ -5,6 +5,7 @@ import { HelloService } from './services/hello.service';
 import { UserService } from './services/user.service';
 import { LieuService } from './services/lieu.service';
 import { ProduitService} from './services/produit.service';
+import { CommandeService } from './services/commande.service';
 
 // Import Component
 import { AppComponent } from './app.component';
@@ -22,6 +23,10 @@ import { CommercantListElementComponent } from './components/commercant-list-ele
 import { ProduitCommercantComponent } from './components/produit-commercant/produit-commercant.component';
 import { SingleProduitCommercantComponent } from './components/single-produit-commercant/single-produit-commercant.component';
 import { AjoutProduitCommercantComponent } from './components/ajout-produit-commercant/ajout-produit-commercant.component';
+import { CommandeListComponent } from './components/commande-list/commande-list.component';
+import { CommandeListElementComponent } from './components/commande-list-element/commande-list-element.component';
+import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
+import { CreationCommandeClientProduitElementComponent } from './components/creation-commande-client-produit-element/creation-commande-client-produit-element.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +48,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
+import {DatePipe} from '@angular/common';
+
 
 
 @NgModule({
@@ -59,6 +66,13 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     DemandeCommercantComponent,
     CommercantListComponent,
     CommercantListElementComponent,
+    CommandeListComponent,
+    CommandeListElementComponent,
+    CreationCommandeClientComponent,
+    ProduitCommercantComponent,
+    SingleProduitCommercantComponent,
+    AjoutProduitCommercantComponent,
+    CreationCommandeClientProduitElementComponent,
     ProduitCommercantComponent,
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent
@@ -86,6 +100,8 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     UserService,
     LieuService,
     HashService,
+    CommandeService,
+    DatePipe,
     ProduitService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],

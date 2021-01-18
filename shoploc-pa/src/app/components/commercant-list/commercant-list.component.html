@@ -10,9 +10,9 @@
     <div class="card-body">    
         <div *ngIf="!isEmpty && !isLoading">
             <div *ngFor="let commercant of commercants">
-                <div class="w-100 commercant" id="commercant-{{commercant.username}}">
+                <div class="w-100" id="commercant-{{commercant.username}}">
                     <app-commercant-list-element [libelleMagasin]="commercant.libelleMagasin" [description]="commercant.description" [lienImage]="commercant.image"
-                        [lieu]="commercant.lieu" 
+                        [lieu]="commercant.lieu" [usernameMagasin]="commercant.username"
                     ></app-commercant-list-element>
                 </div>
             </div>

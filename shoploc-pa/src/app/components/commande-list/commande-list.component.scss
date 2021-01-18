@@ -1,0 +1,21 @@
+.icon-display {
+    transform: scale(1.5);
+    float : left;
+ }
+
+ .commande{
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.commande:focus{
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.commande:hover{
+    background-color : rgba(0, 0, 0, 0.03);
+}
+
+.active{
+    background-color : rgba(0, 0, 0, 0.03);
+}

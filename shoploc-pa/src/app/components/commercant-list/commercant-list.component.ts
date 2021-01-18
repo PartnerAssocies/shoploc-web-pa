@@ -36,7 +36,7 @@ export class CommercantListComponent implements OnInit {
         this.commercants.push(commercant);
       }
       this.isEmpty = this.commercants.length == 0;
-      this.isLoading = true;
+      this.isLoading = false;
     });
   }
 

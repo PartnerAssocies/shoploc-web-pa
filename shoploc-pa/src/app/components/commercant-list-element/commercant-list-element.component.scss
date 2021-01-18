@@ -1,1 +1,14 @@
-//Commercant list element css
+.active{
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.commercant{
+    padding: 1%;
+    border-radius: 0.25rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.commercant:hover{
+    background-color: rgba(0, 0, 0, 0.15);
+}

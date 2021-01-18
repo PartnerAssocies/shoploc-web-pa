@@ -1,0 +1,58 @@
+<div class="row" (click)="openModal()">
+    <div class="col-8">
+        <div class="row ">
+            <div class="col-10">
+                <div class="row">
+                    <p class="text-info font-weigth-ligth mb-0">{{produit.libelle}}</p>
+                </div>
+                <div class="row">
+                    <p class="font-weigth-ligth">{{produit.prix}} €</p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class=row *ngIf="quantite > 0">
+                    <p>x {{quantite}}</p> 
+                </div>            
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-info font-weigth-ligth">{{produit.libelle}} : </h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+        </div>
+
+        <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="text" class="form-control form-control-lg rounded-0" name="quantite" id="quantiteInput" value={{quantite}} (blur)="checkInput()">
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-info" (click)="plus()"> + </button>    
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-info" (click)="minus()"> - </button>
+                        </div>
+                    </div>                    
+                </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "valider()">Valider</button>
+        </div>
+        
+      </div>
+    </div>
