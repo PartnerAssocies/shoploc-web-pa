@@ -68,7 +68,8 @@ export class SingleProduitCommercantComponent implements OnInit {
 
   deleteProduit(){
     this.produitService.deleteProduit(this.pid).subscribe(res => {
-      window.location.reload()
+      console.log(res);
+      window.location.reload();
     });
   }
 

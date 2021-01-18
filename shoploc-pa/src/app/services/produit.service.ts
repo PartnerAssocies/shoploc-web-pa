@@ -34,13 +34,7 @@ export class ProduitService {
     }
 
     deleteProduit(pid: number) {
-        let httpOptionsProduit = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
-            body : pid
-        };
-        return this.http.delete(environment.shopLocApiURL.concat("/produit/deleteProduit"), httpOptionsProduit);
+        return this.http.delete(environment.shopLocApiURL.concat("/produit/deleteProduit/" + pid), this.httpOptions);
     }
 
 }
