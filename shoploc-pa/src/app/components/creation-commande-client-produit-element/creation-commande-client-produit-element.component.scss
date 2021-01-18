@@ -1,3 +1,13 @@
-.border-produit{
-    border-top : solid 1px  #17a2b8;
+.active{
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.produit{
+    border-radius: 0.25rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.produit:hover{
+    background-color: rgba(0, 0, 0, 0.15);
 }

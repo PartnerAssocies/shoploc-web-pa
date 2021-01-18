@@ -34,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
      * @param String url 
      */
     private needAuthentication(url : string) : boolean{
-        const suburl = url.substring(url.lastIndexOf("/"));
+        const suburl = url.substring(url.indexOf('/'),url.lastIndexOf("/"));
         var i;
         for(i = 0; i < this.authorizedPath.length; i++){
             if(suburl.includes(this.authorizedPath[i])){
@@ -64,15 +64,16 @@ export class JwtInterceptor implements HttpInterceptor {
      */
     private handle403Error(request: HttpRequest<any>, next: HttpHandler) {
         if (!this.isRefreshing) {
-			this.isRefreshing = true;
+            this.isRefreshing = true;
 			this.refreshTokenSubject.next(null);
-			return this.authService.refresh().pipe(
-				switchMap((object: any) => {
-					this.authService.currentUserValue.accessToken=object.jwt
+
+            return this.authService.refresh().pipe(
+				switchMap((token : string) => {
+                    this.authService.currentUserValue.accessToken=token
 					localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUserValue));
 					this.isRefreshing = false;
-					this.refreshTokenSubject.next(object.jwt);
-					return next.handle(this.addToken(request, object.jwt));
+					this.refreshTokenSubject.next(token);
+					return next.handle(this.addToken(request, token));
 				}));
 
 		} else {
@@ -81,7 +82,7 @@ export class JwtInterceptor implements HttpInterceptor {
 				take(1),
 				switchMap(jwt => {
 					return next.handle(this.addToken(request, jwt));
-				}));
+                }));
 		}
     }
 

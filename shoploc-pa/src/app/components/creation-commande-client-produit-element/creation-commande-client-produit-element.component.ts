@@ -14,6 +14,8 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
 
   showModal : boolean;
   quantite : number;
+  hasImage : boolean;
+  active : boolean;
 
 
   constructor() { }
@@ -21,19 +23,24 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
   ngOnInit(): void {
     this.showModal = false;
     this.quantite = 0;
+    this.hasImage = this.produit.image != "";
+    this.active = false;
   }
 
   openModal(){
     this.showModal = true;
+    this.active = true;  
   }
   
   hide(){
     this.showModal = false;
+    this.active = false;
   }
 
   valider(){
     this.ajouterProduit.emit({idProduct : this.produit.pid,quantite : this.quantite});
-    this.showModal = false;  
+    this.showModal = false;
+    this.active = false;  
   }
 
   plus(){
@@ -47,14 +54,15 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
   }
 
   checkInput(){
-    let value = Number((document.getElementById('quantiteInput') as HTMLInputElement).value);
+    let value = Number((document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value);
+    console.log("check input");
     if(isNaN(value)){
       this.quantite = 0;
-      (document.getElementById('quantiteInput') as HTMLInputElement).value = '0';
+      (document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value = '0';
     }else{
       if(value < 0){
         this.quantite = 0;
-        (document.getElementById('quantiteInput') as HTMLInputElement).value = '0';
+        (document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value = '0';
       }else{
         this.quantite = value;
       }
