@@ -50,9 +50,8 @@ export class AjoutProduitCommercantComponent implements OnInit {
       formValue['prix'],
       formValue['stock'],
       formValue['fidelitePointsRequis'],
-      +"",
-      this.authService.currentUserValue.username,
-      null
+      "",
+      this.authService.currentUserValue.username
     )
     console.log(newProduit);
 

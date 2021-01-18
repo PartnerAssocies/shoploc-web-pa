@@ -72,7 +72,10 @@ import {DatePipe} from '@angular/common';
     ProduitCommercantComponent,
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent,
-    CreationCommandeClientProduitElementComponent
+    CreationCommandeClientProduitElementComponent,
+    ProduitCommercantComponent,
+    SingleProduitCommercantComponent,
+    AjoutProduitCommercantComponent
   ],
   imports: [
     AppRoutingModule,
