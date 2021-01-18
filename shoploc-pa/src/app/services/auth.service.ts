@@ -72,7 +72,7 @@ export class AuthService {
             .shopLocApiURL
             .concat("/auth/refresh/")
             .concat(this.currentUserValue.refreshToken);
-		return this.http.post<string>(url,this.httpOptions);
+		return this.http.post<string>(url,this.httpOptions);    
     }
 
     /**

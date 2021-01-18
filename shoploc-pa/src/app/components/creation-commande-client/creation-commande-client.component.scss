@@ -2,3 +2,20 @@
     margin-bottom: 5%;
 }
 
+@media (max-width: 599px){
+    .position-valider{
+        position : fixed;
+        bottom: 56px; 
+        margin-bottom: 56px;
+    }
+}
+
+@media (min-width: 600px){
+    .position-valider{
+        position : fixed;
+        bottom: 64px; 
+        margin-bottom: 64px;
+    }
+}
+
+

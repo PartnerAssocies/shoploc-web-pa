@@ -24,9 +24,9 @@
             </div>
         </div>
         <div *ngIf="!isLoading && !isListeProduitEmpty" class="margin-liste">
-            <div class="row">
+            <div class="row ml-1 mr-1">
                 <div clas="col-12">
-                    <h4 class="text-info font-weight-light">{{libelleCommercant}}</h4>
+                    <h3 class="text-info font-weight-light">{{libelleCommercant}}</h3>
                 </div>
             </div>
             <div *ngFor="let produit of produits">   
@@ -34,7 +34,7 @@
                   </app-creation-commande-client-produit-element>
             </div>
         </div>
-        <div *ngIf="commandeCreated" class="row">
+        <div *ngIf="commandeCreated" class="row position-valider">
             <div class="col-12 justify-content-center d-flex">
                 <button type="button" class="btn btn-success" (click)="etapeSuivante()">Valider la commande</button>
             </div>
