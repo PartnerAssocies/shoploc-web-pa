@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CurrentUser } from 'src/app/models/CurrentUser.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,11 +11,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfilComponent implements OnInit {
 
+  public role : string;
+  public currentUser : CurrentUser;
+
   constructor(private authService: AuthService,
               private route: Router,
               private _location: Location) { }
 
   ngOnInit(): void {
+    this.role = this.authService.currentUserValue.role;
   }
 
   logout(){

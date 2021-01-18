@@ -1,0 +1,37 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-1 float-left mr-4">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-6 ml-5">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Mes produits</p>
+            </div>
+            <div class="col-2 float-right">
+                <button mat-icon-button type="button" color ="green" (click)="addProduit()">
+                    <mat-icon [ngStyle]="{'color':'green'}" class="h1">add_circle_outline</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div *ngIf="(obsProduits | async)?.length > 0">
+            <div *ngFor="let produit of obsProduits | async" class="list-group list-group-flush">
+                <div class="w-100 commercant" id="produit-{{produit.pid}}" class="list-group list-group-flush">
+                    <app-single-produit-commercant class="list-group-item" [libelle]="produit.libelle" [prix]="produit.prix" [stock]="produit.stock" 
+                        [fidelitePointsRequis]="produit.fidelitePointsRequis" [image]="produit.image" [pid]="produit.pid">
+                    </app-single-produit-commercant>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="(obsProduits | async)?.length == 0">
+            <div class="col-12">
+                <p class="h1 text-info font-weight-light"> Aucun produits</p>
+            </div>
+        </div>
+    </div>    
+</div>
+<app-navbar></app-navbar>

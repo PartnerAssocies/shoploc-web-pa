@@ -4,7 +4,7 @@ import { HashService } from './services/hash.service';
 import { HelloService } from './services/hello.service';
 import { UserService } from './services/user.service';
 import { LieuService } from './services/lieu.service';
-
+import { ProduitService} from './services/produit.service';
 
 // Import Component
 import { AppComponent } from './app.component';
@@ -19,6 +19,9 @@ import { GestionCommercantComponent } from './components/gestion-commercant/gest
 import { DemandeCommercantComponent } from './components/demande-commercant/demande-commercant.component';
 import { CommercantListComponent } from './components/commercant-list/commercant-list.component';
 import { CommercantListElementComponent } from './components/commercant-list-element/commercant-list-element.component';
+import { ProduitCommercantComponent } from './components/produit-commercant/produit-commercant.component';
+import { SingleProduitCommercantComponent } from './components/single-produit-commercant/single-produit-commercant.component';
+import { AjoutProduitCommercantComponent } from './components/ajout-produit-commercant/ajout-produit-commercant.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +37,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 // Import Autres
@@ -54,7 +58,10 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     GestionCommercantComponent,
     DemandeCommercantComponent,
     CommercantListComponent,
-    CommercantListElementComponent
+    CommercantListElementComponent,
+    ProduitCommercantComponent,
+    SingleProduitCommercantComponent,
+    AjoutProduitCommercantComponent
   ],
   imports: [
     AppRoutingModule,
@@ -71,8 +78,7 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    ReactiveFormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    CommonModule
   ],
   providers: [
     HelloService,
@@ -80,6 +86,7 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
     UserService,
     LieuService,
     HashService,
+    ProduitService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]
