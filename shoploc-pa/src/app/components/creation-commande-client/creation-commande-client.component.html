@@ -1,4 +1,4 @@
-<div class="card margin-navbar">
+<div class="card margin-navbar" >
     <div class="card-header">
         <div class="row">
             <button mat-icon-button (click)="back()" class="float-left">
@@ -33,10 +33,8 @@
                 <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)">
                   </app-creation-commande-client-produit-element>
             </div>
-        </div>
-        <div *ngIf="commandeCreated" class="row position-valider">
-            <div class="col-12 justify-content-center d-flex">
-                <button type="button" class="btn btn-success" (click)="etapeSuivante()">Valider la commande</button>
+            <div *ngIf="commandeCreated" class=" position-valider ">
+                <button type="button" class="btn btn-success btn-lg" (click)="etapeSuivante()">Valider la commande</button>
             </div>
         </div>
     </div>

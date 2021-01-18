@@ -35,7 +35,6 @@ export class JwtInterceptor implements HttpInterceptor {
      */
     private needAuthentication(url : string) : boolean{
         const suburl = url.substring(url.indexOf('/'),url.lastIndexOf("/"));
-        console.log(suburl);
         var i;
         for(i = 0; i < this.authorizedPath.length; i++){
             if(suburl.includes(this.authorizedPath[i])){
@@ -64,15 +63,12 @@ export class JwtInterceptor implements HttpInterceptor {
      * @param next 
      */
     private handle403Error(request: HttpRequest<any>, next: HttpHandler) {
-        console.log('refreshing : ' + this.isRefreshing);
         if (!this.isRefreshing) {
-            console.log('refreshing : on passe là ? ');
             this.isRefreshing = true;
 			this.refreshTokenSubject.next(null);
 
             return this.authService.refresh().pipe(
 				switchMap((token : string) => {
-                    console.log('refreshing : on passe ici ? ');
                     this.authService.currentUserValue.accessToken=token
 					localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUserValue));
 					this.isRefreshing = false;
@@ -96,7 +92,6 @@ export class JwtInterceptor implements HttpInterceptor {
      * @param HttpHandler next 
      */
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log(request.url);
         if(!this.needAuthentication(request.url)){
             return next.handle(request);
         }
