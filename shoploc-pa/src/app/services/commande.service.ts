@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CommandeData } from '../models/data/CommandeData.model';
+import { ContenuCommandeResponseBody } from '../models/html/responseBody/ContenuCommandeResponseBody.model';
 
 /**
  * Service pour gérer les commandes.
@@ -58,5 +59,24 @@ export class CommandeService {
             .concat('/')
             .concat(quantite.toString());
         return this.http.post<CommandeData>(url,null);
+    }
+
+    /**
+     * Confirme une commande et passe son état à "EN ATTENTE DE PAIEMENT"
+     * @param commandeId : number
+     */
+    confirmCommande(commandeId : number) : Observable<CommandeData>{
+        const url = environment.shopLocApiURL
+            .concat("/commande/confirmCommande/")
+            .concat(commandeId.toString());
+        return this.http.post<CommandeData>(url,null);
+    }
+
+    getCommandeContenu(commandeId : number) : Observable<ContenuCommandeResponseBody>{
+        const url = environment.shopLocApiURL
+            .concat("/commande/")
+            .concat(commandeId.toString())
+            .concat("/viewContentCommande");
+        return this.http.get<ContenuCommandeResponseBody>(url);
     }
 }

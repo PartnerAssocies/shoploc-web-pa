@@ -49,6 +49,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
+import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 
 
 
@@ -75,7 +76,8 @@ import {DatePipe} from '@angular/common';
     CreationCommandeClientProduitElementComponent,
     ProduitCommercantComponent,
     SingleProduitCommercantComponent,
-    AjoutProduitCommercantComponent
+    AjoutProduitCommercantComponent,
+    EcranPaiementCommandeComponent
   ],
   imports: [
     AppRoutingModule,
