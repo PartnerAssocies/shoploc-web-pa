@@ -23,6 +23,7 @@ export class CreationCommandeClientComponent implements OnInit {
   libelleCommercant : string;
   commande : CommandeData;
   commandeCreated : boolean;
+  showModal : boolean;
 
 
   constructor(
@@ -40,6 +41,7 @@ export class CreationCommandeClientComponent implements OnInit {
     this.initListeProduit();
     this.commande = null;
     this.commandeCreated = false;
+    this.showModal = false;
   }
 
   initUsernameCommercant() : void {
@@ -85,5 +87,28 @@ export class CreationCommandeClientComponent implements OnInit {
 
   back(){
     this._location.back();
+  }
+
+  openModal(){
+    this.showModal = true;
+  }
+
+  hide(){
+    this.showModal = false;
+  }
+
+  validerCommandePaiementEnDirect(){
+    this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
+      this.showModal = false;
+      this.router.navigate(['commande-list']);
+    })
+  }
+
+  validerCommandePaiementShopLoc(){
+    this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
+      this.showModal = false;
+      this.router.navigate(['paiement-commande-client'],{state: {commande : response}});
+    });
+    
   }
 }

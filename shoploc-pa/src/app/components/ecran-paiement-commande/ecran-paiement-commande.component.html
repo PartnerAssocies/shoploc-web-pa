@@ -1,0 +1,116 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1">Paiement</h3>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div id="paiement-euro" class="paiement p-2 mb-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-info font-weight-light">A payer avec le solde ShopLoc : </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Solde Shoploc: </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-solde-avant-euro"></span>€
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Total à payer : </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-total-euro"></span>€
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Solde Shoploc après paiement : </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-solde-apres-euro"></span>€
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- A decommenter quand on aura la fidelite <div id="paiement-fidelités" class="paiement p-2 mb-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-info font-weight-light">A payer avec les points de fidélités : </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Points de fidélités: </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-solde-avant-fidelite"></span>€
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Total à payer : </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-total-fidelite"></span>€
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">Points de fidélités après paiement : </p>
+                        </div>
+                        <div class="col-4">
+                            <span id="span-solde-apres-fidelite"></span>€
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--> 
+        <button *ngIf="contenuReady" type="button" class="btn btn-info btn-block position-valider mb-2" (click)="afficheDetail()">Detail de la commande</button>
+        <button type="button" class="btn btn-success btn-block position-valider">Valider le paiement</button>
+    </div>
+</div>
+<app-navbar></app-navbar>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-info font-weigth-ligth">Détail de votre commande :</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+        </div>
+
+        <div *ngIf="contenuReady" class="modal-body">
+            <div *ngFor="let produit of contenuCommande.produits"> 
+                <div class="row">
+                    <div class="col-10">
+                        <p class="font-weight-light">{{produit.libelle}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="font-weight-light">x{{produit.quantite}}</p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+         <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" (click)="hide()">OK</button>    
+        </div>
+      </div>
+    </div>
+</div>
