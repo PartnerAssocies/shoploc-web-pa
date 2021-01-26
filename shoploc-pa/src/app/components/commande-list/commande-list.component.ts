@@ -50,4 +50,14 @@ export class CommandeListComponent implements OnInit {
     this.active = true;
     this.router.navigate(['commercant-list']);
   }
+
+  goToCommande(commande : CommandeData){
+    if(commande.etat == 'PANNIER'){
+      this.router.navigate(['creation-commande-client'],{state: {commande : commande}});
+    }
+    if(commande.etat == 'EN_ATTENTE_DE_PAIEMENT'){
+      this.router.navigate(['paiement-commande-client'],{state: {commande : commande}});
+    }
+  }
+  
 }

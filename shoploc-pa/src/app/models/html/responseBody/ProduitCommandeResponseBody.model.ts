@@ -1,9 +1,9 @@
 export class ProduitCommandeResponseBody {
     constructor(
-        private pid : number,
-        private libelle : string,
-        private quantite : number,
-        private image : string,
-        private fidelitePointsRequis : number
+        public pid : number,
+        public libelle : string,
+        public quantite : number,
+        public image : string,
+        public fidelitePointsRequis : number
     ){}
 }

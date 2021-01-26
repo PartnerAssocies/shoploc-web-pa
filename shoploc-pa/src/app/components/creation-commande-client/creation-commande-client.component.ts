@@ -24,7 +24,7 @@ export class CreationCommandeClientComponent implements OnInit {
   commande : CommandeData;
   commandeCreated : boolean;
   showModal : boolean;
-
+  mapProduitQuantite : Map<number,number>;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -32,27 +32,37 @@ export class CreationCommandeClientComponent implements OnInit {
     private _location: Location,
     private authService : AuthService,
     private commandeService : CommandeService,
-    private router: Router
+    private router: Router,
+    
     ) { }
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.initUsernameCommercant();
-    this.initListeProduit();
-    this.commande = null;
     this.commandeCreated = false;
+    this.isLoading = true;
+    this.mapProduitQuantite = new Map();
+    this.activateRoute.queryParams.subscribe(params => {
+      this.commande = history.state.commande;
+      if(this.commande){
+        this.usernameCommercant = this.commande.commercant.username;
+        this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
+          for(let produit of response.produits){
+            this.mapProduitQuantite.set(produit.pid,produit.quantite);
+          }
+          this.initListeProduit();
+        });
+        this.commandeCreated = true;
+      }else{
+        this.usernameCommercant = params['commercant'];
+        this.initListeProduit();
+      }
+    });    
+    this.commande = null;
     this.showModal = false;
   }
 
-  initUsernameCommercant() : void {
-    this.activateRoute.queryParams.subscribe(params => {
-      this.usernameCommercant = params['commercant'];
-    })
-  }
-
   initListeProduit() : void {
-    this.produits = [];
-    this.produitService.getListProduits(this.usernameCommercant).subscribe(response => {
+      this.produits = [];
+      this.produitService.getListProduits(this.usernameCommercant).subscribe(response => {
      
       for(let produit of response){
         this.produits.push(produit);
@@ -63,6 +73,14 @@ export class CreationCommandeClientComponent implements OnInit {
       }
       this.isLoading = false;
     });
+  }
+
+  getQuantiteProduit(pid : number) : number {
+    if(this.mapProduitQuantite.has(pid)){
+      return this.mapProduitQuantite.get(pid);
+    }else{
+      return 0;
+    }
   }
 
   addProductToCommande(data){

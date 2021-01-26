@@ -72,6 +72,10 @@ export class CommandeService {
         return this.http.post<CommandeData>(url,null);
     }
 
+    /**
+     * Récupère le contenu d'une commande
+     * @param commandeId : number
+     */
     getCommandeContenu(commandeId : number) : Observable<ContenuCommandeResponseBody>{
         const url = environment.shopLocApiURL
             .concat("/commande/")
@@ -79,4 +83,15 @@ export class CommandeService {
             .concat("/viewContentCommande");
         return this.http.get<ContenuCommandeResponseBody>(url);
     }
+
+    /**
+     * Récupère une commande via son id
+     * @param commandeId : number
+     */
+    /*getCommande(commandeId : number) : Observable<CommandeData>{
+        const url = environment.shopLocApiURL
+            .concat("");
+        return this.http.get<CommandeData>(url);
+    }*/
+
 }

@@ -13,6 +13,7 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
   @Output("ajouterProduit") ajouterProduit : EventEmitter<{idProduct : number, quantite : number}> = new EventEmitter();
 
   showModal : boolean;
+  @Input()
   quantite : number;
   hasImage : boolean;
   active : boolean;
@@ -22,7 +23,6 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
 
   ngOnInit(): void {
     this.showModal = false;
-    this.quantite = 0;
     this.hasImage = this.produit.image != "";
     this.active = false;
   }
