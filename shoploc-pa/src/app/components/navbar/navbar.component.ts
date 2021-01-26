@@ -70,7 +70,7 @@ export class NavbarComponent implements OnInit {
    * Uniquement pour le role CLIENT
    */
   public navigatePorteMonnaie(){
-
+    this.router.navigate(['client-portemonnaie']);
   }
 
   /**

@@ -12,6 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProduitCommercantComponent } from './components/produit-commercant/produit-commercant.component';
 import { AjoutProduitCommercantComponent } from './components/ajout-produit-commercant/ajout-produit-commercant.component';
 import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
+import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'commercant-produit', component: ProduitCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'add-commercant-produit', component: AjoutProduitCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'paiement-commande-client', component:  EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 ];
 
 @NgModule({
