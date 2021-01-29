@@ -29,6 +29,7 @@ import { CommandeListElementComponent } from './components/commande-list-element
 import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
 import { CreationCommandeClientProduitElementComponent } from './components/creation-commande-client-produit-element/creation-commande-client-produit-element.component';
 import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
+import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -51,8 +52,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
-
-
 
 @NgModule({
   declarations: [
@@ -78,7 +77,8 @@ import {DatePipe} from '@angular/common';
     ProduitCommercantComponent,
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent,
-    EcranPaiementCommandeComponent
+    EcranPaiementCommandeComponent,
+    ClientPortemonnaieComponent
   ],
   imports: [
     AppRoutingModule,
