@@ -5,6 +5,8 @@ import { CommandeData } from 'src/app/models/data/CommandeData.model';
 import { CommandeService } from 'src/app/services/commande.service';
 import { ContenuCommandeResponseBody } from 'src/app/models/html/responseBody/ContenuCommandeResponseBody.model';
 import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-ecran-paiement-commande',
@@ -27,7 +29,8 @@ export class EcranPaiementCommandeComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private commandeService : CommandeService,
     private porteMonnaieService : PorteMonnaieService,
-    private router : Router
+    private router : Router,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
@@ -36,22 +39,18 @@ export class EcranPaiementCommandeComponent implements OnInit {
     this.showModal = false;
     this.contenuReady = false;
     this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
-      console.log(response);
       this.contenuCommande = response;
-      this.prixTotalCommande = 100;
-      for(let produit in this.contenuCommande.produits){
-        this.prixTotalCommande = this.prixTotalCommande + 0;
+      this.prixTotalCommande = 0;
+      for(let i = 0;i <  this.contenuCommande.produits.length; i++){
+        this.prixTotalCommande = this.prixTotalCommande + (this.contenuCommande.produits[i].prix * this.contenuCommande.produits[i].quantite);
       }
-      /*this.porteMonnaieService.getSoldeClient().subscribe(response => {
-        this.soldeClient = 0;
+      let username = this.authService.currentUserValue.username;
+      this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
+        this.soldeClient = mapSolde["solde"];
         this.assezDargent = this.soldeClient >= this.prixTotalCommande;
         this.contenuReady = true;
         this.isReady = true;
-      });*/
-      this.soldeClient = 0;
-      this.assezDargent = this.soldeClient >= this.prixTotalCommande;
-      this.contenuReady = true;
-      this.isReady = true;
+      });
     });
   }
 
@@ -68,6 +67,13 @@ export class EcranPaiementCommandeComponent implements OnInit {
   }
 
   navigateToRechargementPorteMonnaie(){
-    this.router.navigate(['']);
+    this.router.navigate(['client-portemonnaie']);
+  }
+
+  payerCommande(){
+    let username = this.authService.currentUserValue.username;
+    this.commandeService.payerCommande(username,this.commande.cid).subscribe(response => {
+      this.router.navigate(['commande-list']);
+    });
   }
 }

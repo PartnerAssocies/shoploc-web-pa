@@ -4,6 +4,7 @@ export class ProduitCommandeResponseBody {
         public libelle : string,
         public quantite : number,
         public image : string,
-        public fidelitePointsRequis : number
+        public fidelitePointsRequis : number,
+        public prix : number
     ){}
 }

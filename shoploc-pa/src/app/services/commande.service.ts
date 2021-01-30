@@ -85,13 +85,17 @@ export class CommandeService {
     }
 
     /**
-     * Récupère une commande via son id
+     * 
+     * @param clientUsername : string
      * @param commandeId : number
      */
-    /*getCommande(commandeId : number) : Observable<CommandeData>{
+    payerCommande(clientUsername : string, commandeId : number) : any {
         const url = environment.shopLocApiURL
-            .concat("");
-        return this.http.get<CommandeData>(url);
-    }*/
+            .concat("/commande/paiementCommande/")
+            .concat(clientUsername)
+            .concat("/")
+            .concat(commandeId.toString());
+        return this.http.post<any>(url,null);
+    }
 
 }

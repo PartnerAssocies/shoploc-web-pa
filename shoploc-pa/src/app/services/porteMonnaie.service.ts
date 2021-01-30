@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+
 
 /**
  * Service pour gérer les opérations sur le porte monnaie client
@@ -19,10 +21,12 @@ export class PorteMonnaieService {
     /**
      * Retourne le solde en euro d'un client
      */
-    getSoldeClient() : any {
+    getSoldeClient(username : string) : Observable<Map<string,number>> {
         const url = environment.shopLocApiURL
-            .concat("");
-        return this.http.get(url);    
+            .concat("/client/")
+            .concat(username)
+            .concat("/solde");
+        return this.http.get<Map<string,number>>(url);    
     }
 
 }

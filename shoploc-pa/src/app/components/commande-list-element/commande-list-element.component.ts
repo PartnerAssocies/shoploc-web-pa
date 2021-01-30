@@ -40,7 +40,7 @@ export class CommandeListElementComponent implements OnInit {
         break;
       }
       case 'EN_PREPARATION' : {
-        this.color = 'orange';
+        this.color = ' #58d68d';
         this.etatAffiche = 'En préparation';
         break;
       }
