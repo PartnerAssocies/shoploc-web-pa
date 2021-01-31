@@ -40,10 +40,28 @@
             <button type="button" class="btn btn-success btn-block position-valider" (click)="payerCommande()">Valider le paiement</button>
         </div>
         <div *ngIf="isReady && !assezDargent" id="pas-dargent">
-            <div class="row">
-                <h4 class="text-info font-weight-light h4 text-justify ml-2 mr-2">Vous n'avez pas assez d'argent sur votre solde ShopLoc pour payer cette commande </h4>
-            </div>
-            <button type="button" class="btn btn-info btn-block position-valider mb-2" (click)="navigateToRechargementPorteMonnaie()">Recharger mon compte shoploc </button>   
+            <div class="paiement p-2">
+                <div class="row">
+                    <p class="text-info font-weight-light text-justify paddingspe">Vous n'avez pas assez d'argent sur votre solde ShopLoc pour payer cette commande </p>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="font-weight-light">Solde Shoploc: </p>
+                    </div>
+                    <div class="col-6">
+                        <span id="span-solde-avant-euro">{{soldeClient}}</span>€
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="font-weight-light">Total à payer : </p>
+                    </div>
+                    <div class="col-6">
+                        <span id="span-total-euro">{{prixTotalCommande}}</span>€
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-block position-valider mb-2" (click)="navigateToRechargementPorteMonnaie()">Recharger mon compte shoploc </button>   
+            </div>    
         </div>
         <div *ngIf="!isReady" class="mt-20">
             <div class="row">
