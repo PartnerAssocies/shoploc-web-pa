@@ -1,6 +1,7 @@
 import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lecteur-code-client',
@@ -22,7 +23,8 @@ export class LecteurCodeClientComponent implements OnInit {
   hasDevices : boolean;
 
   constructor(
-    private _location : Location
+    private _location : Location,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -52,8 +54,11 @@ export class LecteurCodeClientComponent implements OnInit {
   }
 
   handleQrCodeResult(resultString: string) {
-    console.log('Result: ', resultString);
     this.result = resultString;
+    let resultSplited = this.result.split(';');
+    if(resultSplited[0] == 'COMMANDE'){
+      this.router.navigate(['detail-commande-commercant'],{queryParams: { commande : resultSplited[1]}})
+    }
   }
 
   back(){

@@ -57,6 +57,7 @@ import {DatePipe} from '@angular/common';
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
+import { CommercantDetailCommandeComponent } from './components/commercant-detail-commande/commercant-detail-commande.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-com
     ClientPortemonnaieComponent,
     CarteUserComponent,
     LecteurCodeClientComponent,
-    QrcodeCommandeComponent
+    QrcodeCommandeComponent,
+    CommercantDetailCommandeComponent
   ],
   imports: [
     AppRoutingModule,
