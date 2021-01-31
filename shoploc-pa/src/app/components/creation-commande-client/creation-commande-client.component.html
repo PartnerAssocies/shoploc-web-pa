@@ -30,7 +30,8 @@
                 </div>
             </div>
             <div *ngFor="let produit of produits">   
-                <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)">
+                <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)"
+                    [quantite]="getQuantiteProduit(produit.pid)" >
                   </app-creation-commande-client-produit-element>
             </div>
             <div *ngIf="commandeCreated" class=" position-valider ">

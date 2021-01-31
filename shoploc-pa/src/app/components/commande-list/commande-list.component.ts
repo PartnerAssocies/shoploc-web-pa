@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { CommandeService } from 'src/app/services/commande.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { CommandeData } from 'src/app/models/data/CommandeData.model';
+import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
 
 @Component({
   selector: 'app-commande-list',
@@ -13,7 +13,7 @@ import { CommandeData } from 'src/app/models/data/CommandeData.model';
 export class CommandeListComponent implements OnInit {
 
   isLoading : boolean;
-  listeCommande : CommandeData[];
+  listeCommande : CommandeResponseBody[];
   isEmpty : boolean;
   active : boolean;
 
@@ -50,4 +50,14 @@ export class CommandeListComponent implements OnInit {
     this.active = true;
     this.router.navigate(['commercant-list']);
   }
+
+  goToCommande(commande : CommandeResponseBody){
+    if(commande.etat == 'PANNIER'){
+      this.router.navigate(['creation-commande-client'],{queryParams: { commercant: commande.commercant, commande : commande.cid }});
+    }
+    if(commande.etat == 'EN_ATTENTE_DE_PAIEMENT'){
+      this.router.navigate(['paiement-commande-client'],{queryParams: { commande : commande.cid }});
+    }
+  }
+  
 }

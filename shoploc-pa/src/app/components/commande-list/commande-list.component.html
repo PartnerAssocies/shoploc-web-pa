@@ -20,8 +20,8 @@
         </div>
         <div *ngIf="!isEmpty && !isLoading">
             <div *ngFor="let commande of listeCommande">
-               <app-commande-list-element [nomCommercant]="commande.commercant.libelleMagasin" [numeroCommande]="commande.cid" 
-                    [etat]="commande.etat" [date]="commande.date"></app-commande-list-element>
+               <app-commande-list-element [nomCommercant]="commande.commercant" [numeroCommande]="commande.cid" 
+                    [etat]="commande.etat" [date]="commande.date" (click)="goToCommande(commande)"></app-commande-list-element>
             </div>   
         </div>
     </div>
