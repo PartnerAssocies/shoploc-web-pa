@@ -45,8 +45,8 @@ export class CreationCommandeClientComponent implements OnInit {
         this.commandeService.getCommande(Number(params['commande'])).subscribe(response => {
           this.commande = response;
           this.usernameCommercant = response.commercant;
-          this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
-            for(let produit of response.produits){
+          this.commandeService.getCommandeContenu(this.commande.cid).subscribe(contenu => {
+            for(let produit of contenu.produits){
               this.mapProduitQuantite.set(produit.pid,produit.quantite);
             }
             this.initListeProduit();
