@@ -42,10 +42,7 @@ export class EcranPaiementCommandeComponent implements OnInit {
         this.contenuReady = false;
         this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
           this.contenuCommande = response;
-          this.prixTotalCommande = 0;
-          for(let i = 0;i <  this.contenuCommande.produits.length; i++){
-            this.prixTotalCommande = this.prixTotalCommande + (this.contenuCommande.produits[i].prix * this.contenuCommande.produits[i].quantite);
-          }
+          this.prixTotalCommande = this.commande.total;
           let username = this.authService.currentUserValue.username;
           this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
             this.soldeClient = mapSolde["solde"];
