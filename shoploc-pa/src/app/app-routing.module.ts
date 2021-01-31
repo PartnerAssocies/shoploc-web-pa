@@ -14,6 +14,7 @@ import { AjoutProduitCommercantComponent } from './components/ajout-produit-comm
 import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
+import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'add-commercant-produit', component: AjoutProduitCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'paiement-commande-client', component:  EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
-  { path: 'ma-carte', component:  CarteUserComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+  { path: 'ma-carte', component:  CarteUserComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}}
 ];
 
 @NgModule({

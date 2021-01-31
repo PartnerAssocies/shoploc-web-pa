@@ -17,6 +17,10 @@
                 <mat-icon class="mr-3">qr_code_2</mat-icon>
                 <h4 class="font-weight-light mb-0">Ma carte</h4>
             </a>
+            <a mat-list-item *ngIf="'ROLE_COMMERCANT' == role" href="lecteur-carte">
+                <mat-icon class="mr-3">qr_code_2</mat-icon>
+                <h4 class="font-weight-light mb-0">Lecteur carte client</h4>
+            </a>
             <a mat-list-item *ngIf="'ROLE_COMMERCANT' == role" href="commercant-produit">
                 <mat-icon class="mr-3">local_grocery_store</mat-icon>
                 <h4 class="font-weight-light mb-0">Mes produits</h4>

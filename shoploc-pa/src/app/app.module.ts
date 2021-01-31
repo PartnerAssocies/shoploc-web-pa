@@ -55,6 +55,7 @@ import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
+import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { CarteUserComponent } from './components/carte-user/carte-user.component
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
     ClientPortemonnaieComponent,
-    CarteUserComponent
+    CarteUserComponent,
+    LecteurCodeClientComponent
   ],
   imports: [
     AppRoutingModule,
