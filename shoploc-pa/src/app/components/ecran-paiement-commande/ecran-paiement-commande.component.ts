@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { CommandeData } from 'src/app/models/data/CommandeData.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommandeService } from 'src/app/services/commande.service';
-import { ContenuCommandeResponseBody } from 'src/app/models/html/responseBody/ContenuCommandeResponseBody.model';
+import { ContenuCommandeResponseBody } from 'src/app/models/http/responseBody/ContenuCommandeResponseBody.model';
+import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
+import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-ecran-paiement-commande',
@@ -12,31 +15,46 @@ import { ContenuCommandeResponseBody } from 'src/app/models/html/responseBody/Co
 })
 export class EcranPaiementCommandeComponent implements OnInit {
 
-  commande : CommandeData;
+  commande : CommandeResponseBody;
   showModal : boolean;
   contenuCommande : ContenuCommandeResponseBody;
   contenuReady : boolean;
+  prixTotalCommande : number;
+  soldeClient : number;
+  assezDargent : boolean;
+  isReady : boolean;
 
   constructor(
     private _location : Location,
     private activateRoute: ActivatedRoute,
-    private commandeService : CommandeService
+    private commandeService : CommandeService,
+    private porteMonnaieService : PorteMonnaieService,
+    private router : Router,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
-    this.commande = history.state.commande;
-    this.showModal = false;
-    this.contenuReady = false;
-    this.initContenuCommande();
-  }
-
-  initContenuCommande(){
-    this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
-      this.contenuCommande = response;
-      this.contenuReady = true;
-      console.log(this.contenuCommande);
+    this.isReady = false;
+    this.activateRoute.queryParams.subscribe(params => {
+      this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
+        this.commande = commande;
+        this.showModal = false;
+        this.contenuReady = false;
+        this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
+          this.contenuCommande = response;
+          this.prixTotalCommande = this.commande.total;
+          let username = this.authService.currentUserValue.username;
+          this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
+            this.soldeClient = mapSolde["solde"];
+            this.assezDargent = this.soldeClient >= this.prixTotalCommande;
+            this.contenuReady = true;
+            this.isReady = true;
+          });
+        });
+      });
     });
   }
+
   back(){
     this._location.back();
   }
@@ -47,5 +65,16 @@ export class EcranPaiementCommandeComponent implements OnInit {
 
   afficheDetail(){
     this.showModal = true;
+  }
+
+  navigateToRechargementPorteMonnaie(){
+    this.router.navigate(['client-portemonnaie']);
+  }
+
+  payerCommande(){
+    let username = this.authService.currentUserValue.username;
+    this.commandeService.payerCommande(username,this.commande.cid).subscribe(response => {
+      this.router.navigate(['commande-list']);
+    });
   }
 }

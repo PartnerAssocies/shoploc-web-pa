@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ProduitData } from "../models/data/ProduitData.model";
-import { AddStockProduitRequestBody } from "../models/html/requestBody/AddStockProduitRequestBody.model";
-import { ProduitResponseBody } from "../models/html/responseBody/ProduitResponseBody.model";
+import { AddStockProduitRequestBody } from "../models/http/requestBody/AddStockProduitRequestBody.model";
+import { ProduitResponseBody } from "../models/http/responseBody/ProduitResponseBody.model";
 
 @Injectable()
 export class ProduitService {

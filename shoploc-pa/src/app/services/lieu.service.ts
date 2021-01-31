@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LieuResponseBody } from '../models/html/responseBody/LieuResponseBody.model';
-import { LieuRequestBody } from '../models/html/requestBody/LieuRequestBody.model';
+import { LieuResponseBody } from '../models/http/responseBody/LieuResponseBody.model';
+import { LieuRequestBody } from '../models/http/requestBody/LieuRequestBody.model';
 import { environment } from 'src/environments/environment';
 
 /**

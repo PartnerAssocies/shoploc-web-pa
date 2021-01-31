@@ -28,6 +28,7 @@ import { CommandeListComponent } from './components/commande-list/commande-list.
 import { CommandeListElementComponent } from './components/commande-list-element/commande-list-element.component';
 import { CreationCommandeClientComponent } from './components/creation-commande-client/creation-commande-client.component';
 import { CreationCommandeClientProduitElementComponent } from './components/creation-commande-client-produit-element/creation-commande-client-produit-element.component';
+import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
 
 // Import Module
@@ -51,7 +52,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
-import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 
 @NgModule({
   declarations: [
