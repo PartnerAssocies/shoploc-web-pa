@@ -48,6 +48,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { QRCodeModule } from 'angularx-qrcode'; //generation des qr code 
+import { ZXingScannerModule } from '@zxing/ngx-scanner'; //lecture des qrcode
 
 // Import Autres
 import { environment } from '../environments/environment';
@@ -98,6 +99,7 @@ import { CarteUserComponent } from './components/carte-user/carte-user.component
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     QRCodeModule,
+    ZXingScannerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CommonModule
   ],
