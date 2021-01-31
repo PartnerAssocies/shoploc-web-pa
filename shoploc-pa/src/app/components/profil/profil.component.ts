@@ -27,7 +27,11 @@ export class ProfilComponent implements OnInit {
       localStorage.removeItem('currentUser');
       this.authService.emptyCurrentUserValue();
       this.route.navigate(['login']);
-  });
+    });
+  }
+
+  maCarte(){
+    this.route.navigate(['ma-carte']);
   }
 
   back(){

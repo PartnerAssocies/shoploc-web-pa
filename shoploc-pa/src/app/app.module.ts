@@ -46,12 +46,14 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { QRCodeModule } from 'angularx-qrcode'; //generation des qr code 
 
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
+import { CarteUserComponent } from './components/carte-user/carte-user.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import {DatePipe} from '@angular/common';
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
-    ClientPortemonnaieComponent
+    ClientPortemonnaieComponent,
+    CarteUserComponent
   ],
   imports: [
     AppRoutingModule,
@@ -94,6 +97,7 @@ import {DatePipe} from '@angular/common';
     MatListModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    QRCodeModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CommonModule
   ],
