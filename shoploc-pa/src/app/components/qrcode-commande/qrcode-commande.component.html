@@ -1,0 +1,65 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-2 float-left">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-10 float-left">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Commande {{commande.cid}}</p>
+            </div>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div *ngIf="isReady">
+            <div class="row pl-2 pr-2">
+                <h4 class="text-info font-weight-light text-center">Faites scanner ce QRCode par votre commerçant</h4>
+            </div>         
+            <div class="row justify-content-center">
+                <div *ngIf="generated" class="col-8 justify-content-center d-flex">
+                    <qrcode [scale]="10" [qrdata]="qrValue"  width="max-width" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info btn-block mb-2" (click)="afficheDetail()">Détail de la commande</button>
+        </div>
+        <div *ngIf="!isReady" class="mt-20">
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex">
+                    <mat-spinner class="shoploc-spinner"></mat-spinner>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+<app-navbar></app-navbar>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title text-info font-weigth-ligth">Détail de votre commande :</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+        </div>
+
+        <div *ngIf="isReady" class="modal-body">
+            <div *ngFor="let produit of contenuCommande.produits"> 
+                <div class="row">
+                    <div class="col-10">
+                        <p class="font-weight-light">{{produit.libelle}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="font-weight-light">x{{produit.quantite}}</p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+         <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" (click)="hide()">OK</button>    
+        </div>
+    </div>
+</div>

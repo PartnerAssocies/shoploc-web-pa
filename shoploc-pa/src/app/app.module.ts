@@ -56,6 +56,7 @@ import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
+import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { LecteurCodeClientComponent } from './components/lecteur-code-client/lec
     EcranPaiementCommandeComponent,
     ClientPortemonnaieComponent,
     CarteUserComponent,
-    LecteurCodeClientComponent
+    LecteurCodeClientComponent,
+    QrcodeCommandeComponent
   ],
   imports: [
     AppRoutingModule,
