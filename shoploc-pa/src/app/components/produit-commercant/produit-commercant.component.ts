@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProduitResponseBody } from 'src/app/models/html/responseBody/ProduitResponseBody.model';
+import { ProduitResponseBody } from 'src/app/models/http/responseBody/ProduitResponseBody.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProduitService } from 'src/app/services/produit.service';
 

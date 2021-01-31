@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommandeData } from 'src/app/models/data/CommandeData.model';
-import { ProduitResponseBody } from 'src/app/models/html/responseBody/ProduitResponseBody.model';
+import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
+import { ProduitResponseBody } from 'src/app/models/http/responseBody/ProduitResponseBody.model';
 import { Location } from '@angular/common';
 import { ProduitService } from 'src/app/services/produit.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,7 +21,7 @@ export class CreationCommandeClientComponent implements OnInit {
   usernameCommercant : string;
   produits : ProduitResponseBody[];
   libelleCommercant : string;
-  commande : CommandeData;
+  commande : CommandeResponseBody;
   commandeCreated : boolean;
   showModal : boolean;
   mapProduitQuantite : Map<number,number>;
@@ -41,16 +41,18 @@ export class CreationCommandeClientComponent implements OnInit {
     this.isLoading = true;
     this.mapProduitQuantite = new Map();
     this.activateRoute.queryParams.subscribe(params => {
-      this.commande = history.state.commande;
-      if(this.commande){
-        this.usernameCommercant = this.commande.commercant.username;
-        this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
-          for(let produit of response.produits){
-            this.mapProduitQuantite.set(produit.pid,produit.quantite);
-          }
-          this.initListeProduit();
+      if(params['commande']){
+        this.commandeService.getCommande(Number(params['commande'])).subscribe(response => {
+          this.commande = response;
+          this.usernameCommercant = response.commercant;
+          this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
+            for(let produit of response.produits){
+              this.mapProduitQuantite.set(produit.pid,produit.quantite);
+            }
+            this.initListeProduit();
+          });
+          this.commandeCreated = true;
         });
-        this.commandeCreated = true;
       }else{
         this.usernameCommercant = params['commercant'];
         this.initListeProduit();
@@ -125,8 +127,7 @@ export class CreationCommandeClientComponent implements OnInit {
   validerCommandePaiementShopLoc(){
     this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
       this.showModal = false;
-      this.router.navigate(['paiement-commande-client'],{state: {commande : response}});
+      this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
     });
-    
   }
 }

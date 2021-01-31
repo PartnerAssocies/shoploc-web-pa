@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AddStockProduitRequestBody } from 'src/app/models/html/requestBody/AddStockProduitRequestBody.model';
+import { AddStockProduitRequestBody } from 'src/app/models/http/requestBody/AddStockProduitRequestBody.model';
 import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({

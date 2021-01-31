@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CommandeData } from '../models/data/CommandeData.model';
-import { ContenuCommandeResponseBody } from '../models/html/responseBody/ContenuCommandeResponseBody.model';
+import { ContenuCommandeResponseBody } from '../models/http/responseBody/ContenuCommandeResponseBody.model';
+import { CommandeResponseBody } from '../models/http/responseBody/CommandeResponseBody.model';
 
 /**
  * Service pour gérer les commandes.
@@ -23,11 +24,11 @@ export class CommandeService {
      * Retourne un observable contenant les commandes de l'utilisateur dont le username est passé en paramètre
      * @param username : string 
      */
-    getCommandesOfUser(username : string) : Observable<CommandeData[]> {
+    getCommandesOfUser(username : string) : Observable<CommandeResponseBody[]> {
         const url = environment.shopLocApiURL
             .concat('/commande/findAllUserCommande/')
             .concat(username);
-        return this.http.get<CommandeData[]>(url);    
+        return this.http.get<CommandeResponseBody[]>(url);    
     }
 
     /**
@@ -35,13 +36,13 @@ export class CommandeService {
      * @param usernameClient : string
      * @param usernameCommercant : string
      */
-    createCommandeForUserAndCommercant(usernameClient : string, usernameCommercant : string) : Observable<CommandeData> {
+    createCommandeForUserAndCommercant(usernameClient : string, usernameCommercant : string) : Observable<CommandeResponseBody> {
         const url = environment.shopLocApiURL
             .concat('/commande/create/')
             .concat(usernameClient)
             .concat('/')
             .concat(usernameCommercant);
-        return this.http.post<CommandeData>(url,null);    
+        return this.http.post<CommandeResponseBody>(url,null);    
     }
 
     /**
@@ -50,7 +51,7 @@ export class CommandeService {
      * @param productId : number
      * @param quantite : number
      */
-    addProductToCommande(commandeId : number, productId : number, quantite : number) : Observable<CommandeData>{
+    addProductToCommande(commandeId : number, productId : number, quantite : number) : Observable<CommandeResponseBody>{
         const url = environment.shopLocApiURL
             .concat('/commande/')
             .concat(commandeId.toString())
@@ -58,18 +59,18 @@ export class CommandeService {
             .concat(productId.toString())
             .concat('/')
             .concat(quantite.toString());
-        return this.http.post<CommandeData>(url,null);
+        return this.http.post<CommandeResponseBody>(url,null);
     }
 
     /**
      * Confirme une commande et passe son état à "EN ATTENTE DE PAIEMENT"
      * @param commandeId : number
      */
-    confirmCommande(commandeId : number) : Observable<CommandeData>{
+    confirmCommande(commandeId : number) : Observable<CommandeResponseBody>{
         const url = environment.shopLocApiURL
             .concat("/commande/confirmCommande/")
             .concat(commandeId.toString());
-        return this.http.post<CommandeData>(url,null);
+        return this.http.post<CommandeResponseBody>(url,null);
     }
 
     /**
@@ -89,13 +90,24 @@ export class CommandeService {
      * @param clientUsername : string
      * @param commandeId : number
      */
-    payerCommande(clientUsername : string, commandeId : number) : any {
+    payerCommande(clientUsername : string, commandeId : number) : Observable<CommandeResponseBody> {
         const url = environment.shopLocApiURL
             .concat("/commande/paiementCommande/")
             .concat(clientUsername)
             .concat("/")
             .concat(commandeId.toString());
-        return this.http.post<any>(url,null);
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
+
+    /**
+     * Récupère une commande par son id
+     * @param commandeId : number
+     */
+    getCommande(commandeId : number) : Observable<CommandeResponseBody> {
+        const url = environment.shopLocApiURL
+            .concat("/commande/")
+            .concat(commandeId.toString());
+        return this.http.get<CommandeResponseBody>(url);
     }
 
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommandeData } from 'src/app/models/data/CommandeData.model';
 import { CommandeService } from 'src/app/services/commande.service';
-import { ContenuCommandeResponseBody } from 'src/app/models/html/responseBody/ContenuCommandeResponseBody.model';
+import { ContenuCommandeResponseBody } from 'src/app/models/http/responseBody/ContenuCommandeResponseBody.model';
+import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
 import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EcranPaiementCommandeComponent implements OnInit {
 
-  commande : CommandeData;
+  commande : CommandeResponseBody;
   showModal : boolean;
   contenuCommande : ContenuCommandeResponseBody;
   contenuReady : boolean;
@@ -35,21 +35,25 @@ export class EcranPaiementCommandeComponent implements OnInit {
 
   ngOnInit(): void {
     this.isReady = false;
-    this.commande = history.state.commande;
-    this.showModal = false;
-    this.contenuReady = false;
-    this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
-      this.contenuCommande = response;
-      this.prixTotalCommande = 0;
-      for(let i = 0;i <  this.contenuCommande.produits.length; i++){
-        this.prixTotalCommande = this.prixTotalCommande + (this.contenuCommande.produits[i].prix * this.contenuCommande.produits[i].quantite);
-      }
-      let username = this.authService.currentUserValue.username;
-      this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
-        this.soldeClient = mapSolde["solde"];
-        this.assezDargent = this.soldeClient >= this.prixTotalCommande;
-        this.contenuReady = true;
-        this.isReady = true;
+    this.activateRoute.queryParams.subscribe(params => {
+      this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
+        this.commande = commande;
+        this.showModal = false;
+        this.contenuReady = false;
+        this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
+          this.contenuCommande = response;
+          this.prixTotalCommande = 0;
+          for(let i = 0;i <  this.contenuCommande.produits.length; i++){
+            this.prixTotalCommande = this.prixTotalCommande + (this.contenuCommande.produits[i].prix * this.contenuCommande.produits[i].quantite);
+          }
+          let username = this.authService.currentUserValue.username;
+          this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
+            this.soldeClient = mapSolde["solde"];
+            this.assezDargent = this.soldeClient >= this.prixTotalCommande;
+            this.contenuReady = true;
+            this.isReady = true;
+          });
+        });
       });
     });
   }

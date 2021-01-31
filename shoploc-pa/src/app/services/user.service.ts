@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
 import { environment } from 'src/environments/environment';
-import { CommercantRequestBody } from '../models/html/requestBody/CommercantRequestBody.model';
-import { CommercantResponseBody } from '../models/html/responseBody/CommercantResponseBody.model';
+import { CommercantRequestBody } from '../models/http/requestBody/CommercantRequestBody.model';
+import { CommercantResponseBody } from '../models/http/responseBody/CommercantResponseBody.model';
 import { CommercantData } from '../models/data/CommercantData.model';
 
 /**

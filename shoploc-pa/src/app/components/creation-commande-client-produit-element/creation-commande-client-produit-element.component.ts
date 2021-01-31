@@ -1,5 +1,5 @@
 import { Component, OnInit, Input , Output,EventEmitter} from '@angular/core';
-import { ProduitResponseBody } from 'src/app/models/html/responseBody/ProduitResponseBody.model';
+import { ProduitResponseBody } from 'src/app/models/http/responseBody/ProduitResponseBody.model';
 
 @Component({
   selector: 'app-creation-commande-client-produit-element',

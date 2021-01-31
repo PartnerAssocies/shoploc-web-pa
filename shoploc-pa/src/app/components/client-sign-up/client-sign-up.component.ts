@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LieuRequestBody } from 'src/app/models/html/requestBody/LieuRequestBody.model';
-import { LieuResponseBody } from 'src/app/models/html/responseBody/LieuResponseBody.model';
+import { LieuRequestBody } from 'src/app/models/http/requestBody/LieuRequestBody.model';
+import { LieuResponseBody } from 'src/app/models/http/responseBody/LieuResponseBody.model';
 import { UserService } from 'src/app/services/user.service';
 import { LieuService } from 'src/app/services/lieu.service';
 import { User } from 'src/app/models/User.model';
