@@ -6,6 +6,7 @@ import { UserService } from './services/user.service';
 import { LieuService } from './services/lieu.service';
 import { ProduitService} from './services/produit.service';
 import { CommandeService } from './services/commande.service';
+import { PorteMonnaieService } from './services/porteMonnaie.service';
 
 // Import Component
 import { AppComponent } from './app.component';
@@ -105,6 +106,7 @@ import { EcranPaiementCommandeComponent } from './components/ecran-paiement-comm
     CommandeService,
     DatePipe,
     ProduitService,
+    PorteMonnaieService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
   ],
   bootstrap: [AppComponent]
