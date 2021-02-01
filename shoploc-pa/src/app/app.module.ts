@@ -30,6 +30,7 @@ import { CreationCommandeClientComponent } from './components/creation-commande-
 import { CreationCommandeClientProduitElementComponent } from './components/creation-commande-client-produit-element/creation-commande-client-produit-element.component';
 import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
+import { CommercantHomeComponent } from './components/commercant-home/commercant-home.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -78,7 +79,8 @@ import {DatePipe} from '@angular/common';
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
-    ClientPortemonnaieComponent
+    ClientPortemonnaieComponent,
+    CommercantHomeComponent
   ],
   imports: [
     AppRoutingModule,
