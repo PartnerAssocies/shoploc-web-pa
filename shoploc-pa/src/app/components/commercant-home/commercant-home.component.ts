@@ -15,12 +15,16 @@ export class CommercantHomeComponent implements OnInit {
   listeCommandeEnPrepa : CommandeResponseBody[];
   listeCommandeWaitPaiement : CommandeResponseBody[];
   listeCommandeARecuperer : CommandeResponseBody[];
+
   isLoadingPrepa : boolean;
   isLoadingPaiement : boolean;
   isLoadingRecup : boolean;
+
   prepaActive : boolean;
   waitActive : boolean;
   takeActive : boolean;
+  
+  username : string;
 
   constructor(private _location : Location,
               private authService : AuthService,
@@ -28,15 +32,20 @@ export class CommercantHomeComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
+    this.username = this.authService.currentUserValue.username;
+
     this.isLoadingPrepa = true;
     this.isLoadingPaiement = true;
     this.isLoadingRecup = true;
-    this.getEnPreparation();
-    this.getWaitPaiement();
-    this.getARecuperer();
+
     this.prepaActive = true;
     this.waitActive = false;
     this.takeActive = false;
+
+    this.getEnPreparation();
+    this.getWaitPaiement();
+    this.getARecuperer();
+    
   }
 
   back(){
@@ -44,9 +53,8 @@ export class CommercantHomeComponent implements OnInit {
   }
 
   getEnPreparation() {
-    const username = this.authService.currentUserValue.username;
     this.listeCommandeEnPrepa = [];
-    this.commandeService.getCommandeByEtatAndCommercant(username, 'EN_PREPARATION').subscribe(res => {
+    this.commandeService.getCommandeByEtatAndCommercant(this.username, 'EN_PREPARATION').subscribe(res => {
       for(let commande of res){
         this.listeCommandeEnPrepa.push(commande);
       }
@@ -58,9 +66,8 @@ export class CommercantHomeComponent implements OnInit {
   }
 
   getWaitPaiement() {
-    const username = this.authService.currentUserValue.username;
     this.listeCommandeWaitPaiement = [];
-    this.commandeService.getCommandeByEtatAndCommercant(username, 'EN_ATTENTE_DE_PAIEMENT').subscribe(res => {
+    this.commandeService.getCommandeByEtatAndCommercant(this.username, 'EN_ATTENTE_DE_PAIEMENT').subscribe(res => {
       for(let commande of res){
         this.listeCommandeWaitPaiement.push(commande);
       }
@@ -74,7 +81,7 @@ export class CommercantHomeComponent implements OnInit {
   getARecuperer() {
     const username = this.authService.currentUserValue.username;
     this.listeCommandeARecuperer = [];
-    this.commandeService.getCommandeByEtatAndCommercant(username, 'A_RECUPERER').subscribe(res => {
+    this.commandeService.getCommandeByEtatAndCommercant(this.username, 'A_RECUPERER').subscribe(res => {
       for(let commande of res){
         this.listeCommandeARecuperer.push(commande);
       }
