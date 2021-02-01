@@ -110,4 +110,12 @@ export class CommandeService {
         return this.http.get<CommandeResponseBody>(url);
     }
 
+    getCommandeByEtatAndCommercant(username : string, etat : string) : Observable<CommandeResponseBody[]> {
+        const url = environment.shopLocApiURL
+            .concat("/commande/findCommandesByEtatAndCommercant/")
+            .concat(username)
+            .concat("/")
+            .concat(etat);
+        return this.http.get<CommandeResponseBody[]>(url);
+    }
 }

@@ -1,6 +1,6 @@
 <div class="card margin-navbar">
     <div class="card-header">
-        <div class="row">
+        <div class="row" *ngIf="isReady">
             <button mat-icon-button (click)="back()" class="float-left">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>

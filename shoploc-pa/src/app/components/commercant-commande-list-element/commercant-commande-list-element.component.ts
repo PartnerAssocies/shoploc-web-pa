@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-commande-list-element',
-  templateUrl: './commande-list-element.component.html',
-  styleUrls: ['./commande-list-element.component.scss']
+  selector: 'app-commercant-commande-list-element',
+  templateUrl: './commercant-commande-list-element.component.html',
+  styleUrls: ['./commercant-commande-list-element.component.scss']
 })
-export class CommandeListElementComponent implements OnInit {
+export class CommercantCommandeListElementComponent implements OnInit {
 
   @Input()
   numeroCommande : string;
   @Input()
-  nomCommercant : string;  
+  nomClient : string;  
   @Input()
   date : Date;
   dateAffiche : string;
@@ -21,19 +21,12 @@ export class CommandeListElementComponent implements OnInit {
   etatAffiche : string;
   clicked : boolean;
 
-  constructor(
-    private datePipe: DatePipe
-  ) { }
+  constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.clicked=false;
     this.dateAffiche = this.datePipe.transform(this.date,'dd/MM/yyyy HH:mm');
     switch(this.etat){
-      case 'PANNIER' : {
-        this.color = 'yellow';
-        this.etatAffiche = 'En attente de validation';
-        break;
-      }
       case 'EN_ATTENTE_DE_PAIEMENT' : {
         this.color = 'orange';
         this.etatAffiche = 'En attente de paiement';
@@ -49,12 +42,6 @@ export class CommandeListElementComponent implements OnInit {
         this.etatAffiche = 'A récupérer'
         break;
       }
-      case 'RECUPEREE' : {
-        this.color = 'white';
-        this.etatAffiche = 'Récupérée'
-        break;
-      }
-
       default : {
         this.color = 'white';
         break;
