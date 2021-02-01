@@ -39,14 +39,14 @@ export class CommercantDetailCommandeComponent implements OnInit {
   laCommandeEstPrete(){
     this.commandeService.passerCommandeAARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
       this.commande = commandeMisAJour;
-      this.router.navigate(['/']);
+      this.router.navigate(['commercant-home']);
     });
   }
 
   laCommandeEstRecuperee(){
     this.commandeService.passerCommandeARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
       this.commande = commandeMisAJour;
-      this.router.navigate(['/']);
+      this.router.navigate(['commercant-home']);
     });
   }
 
