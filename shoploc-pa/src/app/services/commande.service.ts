@@ -116,7 +116,7 @@ export class CommandeService {
      */
     passerCommandeAARecuperee(commandeId : number) : Observable<CommandeResponseBody> {
         const url = environment.shopLocApiURL
-            .concat("/commande/")
+            .concat("/commande/aRecuperer/")
             .concat(commandeId.toString());
         return this.http.post<CommandeResponseBody>(url,null);
     }
@@ -127,7 +127,7 @@ export class CommandeService {
      */
     passerCommandeARecuperee(commandeId : number) : Observable<CommandeResponseBody> {
         const url = environment.shopLocApiURL
-            .concat("/commande/")
+            .concat("/commande/recupere/")
             .concat(commandeId.toString());
         return this.http.post<CommandeResponseBody>(url,null);
     }

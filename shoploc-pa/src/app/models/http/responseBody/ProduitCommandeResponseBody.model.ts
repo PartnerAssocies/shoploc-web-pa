@@ -5,6 +5,7 @@ export class ProduitCommandeResponseBody {
         public quantite : number,
         public image : string,
         public fidelitePointsRequis : number,
-        public prix : number
+        public prix : number,
+        public nbProduitsEnFidelite : number
     ){}
 }

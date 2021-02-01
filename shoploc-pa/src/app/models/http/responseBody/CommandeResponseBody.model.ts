@@ -8,6 +8,7 @@ export class CommandeResponseBody {
         public estPayeEnFidelite : boolean,
         public creeParClickAndCollect : boolean,
         public client : string,
-        public commercant : string
+        public commercant : string,
+        public totalPointsFidelite : number
     ){}
 }
