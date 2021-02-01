@@ -34,10 +34,11 @@ export class JwtInterceptor implements HttpInterceptor {
      * @param String url 
      */
     private needAuthentication(url : string) : boolean{
-        const suburl = url.substring(url.indexOf('/'),url.lastIndexOf("/"));
+        //const suburl = url.substring(url.indexOf('/'),url.lastIndexOf("/"));
         var i;
+        
         for(i = 0; i < this.authorizedPath.length; i++){
-            if(suburl.includes(this.authorizedPath[i])){
+            if(url.includes(this.authorizedPath[i])){
                 return false;
             }
         } 
@@ -68,8 +69,8 @@ export class JwtInterceptor implements HttpInterceptor {
 			this.refreshTokenSubject.next(null);
 
             return this.authService.refresh().pipe(
-				switchMap((token : string) => {
-                    this.authService.currentUserValue.accessToken=token
+				switchMap((token : any) => {
+                    this.authService.currentUserValue.accessToken=token.jwt
 					localStorage.setItem('currentUser', JSON.stringify(this.authService.currentUserValue));
 					this.isRefreshing = false;
 					this.refreshTokenSubject.next(token);
@@ -93,6 +94,7 @@ export class JwtInterceptor implements HttpInterceptor {
      */
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if(!this.needAuthentication(request.url)){
+            console.log(request)
             return next.handle(request);
         }
 

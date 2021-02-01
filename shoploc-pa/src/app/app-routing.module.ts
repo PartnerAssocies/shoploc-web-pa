@@ -13,6 +13,7 @@ import { ProduitCommercantComponent } from './components/produit-commercant/prod
 import { AjoutProduitCommercantComponent } from './components/ajout-produit-commercant/ajout-produit-commercant.component';
 import { EcranPaiementCommandeComponent } from './components/ecran-paiement-commande/ecran-paiement-commande.component';
 import { ClientPortemonnaieComponent } from './components/client-portemonnaie/client-portemonnaie.component';
+import { CommercantHomeComponent } from './components/commercant-home/commercant-home.component';
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'commercant-produit', component: ProduitCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'add-commercant-produit', component: AjoutProduitCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'paiement-commande-client', component:  EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
-  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'commercant-home', component:  CommercantHomeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'ma-carte', component:  CarteUserComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'qrcode-commande', component: QrcodeCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},

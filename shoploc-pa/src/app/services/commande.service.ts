@@ -132,4 +132,17 @@ export class CommandeService {
         return this.http.post<CommandeResponseBody>(url,null);
     }
 
+    /**
+     * Récupère la liste des commandes d'un commerçant en fonction de son etat
+     * @param username : string
+     * @param etat : string
+     */
+    getCommandeByEtatAndCommercant(username : string, etat : string) : Observable<CommandeResponseBody[]> {
+        const url = environment.shopLocApiURL
+            .concat("/commande/findCommandesByEtatAndCommercant/")
+            .concat(username)
+            .concat("/")
+            .concat(etat);
+        return this.http.get<CommandeResponseBody[]>(url);
+    }
 }

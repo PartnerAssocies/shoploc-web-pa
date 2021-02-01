@@ -1,0 +1,24 @@
+<div class="row commande">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="font-weight-light mb-0 text-info">{{nomClient}} : n°{{numeroCommande}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9">
+                <p class="font-weight-light mb-0">{{dateAffiche}}</p>    
+            </div>
+            <div class="col-3">
+                <mat-icon [ngStyle]="{'color': color}">
+                    fiber_manual_record
+                </mat-icon>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="font-weight-light font-italic">Etat : {{etatAffiche}}</p>    
+            </div>    
+        </div>
+    </div>
+</div>
