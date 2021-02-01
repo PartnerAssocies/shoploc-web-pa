@@ -62,7 +62,11 @@ export class NavbarComponent implements OnInit {
    * Pour tous les users
    */
   public navigateHome(){
-    this.router.navigate(['']);
+    if(this.role == 'ROLE_COMMERCANT'){
+      this.router.navigate(['commercant-home']);
+    } else {
+      this.router.navigate(['']);
+    }
   }
   
   /**

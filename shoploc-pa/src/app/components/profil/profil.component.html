@@ -12,15 +12,24 @@
         </div>
     </div> 
     <div class="card-body">
-        <ul class="list-group list-group-flush">
-            <a class="list-group-item text-dark" *ngIf="'ROLE_COMMERCANT' == role" href="commercant-produit">Mes produits</a>
-            <mat-divider></mat-divider>
-            <li class="list-group-item">Item 2</li>
-            <mat-divider></mat-divider>
-            <li class="list-group-item">
-                <button type="button" class="btn btn-danger" id="logout" color ="red" (click)="logout()">Logout</button>
-            </li>
-        </ul>
+        <mat-list>
+            <a mat-list-item *ngIf="'ROLE_CLIENT' == role" href="ma-carte">
+                <mat-icon class="mr-3">qr_code_2</mat-icon>
+                <h4 class="font-weight-light mb-0">Ma carte</h4>
+            </a>
+            <a mat-list-item *ngIf="'ROLE_COMMERCANT' == role" href="lecteur-carte">
+                <mat-icon class="mr-3">qr_code_2</mat-icon>
+                <h4 class="font-weight-light mb-0">Lecteur carte client</h4>
+            </a>
+            <a mat-list-item *ngIf="'ROLE_COMMERCANT' == role" href="commercant-produit">
+                <mat-icon class="mr-3">local_grocery_store</mat-icon>
+                <h4 class="font-weight-light mb-0">Mes produits</h4>
+            </a>
+            <a mat-list-item (click)="logout()">
+                <mat-icon class="mr-3">exit_to_app</mat-icon>
+                <h4 class="font-weight-light mb-0">Déconnexion</h4>
+            </a>
+        </mat-list>
     </div>
 </div>
 <app-navbar></app-navbar>
