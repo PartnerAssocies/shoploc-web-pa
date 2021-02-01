@@ -29,4 +29,13 @@ export class PorteMonnaieService {
         return this.http.get<Map<string,number>>(url);    
     }
 
+    changeMoney(username: string, money: number) : Observable<ClientData>{
+        const url = environment.shopLocApiURL
+            .concat("/client/")
+            .concat(username)
+            .concat("/changeMoney/")
+            .concat(money+"");
+        return this.http.post<ClientData>(url, null);
+    }
+
 }

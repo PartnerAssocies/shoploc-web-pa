@@ -35,7 +35,8 @@ const routes: Routes = [
   { path: 'ma-carte', component:  CarteUserComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'qrcode-commande', component: QrcodeCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
-  { path: 'detail-commande-commercant', component: CommercantDetailCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}}
+  { path: 'detail-commande-commercant', component: CommercantDetailCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 ];
 
 @NgModule({

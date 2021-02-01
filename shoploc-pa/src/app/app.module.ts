@@ -88,7 +88,8 @@ import { CommercantDetailCommandeComponent } from './components/commercant-detai
     CarteUserComponent,
     LecteurCodeClientComponent,
     QrcodeCommandeComponent,
-    CommercantDetailCommandeComponent
+    CommercantDetailCommandeComponent,
+    ClientPortemonnaieComponent
   ],
   imports: [
     AppRoutingModule,
