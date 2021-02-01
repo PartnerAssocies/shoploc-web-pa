@@ -12,7 +12,23 @@
         </div>
     </div>
     <div class="card-body">
-        <zxing-scanner #scanner class="test-class" start="true" [device]="currentDevice" (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+            <zxing-scanner #scanner class="test-class" start="true" [device]="currentDevice" (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+            <div *ngIf="!isLoading" class="row">
+                <div class="col-12 justify-content-center d-flex mt-3">
+                    <h4 class="text-info font-weight-light">Scannez le QRcode présenté par le client</h4>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="mt-20">
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex">
+                    <mat-spinner class="shoploc-spinner"></mat-spinner>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex mt-3">
+                    <h4 class="text-info font-weight-light">Autorisez l'application à utiliser votre caméra pour vous servir du lecteur</h4>
+                </div>
+            </div>
+        </div> 
     </div> 
-</div>
-<app-navbar></app-navbar>

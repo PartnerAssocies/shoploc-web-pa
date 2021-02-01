@@ -34,8 +34,8 @@
                     [quantite]="getQuantiteProduit(produit.pid)" >
                   </app-creation-commande-client-produit-element>
             </div>
-            <div *ngIf="commandeCreated" class=" position-valider ">
-                <button type="button" class="btn btn-success btn-lg" (click)="openModal()">Valider la commande</button>
+            <div *ngIf="commandeCreated" class="row">
+                <button type="button" class="btn btn-success position-valider" (click)="openModal()">Valider la commande</button>
             </div>
         </div>
     </div>

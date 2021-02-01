@@ -1,6 +1,6 @@
 <div class="card margin-navbar">
     <div class="card-header">
-        <div class="row" *ngIf="isReady">
+        <div class="row">
             <button mat-icon-button (click)="back()" class="float-left">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
@@ -27,9 +27,21 @@
                     </div>
                 </div> 
             </div>
-            <div class="row">
-                <button *ngIf="commande.etat == 'EN_PREPARATION'" type="button" class="btn btn-info btn-block mt-2 position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
-                <button *ngIf="commande.etat == 'A_RECUPERER'" type="button" class="btn btn-info btn-block mb-2 mt-2 position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
+            <div *ngIf="commande.etat == 'EN_PREPARATION'" class="row">
+                <button type="button" class="btn btn-info  position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
+            </div>
+            <div *ngIf="commande.etat == 'A_RECUPERER'" >
+                <button type="button" class="btn btn-success position-valider" (click)="laCommandeEstRecuperee()">La commande est récupérée</button>
+            </div>
+            <div *ngIf="commande.etat == 'RECUPEREE'" class="mt-5">
+                <div class="row justify-content-center d-flex">
+                    <mat-icon class="icon-display">
+                        check_circle_outline
+                    </mat-icon>
+                </div>
+                <div class="row mt-2 justify-content-center d-flex">
+                    <h4 class="font-weight-light text-success text-center">La commande a été récupérée</h4>
+                </div>
             </div>  
         </div>
         <div *ngIf="!isReady" class="mt-20">
