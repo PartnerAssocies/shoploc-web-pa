@@ -16,6 +16,7 @@ export class LecteurCodeClientComponent implements OnInit {
   public result : string;
   public hasCameras : boolean;
   public hasPermission : boolean;
+  public isLoading : boolean;
 
   availableDevices: MediaDeviceInfo[];
   
@@ -28,10 +29,12 @@ export class LecteurCodeClientComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.initCamera();
     this.scanner.permissionResponse.subscribe(
       (perm: boolean) =>{
        this.hasPermission = perm;
+       this.isLoading = !perm; 
       });
   }
 
