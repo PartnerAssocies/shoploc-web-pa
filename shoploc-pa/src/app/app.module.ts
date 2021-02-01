@@ -47,12 +47,18 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { QRCodeModule } from 'angularx-qrcode'; //generation des qr code 
+import { ZXingScannerModule } from '@zxing/ngx-scanner'; //lecture des qrcode
 
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
+import { CarteUserComponent } from './components/carte-user/carte-user.component';
+import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
+import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
+import { CommercantDetailCommandeComponent } from './components/commercant-detail-commande/commercant-detail-commande.component';
 
 @NgModule({
   declarations: [
@@ -79,8 +85,12 @@ import {DatePipe} from '@angular/common';
     SingleProduitCommercantComponent,
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
-    ClientPortemonnaieComponent,
-    CommercantHomeComponent
+    CommercantHomeComponent,
+    CarteUserComponent,
+    LecteurCodeClientComponent,
+    QrcodeCommandeComponent,
+    CommercantDetailCommandeComponent,
+    ClientPortemonnaieComponent
   ],
   imports: [
     AppRoutingModule,
@@ -96,6 +106,8 @@ import {DatePipe} from '@angular/common';
     MatListModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    QRCodeModule,
+    ZXingScannerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CommonModule
   ],

@@ -1,0 +1,32 @@
+.produits{
+    border-radius: 0.25rem;
+    border-top: 2px solid  #17a2b8;
+    background-color: rgba(0, 0, 0, 0.03);
+    padding : 3%;
+}
+
+@media (max-width: 599px){
+    .position-valider{
+        position : fixed;
+        left: 50%; 
+        transform: translateX(-50%);
+        bottom:70px;
+        box-shadow: 0 5px 25px 0
+                    rgba(0,0,0,.25);
+        margin-left:  2%;
+        margin-right: 2%;
+    }
+}
+
+@media (min-width: 600px){
+    .position-valider{
+        position : fixed;
+        bottom: 80px; 
+        left: 50%; 
+        transform: translateX(-50%);
+        box-shadow: 0 5px 25px 0
+                    rgba(0,0,0,.25);
+        margin-left:  2%;
+        margin-right: 2%;
+    }
+}

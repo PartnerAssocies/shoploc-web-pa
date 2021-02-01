@@ -1,0 +1,44 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1">Commande {{commande.cid}}</h3>
+        </div>
+    </div> 
+    <div class="card-body">
+        <div *ngIf="isReady">
+            <div class="row mb-0">
+                <h4 class="text-info font-weight-light ml-3">{{commande.client}}</h4>
+            </div>
+            <div class="produits">
+                <div class="row">
+                    <p class="ml-3">Produits commandés : </p>
+                </div>
+                <div *ngFor="let produit of contenuCommande.produits"> 
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-light">{{produit.libelle}}</p>
+                        </div>
+                        <div class="col-4">
+                            <p class="font-weight-light">x{{produit.quantite}}</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <button *ngIf="commande.etat == 'EN_PREPARATION'" type="button" class="btn btn-info btn-block mt-2 position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
+                <button *ngIf="commande.etat == 'A_RECUPERER'" type="button" class="btn btn-info btn-block mb-2 mt-2 position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
+            </div>  
+        </div>
+        <div *ngIf="!isReady" class="mt-20">
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex">
+                    <mat-spinner class="shoploc-spinner"></mat-spinner>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+<app-navbar></app-navbar>
