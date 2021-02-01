@@ -1,4 +1,4 @@
-import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';

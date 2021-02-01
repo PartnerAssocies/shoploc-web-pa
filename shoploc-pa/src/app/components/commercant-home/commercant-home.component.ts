@@ -79,7 +79,6 @@ export class CommercantHomeComponent implements OnInit {
   }
 
   getARecuperer() {
-    const username = this.authService.currentUserValue.username;
     this.listeCommandeARecuperer = [];
     this.commandeService.getCommandeByEtatAndCommercant(this.username, 'A_RECUPERER').subscribe(res => {
       for(let commande of res){

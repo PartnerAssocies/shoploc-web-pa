@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandeService } from 'src/app/services/commande.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
 import { Location } from '@angular/common';
 import { ContenuCommandeResponseBody } from 'src/app/models/http/responseBody/ContenuCommandeResponseBody.model';
