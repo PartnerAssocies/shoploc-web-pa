@@ -19,7 +19,8 @@ export class CommercantDetailCommandeComponent implements OnInit {
   constructor(
     private _location : Location,
     private activateRoute: ActivatedRoute,
-    private commandeService : CommandeService
+    private commandeService : CommandeService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -36,11 +37,17 @@ export class CommercantDetailCommandeComponent implements OnInit {
   }
 
   laCommandeEstPrete(){
-
+    this.commandeService.passerCommandeAARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
+      this.commande = commandeMisAJour;
+      this.router.navigate(['/']);
+    });
   }
 
   laCommandeEstRecuperee(){
-    
+    this.commandeService.passerCommandeARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
+      this.commande = commandeMisAJour;
+      this.router.navigate(['/']);
+    });
   }
 
   back(){

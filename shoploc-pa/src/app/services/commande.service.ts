@@ -110,4 +110,26 @@ export class CommandeService {
         return this.http.get<CommandeResponseBody>(url);
     }
 
+    /**
+     * Change l'état d'une commande pour passer vers "A_RECUPEREE"
+     * @param commandeId 
+     */
+    passerCommandeAARecuperee(commandeId : number) : Observable<CommandeResponseBody> {
+        const url = environment.shopLocApiURL
+            .concat("/commande/")
+            .concat(commandeId.toString());
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
+
+    /**
+     * Change l'état d'une commande pour passer vers "RECUPEREE"
+     * @param commandeId 
+     */
+    passerCommandeARecuperee(commandeId : number) : Observable<CommandeResponseBody> {
+        const url = environment.shopLocApiURL
+            .concat("/commande/")
+            .concat(commandeId.toString());
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
+
 }
