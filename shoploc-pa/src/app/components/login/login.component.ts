@@ -83,7 +83,11 @@ export class LoginComponent implements OnInit {
         if(this.returnUrl !== undefined){
           this.router.navigate([this.returnUrl]);
         } else {
-          this.router.navigate(['/']);
+          if(data.role == 'ROLE_CLIENT'){
+            this.router.navigate(['commercant-list']);
+          } else {
+            this.router.navigate(['/']);
+          }
         }
       },
       error => {
