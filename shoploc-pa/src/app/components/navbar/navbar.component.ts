@@ -85,7 +85,7 @@ export class NavbarComponent implements OnInit {
    * Uniquement pour le role COMMERCANT
    */
   public navigateGestionsProduits(){
-
+    this.router.navigate(['commercant-produit']);
   }
 
   /**
