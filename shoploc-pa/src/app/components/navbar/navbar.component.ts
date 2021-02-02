@@ -64,8 +64,11 @@ export class NavbarComponent implements OnInit {
   public navigateHome(){
     if(this.role == 'ROLE_COMMERCANT'){
       this.router.navigate(['commercant-home']);
+    } else if(this.role == 'ROLE_CLIENT'){
+      this.router.navigate(['commercant-list']);
     } else {
       this.router.navigate(['']);
+
     }
   }
   
@@ -82,7 +85,7 @@ export class NavbarComponent implements OnInit {
    * Uniquement pour le role COMMERCANT
    */
   public navigateGestionsProduits(){
-
+    this.router.navigate(['commercant-produit']);
   }
 
   /**
