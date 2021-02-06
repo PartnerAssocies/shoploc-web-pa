@@ -38,4 +38,16 @@ export class PorteMonnaieService {
         return this.http.post<ClientData>(url, null);
     }
 
+    /**
+     * Récupère le total des points de fidélité d'un client
+     * @param username : string
+     */
+    getSoldeFidelite(username : string) : Observable<Map<string,number>> {
+        const url = environment.shopLocApiURL
+            .concat("/client/")
+            .concat(username)
+            .concat("/soldeFidelite");
+        return this.http.get<Map<string,number>>(url); 
+    }
+
 }

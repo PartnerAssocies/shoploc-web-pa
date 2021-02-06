@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { ProduitService } from 'src/app/services/produit.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommandeService } from 'src/app/services/commande.service';
-
-
+import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-creation-commande-client',
@@ -19,12 +19,18 @@ export class CreationCommandeClientComponent implements OnInit {
   isLoading : boolean;
   isListeProduitEmpty : boolean;
   usernameCommercant : string;
-  produits : ProduitResponseBody[];
   libelleCommercant : string;
   commande : CommandeResponseBody;
   commandeCreated : boolean;
   showModal : boolean;
+  showError : boolean;
+  produits : ProduitResponseBody[];
+  produitsFidelite : ProduitResponseBody[];
   mapProduitQuantite : Map<number,number>;
+  mapProduitQuantiteFidelite : Map<number,number>;
+  ongletProduit : boolean;
+  ongletFidelite : boolean;
+  messageError : string;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -33,13 +39,18 @@ export class CreationCommandeClientComponent implements OnInit {
     private authService : AuthService,
     private commandeService : CommandeService,
     private router: Router,
-    
+    private porteMonnaieService : PorteMonnaieService
     ) { }
 
   ngOnInit(): void {
+    this.messageError = "";
     this.commandeCreated = false;
     this.isLoading = true;
+    this.ongletProduit = true;
+    this.ongletFidelite = false;
+    this.showError = false;
     this.mapProduitQuantite = new Map();
+    this.mapProduitQuantiteFidelite = new Map();
     this.activateRoute.queryParams.subscribe(params => {
       if(params['commande']){
         this.commandeService.getCommande(Number(params['commande'])).subscribe(response => {
@@ -47,7 +58,8 @@ export class CreationCommandeClientComponent implements OnInit {
           this.usernameCommercant = response.commercant;
           this.commandeService.getCommandeContenu(this.commande.cid).subscribe(contenu => {
             for(let produit of contenu.produits){
-              this.mapProduitQuantite.set(produit.pid,produit.quantite);
+              this.mapProduitQuantite.set(produit.pid,produit.nbProduitsNormaux);
+              this.mapProduitQuantiteFidelite.set(produit.pid,produit.nbProduitsEnFidelite);
             }
             this.initListeProduit();
           });
@@ -64,10 +76,16 @@ export class CreationCommandeClientComponent implements OnInit {
 
   initListeProduit() : void {
       this.produits = [];
+      this.produitsFidelite = [];
       this.produitService.getListProduits(this.usernameCommercant).subscribe(response => {
      
       for(let produit of response){
-        this.produits.push(produit);
+        if(produit.fidelitePointsRequis > 0){
+          this.produitsFidelite.push(produit);
+        }
+        if(produit.prix > 0){
+          this.produits.push(produit);
+        }
       }
       this.isListeProduitEmpty = this.produits.length == 0;
       if(!this.isListeProduitEmpty){
@@ -85,8 +103,22 @@ export class CreationCommandeClientComponent implements OnInit {
     }
   }
 
+  getQuantiteProduitFidelite(pid : number) : number {
+    if(this.mapProduitQuantiteFidelite.has(pid)){
+      return this.mapProduitQuantiteFidelite.get(pid);
+    }else{
+      return 0;
+    }
+  }
+
   addProductToCommande(data){
     if(this.commande == null){
+      if(data.isFidelite){
+        this.showModal = false;
+        this.messageError = "Selectionner d'abord un produit pour ajouter un produit de fidélité";
+        this.showError = true;
+        return;
+      }
       let usernameClient = this.authService.currentUserValue.username;
       this.commandeService.createCommandeForUserAndCommercant(usernameClient, this.usernameCommercant).subscribe(commande => {
         this.commandeService.addProductToCommande(commande.cid, data.idProduct, data.quantite).subscribe(commandeSuite => {
@@ -95,9 +127,21 @@ export class CreationCommandeClientComponent implements OnInit {
         });
       });
     }else{
-      this.commandeService.addProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
-        this.commande = commande;
-      });
+      if(data.isFidelite){
+        this.commandeService.addFideliteProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
+          this.commande = commande;
+        },(err: HttpErrorResponse) => {
+          if (err.status === 401) {
+            this.showModal = false;
+            this.messageError = "Vous n'avez plus assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
+            this.showError = true;
+          }
+        });
+      }else{
+        this.commandeService.addProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
+          this.commande = commande;
+        });
+      }
     }
   }
 
@@ -117,6 +161,10 @@ export class CreationCommandeClientComponent implements OnInit {
     this.showModal = false;
   }
 
+  hideError(){
+    this.showError = false;
+  }
+
   validerCommandePaiementEnDirect(){
     this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
       this.showModal = false;
@@ -125,9 +173,28 @@ export class CreationCommandeClientComponent implements OnInit {
   }
 
   validerCommandePaiementShopLoc(){
-    this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
-      this.showModal = false;
-      this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
-    });
+    let usernameClient = this.authService.currentUserValue.username;
+    this.porteMonnaieService.getSoldeFidelite(usernameClient).subscribe(mapSolde => {
+      if(this.commande.totalPointsFidelite < mapSolde["soldeFidelite"]){
+        this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
+          this.showModal = false;
+          this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
+        });
+      }else{
+        this.showModal = false;
+        this.messageError = "Vous n'avez plus assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
+        this.showError = true;
+      }
+    })
+  }
+
+  activeOngletProduit(){
+    this.ongletProduit = true;
+    this.ongletFidelite = false;
+  }
+
+  activeOngletFidelite(){
+    this.ongletFidelite = true;
+    this.ongletProduit = false;
   }
 }

@@ -20,7 +20,9 @@ export class EcranPaiementCommandeComponent implements OnInit {
   contenuCommande : ContenuCommandeResponseBody;
   contenuReady : boolean;
   prixTotalCommande : number;
+  prixTotalFidelite : number;
   soldeClient : number;
+  soldeFidelite : number;
   assezDargent : boolean;
   isReady : boolean;
 
@@ -43,12 +45,16 @@ export class EcranPaiementCommandeComponent implements OnInit {
         this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
           this.contenuCommande = response;
           this.prixTotalCommande = this.commande.total;
+          this.prixTotalFidelite = this.commande.totalPointsFidelite;
           let username = this.authService.currentUserValue.username;
           this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
             this.soldeClient = mapSolde["solde"];
             this.assezDargent = this.soldeClient >= this.prixTotalCommande;
-            this.contenuReady = true;
-            this.isReady = true;
+            this.porteMonnaieService.getSoldeFidelite(username).subscribe(mapSoldeFidelite => {
+              this.soldeFidelite = mapSoldeFidelite["soldeFidelite"];
+              this.contenuReady = true;
+              this.isReady = true;
+            });
           });
         });
       });
