@@ -24,6 +24,7 @@ export class EcranPaiementCommandeComponent implements OnInit {
   soldeClient : number;
   soldeFidelite : number;
   assezDargent : boolean;
+  assezDePointsFidelite : boolean;
   isReady : boolean;
 
   constructor(
@@ -36,6 +37,7 @@ export class EcranPaiementCommandeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.assezDePointsFidelite = false;
     this.isReady = false;
     this.activateRoute.queryParams.subscribe(params => {
       this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
@@ -52,6 +54,7 @@ export class EcranPaiementCommandeComponent implements OnInit {
             this.assezDargent = this.soldeClient >= this.prixTotalCommande;
             this.porteMonnaieService.getSoldeFidelite(username).subscribe(mapSoldeFidelite => {
               this.soldeFidelite = mapSoldeFidelite["soldeFidelite"];
+              this.assezDePointsFidelite = this.soldeFidelite >= this.prixTotalFidelite;
               this.contenuReady = true;
               this.isReady = true;
             });
