@@ -29,10 +29,27 @@
                     <h3 class="text-info font-weight-light">{{libelleCommercant}}</h3>
                 </div>
             </div>
-            <div *ngFor="let produit of produits">   
-                <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)"
-                    [quantite]="getQuantiteProduit(produit.pid)" >
-                  </app-creation-commande-client-produit-element>
+            <ul class="nav nav-tabs" style="font-size: 0.75rem;">
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active': ongletProduit}" (click)="activeOngletProduit()">Produits</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="{'active': ongletFidelite}" (click)="activeOngletFidelite()">Cadeau fidélités</a>
+                </li>
+            </ul>
+            <div *ngIf="ongletProduit" id="onglet-produit">
+                <div *ngFor="let produit of produits">   
+                    <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)"
+                        [quantite]="getQuantiteProduit(produit.pid)" [isFidelite]="false">
+                    </app-creation-commande-client-produit-element>
+                </div>
+            </div>
+            <div *ngIf="ongletFidelite" id="onglet-fidelite">
+                <div *ngFor="let produit of produitsFidelite">   
+                    <app-creation-commande-client-produit-element [produit]="produit" id="produit-{{produit.pid}}" (ajouterProduit)="addProductToCommande($event)"
+                        [quantite]="getQuantiteProduitFidelite(produit.pid)" [isFidelite]="true">
+                    </app-creation-commande-client-produit-element>
+                </div>
             </div>
             <div *ngIf="commandeCreated" class="row">
                 <button type="button" class="btn btn-success position-valider" (click)="openModal()">Valider la commande</button>
@@ -42,6 +59,27 @@
 </div>
 <app-navbar></app-navbar>
 
+<div class="modal" id="modal-error" [style.display]="showError ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-info font-weigth-ligth">Attention !  </h4>
+                <button type="button" class="close" data-dismiss="modal" (click) = "hideError()">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <p class="text-danger text-center">{{messageError}}</p>   
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" (click) = "hideError()">OK</button>
+            </div>
+        </div>
+    </div>        
+</div>
 
 <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
     <div class="modal-dialog">

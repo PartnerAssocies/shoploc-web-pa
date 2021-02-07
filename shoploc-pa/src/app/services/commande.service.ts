@@ -145,4 +145,21 @@ export class CommandeService {
             .concat(etat);
         return this.http.get<CommandeResponseBody[]>(url);
     }
+
+    /**
+     * Ajoute un produit de fidélité à une commande 
+     * @param commandeId : number
+     * @param productId : number
+     * @param quantite : number
+     */
+    addFideliteProductToCommande(commandeId : number, productId : number, quantite : number) : Observable<CommandeResponseBody>{
+        const url = environment.shopLocApiURL
+            .concat('/commande/')
+            .concat(commandeId.toString())
+            .concat('/addProductFidelite/')
+            .concat(productId.toString())
+            .concat('/')
+            .concat(quantite.toString());
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
 }

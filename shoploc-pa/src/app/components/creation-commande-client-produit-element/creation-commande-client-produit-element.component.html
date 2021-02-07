@@ -6,7 +6,8 @@
                     <h4 class="text-info font-weight-light mb-0">{{produit.libelle}}</h4>
                 </div>
                 <div class="row mb-0">
-                    <p class="font-weigth-ligth mb-0">{{produit.prix}} €</p>
+                    <p *ngIf="!isFidelite" class="font-weigth-ligth mb-0">{{produit.prix}} €</p>
+                    <p *ngIf="isFidelite" class="font-weigth-ligth mb-0">{{produit.fidelitePointsRequis}} points</p>
                 </div>
             </div>
             <div class="col-2">

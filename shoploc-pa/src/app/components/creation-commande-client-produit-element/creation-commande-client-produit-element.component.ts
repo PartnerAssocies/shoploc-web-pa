@@ -10,13 +10,16 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
 
   @Input()
   produit : ProduitResponseBody;
-  @Output("ajouterProduit") ajouterProduit : EventEmitter<{idProduct : number, quantite : number}> = new EventEmitter();
+  @Output("ajouterProduit") ajouterProduit : 
+    EventEmitter<{idProduct : number, quantite : number,isFidelite : boolean}> = new EventEmitter();
 
   showModal : boolean;
   @Input()
   quantite : number;
   hasImage : boolean;
   active : boolean;
+  @Input()
+  isFidelite : boolean;
 
 
   constructor() { }
@@ -38,7 +41,7 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
   }
 
   valider(){
-    this.ajouterProduit.emit({idProduct : this.produit.pid,quantite : this.quantite});
+    this.ajouterProduit.emit({idProduct : this.produit.pid,quantite : this.quantite,isFidelite : this.isFidelite});
     this.showModal = false;
     this.active = false;  
   }
