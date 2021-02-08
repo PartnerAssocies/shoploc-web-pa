@@ -1,0 +1,109 @@
+<div class="card margin-navbar">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-2 float-left">
+                <button mat-icon-button (click)="back()" class="float-left">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+            </div>
+            <div class="col-10 float-left">
+                <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Statut VFP</p>
+            </div>
+        </div>
+    </div> 
+    <div class="card-body">    
+        <div>
+            <div>
+                
+                <div class="w-100" *ngIf="!statutVFP">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Vous n'êtes pas éligible au statut VFP actuellement.
+                            Pour débloquer le statut VFP il vous faut faire des achats avec la carte
+                            Shoploc sur 5 jours d'affilé.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-9">
+                            <h6>Nombre de jours d'achats restant avant débloquage VFP : 
+                            </h6>
+                        </div>
+                        <div class="col-3">
+                            <p>5 jours</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon class="red-icon icon-display">
+                                lock
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100" *ngIf="statutVFP && !bonusActivated">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Vous êtes éligible au statut VFP !</p>
+                            <p>Cliquer sur le bouton ci-dessous pour activer votre statut VFP.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon class="green-icon icon-display" (click)="activateVFP()">
+                                lock_open
+                            </mat-icon>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-success btn-shoploc" (click)="activateVFP()">Activer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100" *ngIf="statutVFP && bonusActivated">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Vous avez déjà activé votre bonus VFP !</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <h6>Bonus : 
+                            </h6>
+                        </div>
+                        <div class="col-4">
+                            <p>{{bonusName}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <h6>Nombre de jours d'utilisation du bonus restants : 
+                            </h6>
+                        </div>
+                        <div class="col-4">
+                            <p>4 jours</p>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="bonusName == 'Transport en commun'">
+                        <div class="col-12 justify-content-justify">
+                            <p>Pour profiter de votre bonus, présenter simplement votre carte Shoploc dans l'onglet 'Ma carte' devant le chauffeur
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon class="green-icon icon-display">
+                                verified
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-navbar></app-navbar>

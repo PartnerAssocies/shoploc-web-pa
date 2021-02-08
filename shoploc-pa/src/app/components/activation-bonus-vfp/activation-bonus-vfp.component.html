@@ -1,0 +1,35 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-2 float-left">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col-7 ml-4">
+            <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Statut VFP</p>
+        </div>
+    </div>
+</div> 
+<div class="card-body">
+    <div class="row">
+        <div class="col-8">
+            <h4>Choisir un bonus</h4>
+        </div>
+        <div class="col-4">
+            <mat-icon class="green-icon">
+                verified
+            </mat-icon>
+        </div>
+    </div>
+    <form class="form" [formGroup]="bonusVfpForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <select class="form-control form-control-lg rounded-0" name="bonus" id="bonus" value="bonus" formControlName="bonus">
+                <option value=""></option>
+                <option value="parking">Place de parking</option>
+                <option value="transport">Transport en commun</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info btn-lg float-right" id="btnBonus" [disabled]="bonusVfpForm.invalid">Valider</button>
+    </form>
+</div>
+<app-navbar></app-navbar>
