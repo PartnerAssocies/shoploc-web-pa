@@ -3,7 +3,7 @@
         <h3 class="text-info font-weight-light">{{libelle}}</h3>
     </div>
     <div class="col-6">
-        <img src="assets/produits/{{image}}" class="img-fluid rounded" alt="image non trouvée" />
+        <img [src]="image" (error)="image = 'assets/produits/defaut/produit-defaut.png'" alt="image non trouvée" class="img-fluid rounded"/>
     </div>
 </div>
 <div class="row">
@@ -32,7 +32,7 @@
     </div> 
     <div class="col-2">
         <button mat-icon-button type="submit" class="green-text">
-            <mat-icon [ngStyle]="{'color':'black'}" class="h1">save</mat-icon>
+            <mat-icon [ngStyle]="{'color':'black'}" class="h4">save</mat-icon>
         </button>
     </div>
 </div>

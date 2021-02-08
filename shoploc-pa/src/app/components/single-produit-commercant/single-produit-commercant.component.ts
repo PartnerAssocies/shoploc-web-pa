@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddStockProduitRequestBody } from 'src/app/models/http/requestBody/AddStockProduitRequestBody.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
@@ -28,15 +29,19 @@ export class SingleProduitCommercantComponent implements OnInit {
   error: string;
   inError: boolean;
   stockForm: FormGroup;
+  username : string;
 
   constructor(private produitService : ProduitService,
               private router : Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private authService : AuthService) { }
 
   ngOnInit(): void {
     this.initialStock = this.stock;
     this.error = "Vous ne pouvez pas diminuer ou ajouter une quantité nulle de stock";
     this.inError = false;
+    this.username = this.authService.currentUserValue.username;
+    this.image = "assets/produits/" + this.username + "/" + this.pid + ".jpg";
     this.initForm();
   }
 
