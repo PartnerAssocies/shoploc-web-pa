@@ -67,7 +67,7 @@ export class CommercantHomeComponent implements OnInit {
 
   getWaitPaiement() {
     this.listeCommandeWaitPaiement = [];
-    this.commandeService.getCommandeByEtatAndCommercant(this.username, 'EN_ATTENTE_DE_PAIEMENT').subscribe(res => {
+    this.commandeService.getCommandeByEtatAndCommercant(this.username, 'EN_ATTENTE_DE_PAIEMENT_DIRECT').subscribe(res => {
       for(let commande of res){
         this.listeCommandeWaitPaiement.push(commande);
       }
