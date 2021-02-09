@@ -166,7 +166,7 @@ export class CreationCommandeClientComponent implements OnInit {
   }
 
   validerCommandePaiementEnDirect(){
-    this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
+    this.commandeService.confirmCommandeDirect(this.commande.cid).subscribe(response => {
       this.showModal = false;
       this.router.navigate(['commande-list']);
     })
@@ -176,7 +176,7 @@ export class CreationCommandeClientComponent implements OnInit {
     let usernameClient = this.authService.currentUserValue.username;
     this.porteMonnaieService.getSoldeFidelite(usernameClient).subscribe(mapSolde => {
       if(this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]){
-        this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
+        this.commandeService.confirmCommandeShoploc(this.commande.cid).subscribe(response => {
           this.showModal = false;
           this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
         },(err: HttpErrorResponse) => {

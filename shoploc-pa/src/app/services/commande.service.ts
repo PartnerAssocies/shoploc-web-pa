@@ -63,12 +63,23 @@ export class CommandeService {
     }
 
     /**
-     * Confirme une commande et passe son état à "EN ATTENTE DE PAIEMENT"
+     * Confirme une commande et passe son état à "EN ATTENTE DE PAIEMENT SHOPLOC"
      * @param commandeId : number
      */
-    confirmCommande(commandeId : number) : Observable<CommandeResponseBody>{
+    confirmCommandeShoploc(commandeId : number) : Observable<CommandeResponseBody>{
         const url = environment.shopLocApiURL
-            .concat("/commande/confirmCommande/")
+            .concat("/commande/confirmCommandeShoploc/")
+            .concat(commandeId.toString());
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
+
+     /**
+     * Confirme une commande et passe son état à "EN ATTENTE DE PAIEMENT DIRECT"
+     * @param commandeId : number
+     */
+    confirmCommandeDirect(commandeId : number) : Observable<CommandeResponseBody>{
+        const url = environment.shopLocApiURL
+            .concat("/commande/confirmCommandeDirect/")
             .concat(commandeId.toString());
         return this.http.post<CommandeResponseBody>(url,null);
     }

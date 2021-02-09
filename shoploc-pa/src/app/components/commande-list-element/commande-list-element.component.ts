@@ -34,9 +34,14 @@ export class CommandeListElementComponent implements OnInit {
         this.etatAffiche = 'En attente de validation';
         break;
       }
-      case 'EN_ATTENTE_DE_PAIEMENT' : {
+      case 'EN_ATTENTE_DE_PAIEMENT_DIRECT' : {
         this.color = '#dbd000';
-        this.etatAffiche = 'En attente de paiement';
+        this.etatAffiche = 'En attente de paiement chez votre commerçant';
+        break;
+      }
+      case 'EN_ATTENTE_DE_PAIEMENT_SHOPLOC' : {
+        this.color = '#dbd000';
+        this.etatAffiche = 'En attente de paiement sur l\'application shoploc';
         break;
       }
       case 'EN_PREPARATION' : {
