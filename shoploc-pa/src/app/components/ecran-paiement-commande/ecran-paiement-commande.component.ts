@@ -86,4 +86,11 @@ export class EcranPaiementCommandeComponent implements OnInit {
       this.router.navigate(['commande-list']);
     });
   }
+
+  modifierCommande(){
+    this.commandeService.passerCommandeAPanier(this.commande.cid).subscribe(response => {
+      this.commande = response;
+      this.router.navigate(['creation-commande-client'],{queryParams: { commercant: this.commande.commercant, commande : this.commande.cid }});
+    })
+  }
 }
