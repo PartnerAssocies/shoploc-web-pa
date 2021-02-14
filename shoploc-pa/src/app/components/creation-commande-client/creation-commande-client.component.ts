@@ -175,10 +175,16 @@ export class CreationCommandeClientComponent implements OnInit {
   validerCommandePaiementShopLoc(){
     let usernameClient = this.authService.currentUserValue.username;
     this.porteMonnaieService.getSoldeFidelite(usernameClient).subscribe(mapSolde => {
-      if(this.commande.totalPointsFidelite < mapSolde["soldeFidelite"]){
+      if(this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]){
         this.commandeService.confirmCommande(this.commande.cid).subscribe(response => {
           this.showModal = false;
           this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
+        },(err: HttpErrorResponse) => {
+          if (err.status === 404) {
+            this.showModal = false;
+            this.messageError = "Votre commande est vide ! ";
+            this.showError = true;
+          }
         });
       }else{
         this.showModal = false;

@@ -30,8 +30,8 @@ export class QrcodeCommandeComponent implements OnInit {
     this.showModal = false;
     this.generated = false;
     this.activateRoute.queryParams.subscribe(params => {
-      this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
-        this.commande = commande;
+      this.commandeService.getCommande(Number(params['commande'])).subscribe(commandeResponse => {
+        this.commande = commandeResponse;
         this.qrValue = 'COMMANDE;'.concat(this.commande.cid.toString());
         this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
           this.contenuCommande = response;
