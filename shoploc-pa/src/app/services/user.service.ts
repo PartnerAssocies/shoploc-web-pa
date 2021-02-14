@@ -87,4 +87,12 @@ export class UserService {
         return this.http.get<CommercantData[]>(url);
     }
 
+    estVfp(username : string) : Observable<Map<string,number>> {
+        const url = environment.shopLocApiURL
+            .concat("/client/")
+            .concat(username)
+            .concat("/estVfp");
+        return this.http.get<Map<string,number>>(url); 
+    }
+
 }
