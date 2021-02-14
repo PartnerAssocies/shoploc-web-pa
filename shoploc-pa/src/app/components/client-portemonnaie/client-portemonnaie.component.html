@@ -51,6 +51,11 @@
                                         <input type="number" id="montant" name="montant" formControlName="montant" class="form-control form-control-lg rounded-1 mr-auto mb-auto">
                                     </div>
                                 </div>
+                                <div class="row mb-1" *ngIf="!montantValide">
+                                    <div class="col-12">
+                                        <p class="text-danger">Le montant de la recharge doit être supérieur à 0.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>                    
                     </div>

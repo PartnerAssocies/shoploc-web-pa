@@ -17,6 +17,7 @@ export class ClientPortemonnaieComponent implements OnInit {
   username : string;
   soldeClient : number;
   addMoneyForm: FormGroup;
+  montantValide : boolean;
   public currentUser : CurrentUser;
 
   constructor(private porteMonnaieService : PorteMonnaieService,
@@ -27,6 +28,7 @@ export class ClientPortemonnaieComponent implements OnInit {
   ngOnInit(): void {
     this.showModal = false;
     this.active = false;
+    this.montantValide = true;
     this.initForm();
     this.username = this.authService.currentUserValue.username;
     this.porteMonnaieService.getSoldeClient(this.username).subscribe(res => {
@@ -56,13 +58,19 @@ export class ClientPortemonnaieComponent implements OnInit {
   }
 
   onSubmitForm(){
-    this.showModal = false;
-    this.active = false;  
     const formValue = this.addMoneyForm.value;
     let money = formValue['montant'];
-    this.porteMonnaieService.changeMoney(this.username, money).subscribe(res => {
-      window.location.reload();
-    });
+    if(money < 1){
+      this.montantValide = false;
+    } else {
+      this.montantValide = true; 
+      this.porteMonnaieService.changeMoney(this.username, money).subscribe(res => {
+        this.showModal = false;
+        this.active = false; 
+        window.location.reload();
+      });
+    }
+    
   }
 
 }
