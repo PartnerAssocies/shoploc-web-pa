@@ -27,9 +27,9 @@ export class CommercantCommandeListElementComponent implements OnInit {
     this.clicked=false;
     this.dateAffiche = this.datePipe.transform(this.date,'dd/MM/yyyy HH:mm');
     switch(this.etat){
-      case 'EN_ATTENTE_DE_PAIEMENT' : {
+      case 'EN_ATTENTE_DE_PAIEMENT_DIRECT' : {
         this.color = '#dbd000';
-        this.etatAffiche = 'En attente de paiement';
+        this.etatAffiche = 'En attente de paiement en direct';
         break;
       }
       case 'EN_PREPARATION' : {
