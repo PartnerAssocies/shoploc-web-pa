@@ -173,4 +173,15 @@ export class CommandeService {
             .concat(quantite.toString());
         return this.http.post<CommandeResponseBody>(url,null);
     }
+
+    /**
+     * Permet de passer une commande à l'état "PANNIER" (en attente de validation)
+     * @param commandeId 
+     */
+    passerCommandeAPanier(commandeId : number) : Observable<CommandeResponseBody> {
+        const url = environment.shopLocApiURL
+            .concat('/commande/etatPannier/')
+            .concat(commandeId.toString());
+        return this.http.post<CommandeResponseBody>(url,null);
+    }
 }

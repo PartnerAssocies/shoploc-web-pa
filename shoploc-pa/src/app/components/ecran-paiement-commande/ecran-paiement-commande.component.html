@@ -1,9 +1,6 @@
 <div class="card margin-navbar">
     <div class="card-header">
         <div class="row">
-            <button mat-icon-button (click)="back()" class="float-left">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
             <h3 class="mb-0 h3 text-center pb-0 pt-1">Paiement</h3>
         </div>
     </div> 
@@ -93,14 +90,14 @@
         <div *ngIf="isReady && assezDargent && !assezDePointsFidelite" id="pas-dargent-fidelite">
             <div class="paiement p-2">
                 <div class="row">
-                    <p class="text-info font-weight-light text-justify paddingspe">Vous n'avez pas assez de points de fidélités pour payer cette commande</p>
+                    <p class="text-info font-weight-light text-justify paddingspe">Vous n'avez pas assez de points de fidélités pour payer cette commande. Modifier votre commande pour enlever les produits de fidélités.</p>
                 </div>
                 <div class="row">
                     <div class="col-6">
                         <p class="font-weight-light">Solde fidélité : </p>
                     </div>
                     <div class="col-6">
-                        <span id="span-solde-avant-euro">{{soldeFidelite}}</span>€
+                        <span id="span-solde-avant-euro">{{soldeFidelite}} points</span>
                     </div>
                 </div>
                 <div class="row">
@@ -108,10 +105,11 @@
                         <p class="font-weight-light">Total à payer : </p>
                     </div>
                     <div class="col-6">
-                        <span id="span-total-euro">{{prixTotalFidelite}}</span>
+                        <span id="span-total-euro">{{prixTotalFidelite}} points</span>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-info btn-block position-valider mb-2 mt-2" (click)="modifierCommande()">Modifier ma commande</button>   
         </div>
         <div *ngIf="!isReady" class="mt-20">
             <div class="row">
