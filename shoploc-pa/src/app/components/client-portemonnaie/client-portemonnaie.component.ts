@@ -16,6 +16,7 @@ export class ClientPortemonnaieComponent implements OnInit {
   active : boolean;
   username : string;
   soldeClient : number;
+  soldeFidelite : number;
   addMoneyForm: FormGroup;
   montantValide : boolean;
   public currentUser : CurrentUser;
@@ -34,6 +35,10 @@ export class ClientPortemonnaieComponent implements OnInit {
     this.porteMonnaieService.getSoldeClient(this.username).subscribe(res => {
       let solde = res;
       this.soldeClient = solde['solde'];
+    });
+    this.porteMonnaieService.getSoldeFidelite(this.username).subscribe(res => {
+      let solde = res;
+      this.soldeFidelite = solde['soldeFidelite'];
     });
   }
 
