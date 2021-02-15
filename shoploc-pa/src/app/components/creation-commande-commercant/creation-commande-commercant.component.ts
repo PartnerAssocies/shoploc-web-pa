@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CommandeService } from 'src/app/services/commande.service';
 import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
 import { ProduitService } from 'src/app/services/produit.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-creation-commande-commercant',
