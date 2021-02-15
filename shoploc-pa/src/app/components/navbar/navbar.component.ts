@@ -29,7 +29,11 @@ export class NavbarComponent implements OnInit {
    * COMMERCANT : 
    */
   public navigateClickAndCollect(){
-    this.router.navigate(['commande-list']);
+    if(this.role == 'ROLE_CLIENT'){
+      this.router.navigate(['commande-list']);
+    } else {
+      this.router.navigate(['commercant-achat-magasin']);
+    }
   }
 
   /**

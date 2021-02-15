@@ -36,6 +36,9 @@ import { CommercantCommandeListElementComponent } from './components/commercant-
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
+import { CommercantAchatMagasinComponent } from './components/commercant-achat-magasin/commercant-achat-magasin.component';
+import { LecteurCodeCommercantComponent } from './components/lecteur-code-commercant/lecteur-code-commercant.component';
+import { CreationCommandeCommercantComponent } from './components/creation-commande-commercant/creation-commande-commercant.component';
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +63,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'; //lecture des qrcode
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -92,7 +96,10 @@ import {DatePipe} from '@angular/common';
     LecteurCodeClientComponent,
     QrcodeCommandeComponent,
     CommercantDetailCommandeComponent,
-    CommercantCommandeListElementComponent
+    CommercantCommandeListElementComponent,
+    CommercantAchatMagasinComponent,
+    LecteurCodeCommercantComponent,
+    CreationCommandeCommercantComponent
   ],
   imports: [
     AppRoutingModule,

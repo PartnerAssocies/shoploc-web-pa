@@ -18,6 +18,9 @@ import { CarteUserComponent } from './components/carte-user/carte-user.component
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
 import { CommercantDetailCommandeComponent } from './components/commercant-detail-commande/commercant-detail-commande.component';
+import { CommercantAchatMagasinComponent } from './components/commercant-achat-magasin/commercant-achat-magasin.component';
+import { LecteurCodeCommercantComponent } from './components/lecteur-code-commercant/lecteur-code-commercant.component';
+import { CreationCommandeCommercantComponent } from './components/creation-commande-commercant/creation-commande-commercant.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
@@ -37,7 +40,10 @@ const routes: Routes = [
   { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'qrcode-commande', component: QrcodeCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'detail-commande-commercant', component: CommercantDetailCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
-  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'commercant-achat-magasin', component:  CommercantAchatMagasinComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'lecteur-carte-commercant', component: LecteurCodeCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'creation-commande-commercant', component:  CreationCommandeCommercantComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
 ];
 
 @NgModule({

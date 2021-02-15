@@ -85,6 +85,8 @@ export class LoginComponent implements OnInit {
         } else {
           if(data.role == 'ROLE_CLIENT'){
             this.router.navigate(['commercant-list']);
+          } else if(data.role == 'ROLE_COMMERCANT'){
+            this.router.navigate(['commercant-home']);
           } else {
             this.router.navigate(['/']);
           }
