@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CommercantAchatMagasinComponent implements OnInit {
 
+  imageScan : string;
+
   constructor(private _location : Location,
               private router : Router) { }
 
   ngOnInit(): void {
-
+    this.imageScan = "assets/qrcode/scan.png";
   }
 
   back(){
