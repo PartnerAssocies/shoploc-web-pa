@@ -12,20 +12,20 @@ import { ContenuCommandeResponseBody } from 'src/app/models/http/responseBody/Co
 })
 export class CommercantDetailCommandeComponent implements OnInit {
 
-  commande : CommandeResponseBody;
-  contenuCommande : ContenuCommandeResponseBody;
-  isReady : boolean;
+  commande: CommandeResponseBody;
+  contenuCommande: ContenuCommandeResponseBody;
+  isReady: boolean;
 
   constructor(
-    private _location : Location,
+    private _location: Location,
     private activateRoute: ActivatedRoute,
-    private commandeService : CommandeService,
-    private router : Router
+    private commandeService: CommandeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.isReady = false;
-    this.activateRoute.queryParams.subscribe(params => { 
+    this.activateRoute.queryParams.subscribe(params => {
       this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
         this.commande = commande;
         this.commandeService.getCommandeContenu(this.commande.cid).subscribe(response => {
@@ -36,21 +36,28 @@ export class CommercantDetailCommandeComponent implements OnInit {
     });
   }
 
-  laCommandeEstPrete(){
+  laCommandeEstPrete() {
     this.commandeService.passerCommandeAARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
       this.commande = commandeMisAJour;
       this.router.navigate(['commercant-home']);
     });
   }
 
-  laCommandeEstRecuperee(){
+  laCommandeEstRecuperee() {
     this.commandeService.passerCommandeARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
       this.commande = commandeMisAJour;
       this.router.navigate(['commercant-home']);
     });
   }
 
-  back(){
+  paiementDirect() {
+    this.commandeService.passerCommandeAARecuperee(this.commande.cid).subscribe(commandeMisAJour => {
+      this.commande = commandeMisAJour;
+      this.laCommandeEstRecuperee();
+    });
+  }
+
+  back() {
     this._location.back();
   }
 
