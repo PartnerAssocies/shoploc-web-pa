@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProduitResponseBody } from 'src/app/models/http/responseBody/ProduitResponseBody.model';
 
 @Component({
@@ -9,17 +9,17 @@ import { ProduitResponseBody } from 'src/app/models/http/responseBody/ProduitRes
 export class CreationCommandeClientProduitElementComponent implements OnInit {
 
   @Input()
-  produit : ProduitResponseBody;
-  @Output("ajouterProduit") ajouterProduit : 
-    EventEmitter<{idProduct : number, quantite : number,isFidelite : boolean}> = new EventEmitter();
+  produit: ProduitResponseBody;
+  @Output("ajouterProduit") ajouterProduit:
+    EventEmitter<{ idProduct: number, quantite: number, isFidelite: boolean }> = new EventEmitter();
 
-  showModal : boolean;
+  showModal: boolean;
   @Input()
-  quantite : number;
-  hasImage : boolean;
-  active : boolean;
+  quantite: number;
+  hasImage: boolean;
+  active: boolean;
   @Input()
-  isFidelite : boolean;
+  isFidelite: boolean;
 
 
   constructor() { }
@@ -30,43 +30,42 @@ export class CreationCommandeClientProduitElementComponent implements OnInit {
     this.active = false;
   }
 
-  openModal(){
+  openModal() {
     this.showModal = true;
-    this.active = true;  
+    this.active = true;
   }
-  
-  hide(){
+
+  hide() {
     this.showModal = false;
     this.active = false;
   }
 
-  valider(){
-    this.ajouterProduit.emit({idProduct : this.produit.pid,quantite : this.quantite,isFidelite : this.isFidelite});
+  valider() {
+    this.ajouterProduit.emit({ idProduct: this.produit.pid, quantite: this.quantite, isFidelite: this.isFidelite });
     this.showModal = false;
-    this.active = false;  
+    this.active = false;
   }
 
-  plus(){
+  plus() {
     this.quantite = this.quantite + 1;
   }
 
-  minus(){
-    if(this.quantite > 0){
+  minus() {
+    if (this.quantite > 0) {
       this.quantite = this.quantite - 1;
     }
   }
 
-  checkInput(){
-    let value = Number((document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value);
-    console.log("check input");
-    if(isNaN(value)){
+  checkInput() {
+    let value = Number((document.getElementById('quantiteInput-' + this.produit.pid) as HTMLInputElement).value);
+    if (isNaN(value)) {
       this.quantite = 0;
-      (document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value = '0';
-    }else{
-      if(value < 0){
+      (document.getElementById('quantiteInput-' + this.produit.pid) as HTMLInputElement).value = '0';
+    } else {
+      if (value < 0) {
         this.quantite = 0;
-        (document.getElementById('quantiteInput-'+this.produit.pid) as HTMLInputElement).value = '0';
-      }else{
+        (document.getElementById('quantiteInput-' + this.produit.pid) as HTMLInputElement).value = '0';
+      } else {
         this.quantite = value;
       }
     }
