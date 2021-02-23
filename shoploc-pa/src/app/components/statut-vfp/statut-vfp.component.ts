@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,18 +26,30 @@ export class StatutVfpComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.authService.currentUserValue.username;
     this.checkStatutVfp();
-    this.bonusName = 'Place de parking';
   }
 
   checkStatutVfp(){
     this.userService.estVfp(this.username).subscribe(res => {
-      this.vfpDays = res['nbJoursRestant'];
+      console.log(res);
+      this.vfpDays = res['nbDaysBefore'];
       if(this.vfpDays > 0){
         this.statutVFP = false;
         this.bonusActivated = false;
       } else {
         this.statutVFP = true;
-        this.bonusActivated = false;
+
+        this.userService.getUserAdvantage(this.username).subscribe(res => {
+          console.log(res);
+          if(res.length > 2){
+            this.bonusActivated = true;
+            this.bonusName = res[res.length-1];
+          } else {
+            this.bonusActivated = false;
+          }
+        }, (err : HttpErrorResponse) => {
+          console.log(err);
+        });
+
       }
     });
   }

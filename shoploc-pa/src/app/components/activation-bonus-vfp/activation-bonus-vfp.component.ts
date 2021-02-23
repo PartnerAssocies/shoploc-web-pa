@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-activation-bonus-vfp',
@@ -15,7 +18,9 @@ export class ActivationBonusVfpComponent implements OnInit {
 
   constructor(private _location : Location,
               private formBuilder : FormBuilder,
-              private router : Router) { }
+              private router : Router,
+              private userService : UserService,
+              private authService : AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -36,11 +41,17 @@ export class ActivationBonusVfpComponent implements OnInit {
     this.isWait = true;
     const formValue = this.bonusVfpForm.value;
     let bonus = formValue['bonus'];
+    let username = this.authService.currentUserValue.username;
 
     if(bonus == 'parking'){
       this.router.navigate(['bonus-vfp/parking']);
     } else {
-      this.router.navigate(['statut-vfp']);
+      this.userService.addTransportAvantage(username).subscribe(res => {
+        console.log(res);
+        this.router.navigate(['statut-vfp']);
+      }, (err : HttpErrorResponse) => {
+        console.log(err);
+      });
     }
   }
 
