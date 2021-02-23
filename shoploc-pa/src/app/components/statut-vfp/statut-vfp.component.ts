@@ -38,11 +38,11 @@ export class StatutVfpComponent implements OnInit {
       } else {
         this.statutVFP = true;
 
-        this.userService.getUserAdvantage(this.username).subscribe(res => {
-          console.log(res);
-          if(res.length > 2){
+        this.userService.getUserAdvantage(this.username).subscribe(result => {
+          console.log(result);
+          if(result.length > 2){
             this.bonusActivated = true;
-            this.bonusName = res[res.length-1];
+            this.bonusName = result[result.length-1];
           } else {
             this.bonusActivated = false;
           }
