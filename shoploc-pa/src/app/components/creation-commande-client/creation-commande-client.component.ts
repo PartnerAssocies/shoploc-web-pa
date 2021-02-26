@@ -112,43 +112,51 @@ export class CreationCommandeClientComponent implements OnInit {
   }
 
   addProductToCommande(data) {
+    if (data.isFidelite) {
+      this.addProductFidelite(data.idProduct, data.quantite);
+    } else {
+      this.addProductClassiq(data.idProduct, data.quantite);
+    }
+  }
+
+  addProductClassiq(idProduct: number, quantite: number) {
     if (this.commande == null) {
-      if (data.isFidelite) {
-        this.showModal = false;
-        this.messageError = "Selectionner d'abord un produit pour ajouter un produit de fidélité";
-        this.showError = true;
-        return;
-      }
       let usernameClient = this.authService.currentUserValue.username;
       this.commandeService.createCommandeForUserAndCommercant(usernameClient, this.usernameCommercant).subscribe(commande => {
-        this.commandeService.addProductToCommande(commande.cid, data.idProduct, data.quantite).subscribe(commandeSuite => {
+        this.commandeService.addProductToCommande(commande.cid, idProduct, quantite).subscribe(commandeSuite => {
           this.commande = commandeSuite;
           this.commandeCreated = true;
-          this.mapProduitQuantite.set(data.idProduct, data.quantite);
+          this.mapProduitQuantite.set(idProduct, quantite);
         });
       });
     } else {
-      if (data.isFidelite) {
-        this.commandeService.addFideliteProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
-          this.commande = commande;
-          let nb = Number(this.mapProduitQuantiteFidelite[data.idProduct]);
-          if (!nb) { nb = 0; } else { }
-          this.mapProduitQuantiteFidelite.set(data.idProduct, nb + Number(data.quantite));
-        }, (err: HttpErrorResponse) => {
-          if (err.status === 401) {
-            this.showModal = false;
-            this.messageError = "Vous n'avez plus assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
-            this.showError = true;
-          }
-        });
-      } else {
-        this.commandeService.addProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
-          this.commande = commande;
-          let nb = Number(this.mapProduitQuantiteFidelite[data.idProduct]);
-          if (!nb) { nb = 0; } else { }
-          this.mapProduitQuantite.set(data.idProduct, nb + Number(data.quantite));
-        });
-      }
+      this.commandeService.addProductToCommande(this.commande.cid, idProduct, quantite).subscribe(commande => {
+        this.commande = commande;
+        let nb = Number(this.mapProduitQuantiteFidelite[idProduct]);
+        if (!nb) { nb = 0; }
+        this.mapProduitQuantite.set(idProduct, nb + Number(quantite));
+      });
+    }
+  }
+
+  addProductFidelite(idProduct: number, quantite: number) {
+    if (this.commande == null) {
+      this.showModal = false;
+      this.messageError = "Selectionner d'abord un produit pour ajouter un produit de fidélité";
+      this.showError = true;
+    } else {
+      this.commandeService.addFideliteProductToCommande(this.commande.cid, idProduct, quantite).subscribe(commande => {
+        this.commande = commande;
+        let nb = Number(this.mapProduitQuantiteFidelite[idProduct]);
+        if (!nb) { nb = 0; }
+        this.mapProduitQuantiteFidelite.set(idProduct, nb + Number(quantite));
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          this.showModal = false;
+          this.messageError = "Vous n'avez plus assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
+          this.showError = true;
+        }
+      });
     }
   }
 
