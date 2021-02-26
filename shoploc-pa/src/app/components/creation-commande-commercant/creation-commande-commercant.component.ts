@@ -16,33 +16,33 @@ import { ProduitService } from 'src/app/services/produit.service';
 })
 export class CreationCommandeCommercantComponent implements OnInit {
 
-  isLoading : boolean;
-  isListeProduitEmpty : boolean;
-  usernameCommercant : string;
-  usernameClient : string;
-  libelleCommercant : string;
-  commande : CommandeResponseBody;
-  commandeCreated : boolean;
-  shoplocPaiement : boolean;
-  showModal : boolean;
-  showError : boolean;
-  produits : ProduitResponseBody[];
-  produitsFidelite : ProduitResponseBody[];
-  mapProduitQuantite : Map<number,number>;
-  mapProduitQuantiteFidelite : Map<number,number>;
-  ongletProduit : boolean;
-  ongletFidelite : boolean;
-  messageError : string;
+  isLoading: boolean;
+  isListeProduitEmpty: boolean;
+  usernameCommercant: string;
+  usernameClient: string;
+  libelleCommercant: string;
+  commande: CommandeResponseBody;
+  commandeCreated: boolean;
+  shoplocPaiement: boolean;
+  showModal: boolean;
+  showError: boolean;
+  produits: ProduitResponseBody[];
+  produitsFidelite: ProduitResponseBody[];
+  mapProduitQuantite: Map<number, number>;
+  mapProduitQuantiteFidelite: Map<number, number>;
+  ongletProduit: boolean;
+  ongletFidelite: boolean;
+  messageError: string;
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private produitService : ProduitService,
+    private produitService: ProduitService,
     private _location: Location,
-    private authService : AuthService,
-    private commandeService : CommandeService,
+    private authService: AuthService,
+    private commandeService: CommandeService,
     private router: Router,
-    private porteMonnaieService : PorteMonnaieService
-    ) { }
+    private porteMonnaieService: PorteMonnaieService
+  ) { }
 
   ngOnInit(): void {
     this.messageError = "";
@@ -57,52 +57,52 @@ export class CreationCommandeCommercantComponent implements OnInit {
       this.usernameClient = params['client'];
       this.usernameCommercant = this.authService.currentUserValue.username;
       this.initListeProduit();
-    });    
+    });
     this.commande = null;
     this.showModal = false;
     this.shoplocPaiement = false;
   }
 
-  initListeProduit() : void {
-      this.produits = [];
-      this.produitsFidelite = [];
-      this.produitService.getListProduits(this.usernameCommercant).subscribe(response => {
-     
-      for(let produit of response){
-        if(produit.fidelitePointsRequis > 0){
+  initListeProduit(): void {
+    this.produits = [];
+    this.produitsFidelite = [];
+    this.produitService.getListProduits(this.usernameCommercant).subscribe(response => {
+
+      for (let produit of response) {
+        if (produit.fidelitePointsRequis > 0) {
           this.produitsFidelite.push(produit);
         }
-        if(produit.prix > 0){
+        if (produit.prix > 0) {
           this.produits.push(produit);
         }
       }
       this.isListeProduitEmpty = this.produits.length == 0;
-      if(!this.isListeProduitEmpty){
+      if (!this.isListeProduitEmpty) {
         this.libelleCommercant = this.produits[0].cid.libelleMagasin;
       }
       this.isLoading = false;
     });
   }
 
-  getQuantiteProduit(pid : number) : number {
-    if(this.mapProduitQuantite.has(pid)){
+  getQuantiteProduit(pid: number): number {
+    if (this.mapProduitQuantite.has(pid)) {
       return this.mapProduitQuantite.get(pid);
-    }else{
+    } else {
       return 0;
     }
   }
 
-  getQuantiteProduitFidelite(pid : number) : number {
-    if(this.mapProduitQuantiteFidelite.has(pid)){
+  getQuantiteProduitFidelite(pid: number): number {
+    if (this.mapProduitQuantiteFidelite.has(pid)) {
       return this.mapProduitQuantiteFidelite.get(pid);
-    }else{
+    } else {
       return 0;
     }
   }
 
-  addProductToCommande(data){
-    if(this.commande == null){
-      if(data.isFidelite){
+  addProductToCommande(data) {
+    if (this.commande == null) {
+      if (data.isFidelite) {
         this.showModal = false;
         this.messageError = "Selectionner d'abord un produit pour ajouter un produit de fidélité";
         this.showError = true;
@@ -114,18 +114,18 @@ export class CreationCommandeCommercantComponent implements OnInit {
           this.commandeCreated = true;
         });
       });
-    }else{
-      if(data.isFidelite){
+    } else {
+      if (data.isFidelite) {
         this.commandeService.addFideliteProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
           this.commande = commande;
-        },(err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           if (err.status === 401) {
             this.showModal = false;
             this.messageError = "Le client n'a pas assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
             this.showError = true;
           }
         });
-      }else{
+      } else {
         this.commandeService.addProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
           this.commande = commande;
         });
@@ -133,43 +133,43 @@ export class CreationCommandeCommercantComponent implements OnInit {
     }
   }
 
-  back(){
+  back() {
     this._location.back();
   }
 
-  openModal(){
+  openModal() {
     this.showModal = true;
   }
 
-  hide(){
+  hide() {
     this.showModal = false;
   }
 
-  hideError(){
+  hideError() {
     this.showError = false;
   }
 
-  validerCommandePaiementEnDirect(){
+  validerCommandePaiementEnDirect() {
     this.commandeService.confirmCommandeDirect(this.commande.cid).subscribe(response => {
       this.showModal = false;
-      this.router.navigate(['commercant-home']);
+      this.router.navigate(['detail-commande-commercant'], { queryParams: { commande: response.cid } });
     })
   }
 
-  validerCommandePaiementShopLoc(){
+  validerCommandePaiementShopLoc() {
     this.porteMonnaieService.getSoldeFidelite(this.usernameClient).subscribe(mapSolde => {
-      if(this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]){
+      if (this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]) {
         this.commandeService.confirmCommandeShoploc(this.commande.cid).subscribe(response => {
           this.showModal = false;
-          this.router.navigate(['paiement-commande-client'],{queryParams: { commande : response.cid }});
-        },(err: HttpErrorResponse) => {
+          this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid } });
+        }, (err: HttpErrorResponse) => {
           if (err.status === 404) {
             this.showModal = false;
             this.messageError = "La commande est vide ! ";
             this.showError = true;
           }
         });
-      }else{
+      } else {
         this.showModal = false;
         this.messageError = "Le client n'a pas assez de points de fidélités pour cette commande, retirez des cadeaux de fidélités";
         this.showError = true;
@@ -177,12 +177,12 @@ export class CreationCommandeCommercantComponent implements OnInit {
     })
   }
 
-  activeOngletProduit(){
+  activeOngletProduit() {
     this.ongletProduit = true;
     this.ongletFidelite = false;
   }
 
-  activeOngletFidelite(){
+  activeOngletFidelite() {
     this.ongletFidelite = true;
     this.ongletProduit = false;
   }
