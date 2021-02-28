@@ -58,7 +58,7 @@ export class NavbarComponent implements OnInit {
    * Uniquement pour le role CLIENT
    */
   public navigateVFP(){
-
+    this.router.navigate(['statut-vfp']);
   }
 
   /**
