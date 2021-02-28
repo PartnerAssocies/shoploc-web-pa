@@ -38,13 +38,15 @@ export class CommercantHomeComponent implements OnInit {
     this.isLoadingPaiement = true;
     this.isLoadingRecup = true;
 
-    this.prepaActive = true;
-    this.waitActive = false;
-    this.takeActive = false;
-
     this.getEnPreparation();
     this.getWaitPaiement();
     this.getARecuperer();
+
+    this.showWaitPaiement();
+
+    console.log(this.prepaActive);
+    console.log(this.waitActive);
+    console.log(this.takeActive);
     
   }
 
@@ -59,9 +61,6 @@ export class CommercantHomeComponent implements OnInit {
         this.listeCommandeEnPrepa.push(commande);
       }
       this.isLoadingPrepa = false;
-      this.prepaActive = true;
-      this.waitActive = false;
-      this.takeActive = false;
     });
   }
 
@@ -72,9 +71,6 @@ export class CommercantHomeComponent implements OnInit {
         this.listeCommandeWaitPaiement.push(commande);
       }
       this.isLoadingPaiement = false;
-      this.waitActive = true;
-      this.prepaActive = false;
-      this.takeActive = false;
     });
   }
 
@@ -85,10 +81,25 @@ export class CommercantHomeComponent implements OnInit {
         this.listeCommandeARecuperer.push(commande);
       }
       this.isLoadingRecup = false;
-      this.takeActive = true;
-      this.prepaActive = false;
-      this.waitActive = false;
     });
+  }
+
+  showEnPreparation(){
+    this.prepaActive = true;
+    this.waitActive = false;
+    this.takeActive = false;
+  }
+
+  showWaitPaiement(){
+    this.waitActive = true;
+    this.prepaActive = false;
+    this.takeActive = false;
+  }
+
+  showARecuperer(){
+    this.takeActive = true;
+    this.prepaActive = false;
+    this.waitActive = false;
   }
 
   getDetailCommande(commande : CommandeResponseBody){

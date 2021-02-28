@@ -3,13 +3,13 @@
         
         <ul class="nav nav-tabs" style="font-size: 0.75rem;">
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active': waitActive}" (click)="getWaitPaiement()">En attente de paiement</a>
+            <a class="nav-link" [ngClass]="{'active': waitActive}" (click)="showWaitPaiement()">En attente de paiement</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active': prepaActive}" (click)="getEnPreparation()">En préparation</a>
+            <a class="nav-link" [ngClass]="{'active': prepaActive}" (click)="showEnPreparation()">En préparation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" [ngClass]="{'active': takeActive}" (click)="getARecuperer()">A récupérer</a>
+            <a class="nav-link active" [ngClass]="{'active': takeActive}" (click)="showARecuperer()">A récupérer</a>
           </li>
         </ul>
         <div *ngIf="!isLoadingPrepa && prepaActive">
