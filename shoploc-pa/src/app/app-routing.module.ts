@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'creation-commande-client', component: CreationCommandeClientComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'commercant-produit', component: ProduitCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'add-commercant-produit', component: AjoutProduitCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
-  { path: 'paiement-commande-client', component: EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
+  { path: 'paiement-commande-client', component: EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_BOTH' } },
   { path: 'commercant-home', component: CommercantHomeComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'ma-carte', component: CarteUserComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },

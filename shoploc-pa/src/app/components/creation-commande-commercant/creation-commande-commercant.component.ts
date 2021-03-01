@@ -23,7 +23,6 @@ export class CreationCommandeCommercantComponent implements OnInit {
   libelleCommercant: string;
   commande: CommandeResponseBody;
   commandeCreated: boolean;
-  shoplocPaiement: boolean;
   showModal: boolean;
   showError: boolean;
   produits: ProduitResponseBody[];
@@ -60,7 +59,6 @@ export class CreationCommandeCommercantComponent implements OnInit {
     });
     this.commande = null;
     this.showModal = false;
-    this.shoplocPaiement = false;
   }
 
   initListeProduit(): void {
@@ -161,7 +159,7 @@ export class CreationCommandeCommercantComponent implements OnInit {
       if (this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]) {
         this.commandeService.confirmCommandeShoploc(this.commande.cid).subscribe(response => {
           this.showModal = false;
-          this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid } });
+          this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid, origineCommande : 'commercant', usernameClient: this.usernameClient } });
         }, (err: HttpErrorResponse) => {
           if (err.status === 404) {
             this.showModal = false;
