@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CommandeService } from 'src/app/services/commande.service';
 import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { isObservable } from 'rxjs';
 
 @Component({
   selector: 'app-creation-commande-client',
@@ -31,6 +32,8 @@ export class CreationCommandeClientComponent implements OnInit {
   ongletProduit: boolean;
   ongletFidelite: boolean;
   messageError: string;
+  isCommandeEnDirect: boolean;
+  usernameClient: string;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -52,6 +55,14 @@ export class CreationCommandeClientComponent implements OnInit {
     this.mapProduitQuantite = new Map();
     this.mapProduitQuantiteFidelite = new Map();
     this.activateRoute.queryParams.subscribe(params => {
+
+      this.isCommandeEnDirect = params['commandeendirect'];
+      if (this.isCommandeEnDirect) {
+        this.usernameClient = params['usernameClient'];
+      } else {
+        this.usernameClient = this.authService.currentUserValue.username;
+      }
+
       if (params['commande']) {
         this.commandeService.getCommande(Number(params['commande'])).subscribe(response => {
           this.commande = response;
@@ -66,7 +77,12 @@ export class CreationCommandeClientComponent implements OnInit {
           this.commandeCreated = true;
         });
       } else {
-        this.usernameCommercant = params['commercant'];
+        if (this.isCommandeEnDirect) {
+          this.usernameCommercant = this.authService.currentUserValue.username;
+        } else {
+          this.usernameCommercant = params['commercant'];
+        }
+
         this.initListeProduit();
       }
     });
@@ -121,8 +137,7 @@ export class CreationCommandeClientComponent implements OnInit {
 
   addProductClassiq(idProduct: number, quantite: number) {
     if (this.commande == null) {
-      let usernameClient = this.authService.currentUserValue.username;
-      this.commandeService.createCommandeForUserAndCommercant(usernameClient, this.usernameCommercant).subscribe(commande => {
+      this.commandeService.createCommandeForUserAndCommercant(this.usernameClient, this.usernameCommercant).subscribe(commande => {
         this.commandeService.addProductToCommande(commande.cid, idProduct, quantite).subscribe(commandeSuite => {
           this.commande = commandeSuite;
           this.commandeCreated = true;
@@ -183,17 +198,24 @@ export class CreationCommandeClientComponent implements OnInit {
   validerCommandePaiementEnDirect() {
     this.commandeService.confirmCommandeDirect(this.commande.cid).subscribe(response => {
       this.showModal = false;
-      this.router.navigate(['commande-list']);
-    })
+      if (this.isCommandeEnDirect) {
+        this.router.navigate(['detail-commande-commercant'], { queryParams: { commande: response.cid } });
+      } else {
+        this.router.navigate(['commande-list']);
+      }
+    });
   }
 
   validerCommandePaiementShopLoc() {
-    let usernameClient = this.authService.currentUserValue.username;
-    this.porteMonnaieService.getSoldeFidelite(usernameClient).subscribe(mapSolde => {
+    this.porteMonnaieService.getSoldeFidelite(this.usernameClient).subscribe(mapSolde => {
       if (this.commande.totalPointsFidelite <= mapSolde["soldeFidelite"]) {
         this.commandeService.confirmCommandeShoploc(this.commande.cid).subscribe(response => {
           this.showModal = false;
-          this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid } });
+          if (this.isCommandeEnDirect) {
+            this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid, origineCommande: 'commercant', usernameClient: this.usernameClient } });
+          } else {
+            this.router.navigate(['paiement-commande-client'], { queryParams: { commande: response.cid } });
+          }
         }, (err: HttpErrorResponse) => {
           if (err.status === 404) {
             this.showModal = false;

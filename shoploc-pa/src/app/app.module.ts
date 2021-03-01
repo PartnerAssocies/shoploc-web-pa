@@ -38,7 +38,6 @@ import { LecteurCodeClientComponent } from './components/lecteur-code-client/lec
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
 import { CommercantAchatMagasinComponent } from './components/commercant-achat-magasin/commercant-achat-magasin.component';
 import { LecteurCodeCommercantComponent } from './components/lecteur-code-commercant/lecteur-code-commercant.component';
-import { CreationCommandeCommercantComponent } from './components/creation-commande-commercant/creation-commande-commercant.component';
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
@@ -102,7 +101,6 @@ import { DatePipe } from '@angular/common';
     CommercantCommandeListElementComponent,
     CommercantAchatMagasinComponent,
     LecteurCodeCommercantComponent,
-    CreationCommandeCommercantComponent,
     StatutVfpComponent,
     ActivationBonusVfpComponent,
     ParkingBonusComponent

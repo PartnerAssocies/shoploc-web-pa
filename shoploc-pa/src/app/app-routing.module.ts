@@ -20,7 +20,6 @@ import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-com
 import { CommercantDetailCommandeComponent } from './components/commercant-detail-commande/commercant-detail-commande.component';
 import { CommercantAchatMagasinComponent } from './components/commercant-achat-magasin/commercant-achat-magasin.component';
 import { LecteurCodeCommercantComponent } from './components/lecteur-code-commercant/lecteur-code-commercant.component';
-import { CreationCommandeCommercantComponent } from './components/creation-commande-commercant/creation-commande-commercant.component';
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
@@ -34,7 +33,7 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_BOTH' } },
   { path: 'commercant-list', component: CommercantListComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'commande-list', component: CommandeListComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
-  { path: 'creation-commande-client', component: CreationCommandeClientComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
+  { path: 'creation-commande-client', component: CreationCommandeClientComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_BOTH' } },
   { path: 'commercant-produit', component: ProduitCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'add-commercant-produit', component: AjoutProduitCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'paiement-commande-client', component: EcranPaiementCommandeComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_BOTH' } },
@@ -46,7 +45,6 @@ const routes: Routes = [
   { path: 'client-portemonnaie', component: ClientPortemonnaieComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'commercant-achat-magasin', component: CommercantAchatMagasinComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'lecteur-carte-commercant', component: LecteurCodeCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
-  { path: 'creation-commande-commercant', component: CreationCommandeCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'statut-vfp', component: StatutVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp', component: ActivationBonusVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } }
