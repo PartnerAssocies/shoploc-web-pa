@@ -17,6 +17,9 @@ export class StatutVfpComponent implements OnInit {
   bonusName : string;
   username : string;
   vfpDays : number;
+  beginDate : Date;
+  endDate : Date;
+  endDays : number;
 
   constructor(private _location : Location,
               private router : Router,
@@ -43,6 +46,9 @@ export class StatutVfpComponent implements OnInit {
           if(result.length > 0){
             this.bonusActivated = true;
             this.bonusName = result[result.length-1];
+            this.beginDate = new Date(res.beginDate);
+            this.endDate = new Date(res.endDate);
+            this.endDays = Math.ceil((this.endDate.valueOf() - this.beginDate.valueOf()) / (1000*3600*24));
           } else {
             this.bonusActivated = false;
           }
