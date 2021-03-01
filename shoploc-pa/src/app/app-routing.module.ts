@@ -24,6 +24,7 @@ import { CreationCommandeCommercantComponent } from './components/creation-comma
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
+import { ClientMapComponent } from './components/client-map/client-map.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent, canActivate: [AuthGuard], data: { expectedRole: 'NONE' } },
@@ -49,8 +50,11 @@ const routes: Routes = [
   { path: 'creation-commande-commercant', component: CreationCommandeCommercantComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
   { path: 'statut-vfp', component: StatutVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp', component: ActivationBonusVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
-  { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } }
+  { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
+  { path: 'map', component: ClientMapComponent, canActivate: [AuthGuard], data: { expectedRole: 'NOT_LOGGED' } }
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

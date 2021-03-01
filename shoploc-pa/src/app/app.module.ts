@@ -42,6 +42,8 @@ import { CreationCommandeCommercantComponent } from './components/creation-comma
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
+import { ClientMapComponent } from './components/client-map/client-map.component';
+
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -94,6 +96,7 @@ import { DatePipe } from '@angular/common';
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
     ClientPortemonnaieComponent,
+<<<<<<< HEAD
     CommercantHomeComponent,
     CarteUserComponent,
     LecteurCodeClientComponent,
@@ -106,6 +109,9 @@ import { DatePipe } from '@angular/common';
     StatutVfpComponent,
     ActivationBonusVfpComponent,
     ParkingBonusComponent
+=======
+    ClientMapComponent
+>>>>>>> map
   ],
   imports: [
     AppRoutingModule,
