@@ -1,6 +1,7 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { UserService } from 'src/app/services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-client-map',
@@ -10,8 +11,11 @@ import { UserService } from 'src/app/services/user.service';
 export class ClientMapComponent implements AfterViewInit {
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private _location: Location) { }
 
+  back() {
+    this._location.back();
+  }
   ngAfterViewInit(): void {
     this.initMap();
   }

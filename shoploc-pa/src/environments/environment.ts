@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  shopLocApiURL: 'http://localhost:8080',
-  siMairieURL : 'http://172.28.100.2:8081'
+  shopLocApiURL: 'http://172.28.100.2:8080',
+  siMairieURL: 'http://172.28.100.2:8081'
 };
 
 /*

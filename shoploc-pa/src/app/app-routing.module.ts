@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'statut-vfp', component: StatutVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp', component: ActivationBonusVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
-  { path: 'map', component: ClientMapComponent, canActivate: [AuthGuard], data: { expectedRole: 'NOT_LOGGED' } }
+  { path: 'map', component: ClientMapComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } }
 ];
 
 
