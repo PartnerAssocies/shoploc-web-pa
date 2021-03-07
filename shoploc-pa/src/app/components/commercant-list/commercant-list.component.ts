@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommercantData } from 'src/app/models/data/CommercantData.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,10 +15,12 @@ export class CommercantListComponent implements OnInit {
   commercants : CommercantData[];
   isEmpty : boolean;
   isLoading : boolean;
+  fromHome : boolean;
 
   constructor(
     private _location : Location,
     private userService : UserService,
+    private activateRoute: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
@@ -30,6 +33,11 @@ export class CommercantListComponent implements OnInit {
    * Initlialise la liste des commerçants
    */
   initCommercant() {
+    this.activateRoute.queryParams.subscribe(params =>{
+      if(params['fromHome']){
+        this.fromHome = params['fromHome'];
+      }
+    });
     this.commercants = [];
     this.userService.getListCommercant().subscribe(response => {
       for(let commercant of response){

@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
     if (this.role == 'ROLE_COMMERCANT') {
       this.router.navigate(['commercant-home']);
     } else if (this.role == 'ROLE_CLIENT') {
-      this.router.navigate(['commercant-list']);
+      this.router.navigate(['commercant-list'], { queryParams: { fromHome: true } });
     } else {
       this.router.navigate(['']);
 

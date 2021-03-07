@@ -41,6 +41,8 @@ import { LecteurCodeCommercantComponent } from './components/lecteur-code-commer
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
+import { ClientMapComponent } from './components/client-map/client-map.component';
+
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
@@ -103,7 +105,8 @@ import { DatePipe } from '@angular/common';
     LecteurCodeCommercantComponent,
     StatutVfpComponent,
     ActivationBonusVfpComponent,
-    ParkingBonusComponent
+    ParkingBonusComponent,
+    ClientMapComponent,
   ],
   imports: [
     AppRoutingModule,
