@@ -137,7 +137,7 @@ export class CreationCommandeCommercantComponent implements OnInit {
         }, (err : HttpErrorResponse) => {
           if(err.status === 404){
             this.showModal = false;
-            this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock.";
+            this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock. ";
             this.showError = true;
           }
         });
