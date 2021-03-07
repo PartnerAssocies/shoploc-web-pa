@@ -4,7 +4,8 @@
             <button mat-icon-button (click)="back()" class="float-left">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
-            <h3 class="mb-0 h3 text-center pb-0 pt-1">Click&Collect</h3>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1" *ngIf="!fromHome">Click&Collect</h3>
+            <h3 class="mb-0 h3 text-center pb-0 pt-1" *ngIf="fromHome">Accueil</h3>
         </div>
     </div> 
     <div class="card-body">    

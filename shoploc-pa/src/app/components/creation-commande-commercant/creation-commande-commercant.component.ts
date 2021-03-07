@@ -112,6 +112,12 @@ export class CreationCommandeCommercantComponent implements OnInit {
         this.commandeService.addProductToCommande(commande.cid, data.idProduct, data.quantite).subscribe(commandeSuite => {
           this.commande = commandeSuite;
           this.commandeCreated = true;
+        }, (err : HttpErrorResponse) => {
+          if(err.status === 404){
+            this.showModal = false;
+            this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock.";
+            this.showError = true;
+          }
         });
       });
     } else {
@@ -128,6 +134,12 @@ export class CreationCommandeCommercantComponent implements OnInit {
       } else {
         this.commandeService.addProductToCommande(this.commande.cid, data.idProduct, data.quantite).subscribe(commande => {
           this.commande = commande;
+        }, (err : HttpErrorResponse) => {
+          if(err.status === 404){
+            this.showModal = false;
+            this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock. ";
+            this.showError = true;
+          }
         });
       }
     }
