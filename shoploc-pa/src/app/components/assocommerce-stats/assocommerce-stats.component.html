@@ -1,0 +1,83 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-2 float-left">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col-10 float-left">
+            <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Stats asso commercant</p>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf='statsAssoCommercantMois'>
+    <h3>MOIS</h3>
+    <p>Nombre de clients fidélité : {{statsAssoCommercantMois.nbClientCarteDeFidelite}} </p>
+    <p>Nombre de clients VFP : {{statsAssoCommercantMois.nbClientsVfp}} </p>
+    <p-table [columns]="cols" [value]="statsAssoCommercantMois.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
+    [virtualScroll]="true" [virtualRowHeight]="34">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr style="height:34px">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf='statsAssoCommercantAnnee'>
+    <h3>ANNEE</h3>
+    <p>Nombre de clients fidélité : {{statsAssoCommercantAnnee.nbClientCarteDeFidelite}}</p>
+    <p>Nombre de clients VFP : {{statsAssoCommercantAnnee.nbClientsVfp}}</p>
+    <p-table [columns]="cols" [value]="statsAssoCommercantAnnee.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
+    [virtualScroll]="true" [virtualRowHeight]="34">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr style="height:34px">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf='statsAssoCommercantCinqAns'>
+    <h3>5 ANS</h3>
+    <p>Nombre de clients fidélité : {{statsAssoCommercantCinqAns.nbClientCarteDeFidelite}}</p>
+    <p>Nombre de clients VFP : {{statsAssoCommercantCinqAns.nbClientsVfp}} </p>
+    <p-table [columns]="cols" [value]="statsAssoCommercantCinqAns.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
+    [virtualScroll]="true" [virtualRowHeight]="34">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr style="height:34px">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<app-navbar></app-navbar>

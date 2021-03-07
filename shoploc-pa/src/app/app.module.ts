@@ -60,6 +60,14 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner'; //lecture des qrcode
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
 import {DatePipe} from '@angular/common';
+import { ClientStatsComponent } from './components/client-stats/client-stats.component';
+
+//PRIMENG
+import {AccordionModule} from 'primeng/accordion';
+import {TableModule} from 'primeng/table';
+import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
+import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
+import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +100,11 @@ import {DatePipe} from '@angular/common';
     LecteurCodeClientComponent,
     QrcodeCommandeComponent,
     CommercantDetailCommandeComponent,
-    CommercantCommandeListElementComponent
+    CommercantCommandeListElementComponent,
+    ClientStatsComponent,
+    CommercantStatsComponent,
+    AssocommerceStatsComponent,
+    MairieStatsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -111,7 +123,9 @@ import {DatePipe} from '@angular/common';
     QRCodeModule,
     ZXingScannerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    CommonModule
+    CommonModule,
+    AccordionModule,
+    TableModule
   ],
   providers: [
     HelloService,

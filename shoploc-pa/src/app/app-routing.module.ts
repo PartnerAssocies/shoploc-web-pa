@@ -18,6 +18,10 @@ import { CarteUserComponent } from './components/carte-user/carte-user.component
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
 import { CommercantDetailCommandeComponent } from './components/commercant-detail-commande/commercant-detail-commande.component';
+import { ClientStatsComponent } from './components/client-stats/client-stats.component';
+import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
+import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
+import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent , canActivate: [AuthGuard], data: {expectedRole: 'NONE'}},
@@ -37,7 +41,12 @@ const routes: Routes = [
   { path: 'lecteur-carte', component: LecteurCodeClientComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'qrcode-commande', component: QrcodeCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'detail-commande-commercant', component: CommercantDetailCommandeComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
-  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+  { path: 'client-portemonnaie', component:  ClientPortemonnaieComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'stats', component: ClientStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'commercantStats', component: CommercantStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'assoCommercantStats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'mairieStats', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'mairieStatsCommercant', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}}
 ];
 
 @NgModule({

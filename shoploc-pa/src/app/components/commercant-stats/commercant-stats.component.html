@@ -1,0 +1,155 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-2 float-left">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col-10 float-left">
+            <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Mes stats</p>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <h3>ptitMarchand@ptitmarchand.fr</h3>
+    <p>Montant des ventes fidélité : {{statsDuJour.montantVentesFidelite}}€</p>
+    <p>Nombre de clients fidélité : {{statsDuJour.nbClientsFidelite}}</p>
+    <p>Montant des click & collect : {{statsDuJour.montantClickAndCollect}}€</p>
+    <p>Montant des points de fidélité obtenues : {{statsDuJour.montantPointsFidelitesObtenues}}</p>
+    <p>Montant des points de fidélité dépensés : {{statsDuJour.montantPointsFidelitesDepenses}}</p>
+    <h3>Historiques</h3>
+    <p><a href="#">JOUR</a> | <a href="#">MOIS</a> | <a href="#">ANNEE</a></p>
+    <p-accordion>
+        <p-accordionTab header="Historique des ventes réalisées avec la carte de fidélité">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+        <p-accordionTab header="Historique des du nombre de cleitns avec carte de fidélité">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+        <p-accordionTab header="Historique des montants des clics & collect">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+        <p-accordionTab header="Historique du nombre de clients en clic & collect">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+        <p-accordionTab header="Historique des points cadeaux obtenues par les clients">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+        <p-accordionTab header="Historique des points cadeaux depensées par les clients">
+            <ng-template pTemplate="content">
+                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    [virtualScroll]="true" [virtualRowHeight]="34">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns">
+                                {{col.header}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr style="height:34px">
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-template>
+        </p-accordionTab>
+    </p-accordion>        
+    <h3>Seuil d'alerte</h3>
+</div>
+
+<app-navbar></app-navbar>
