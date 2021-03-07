@@ -24,7 +24,6 @@
     "@angular/service-worker": "~10.1.5",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@types/jquery": "^3.5.4",
-<<<<<<< HEAD
     "@zxing/browser": "0.0.7",
     "@zxing/library": "^0.18.3",
     "@zxing/ngx-scanner": "^3.1.3",

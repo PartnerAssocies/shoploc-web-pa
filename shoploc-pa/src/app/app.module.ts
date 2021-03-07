@@ -96,7 +96,6 @@ import { DatePipe } from '@angular/common';
     AjoutProduitCommercantComponent,
     EcranPaiementCommandeComponent,
     ClientPortemonnaieComponent,
-<<<<<<< HEAD
     CommercantHomeComponent,
     CarteUserComponent,
     LecteurCodeClientComponent,
@@ -108,10 +107,8 @@ import { DatePipe } from '@angular/common';
     CreationCommandeCommercantComponent,
     StatutVfpComponent,
     ActivationBonusVfpComponent,
-    ParkingBonusComponent
-=======
-    ClientMapComponent
->>>>>>> map
+    ParkingBonusComponent,
+    ClientMapComponent,
   ],
   imports: [
     AppRoutingModule,
