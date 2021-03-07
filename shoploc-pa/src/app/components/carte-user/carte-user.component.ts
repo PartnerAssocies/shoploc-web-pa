@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {AuthService} from '../../services/auth.service'
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-carte-user',
@@ -9,22 +9,22 @@ import {AuthService} from '../../services/auth.service'
 })
 export class CarteUserComponent implements OnInit {
 
-  public level : number;
-  public qrValue : string;
-  public generated : boolean;
+  public level: number;
+  public qrValue: string;
+  public generated: boolean;
 
   constructor(
-    private _location : Location,
-    private authService : AuthService
+    private _location: Location,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.generated = false;
-    this.qrValue = this.authService.currentUserValue.username;
+    this.qrValue = "CLIENT;".concat(this.authService.currentUserValue.username);
     this.generated = true;
   }
 
-  back(){
+  back() {
     this._location.back();
   }
 

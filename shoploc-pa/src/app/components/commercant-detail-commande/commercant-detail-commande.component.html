@@ -6,7 +6,7 @@
             </button>
             <h3 class="mb-0 h3 text-center pb-0 pt-1">Commande {{commande.cid}}</h3>
         </div>
-    </div> 
+    </div>
     <div class="card-body">
         <div *ngIf="isReady">
             <div class="row mb-0">
@@ -16,7 +16,7 @@
                 <div class="row">
                     <p class="ml-3">Produits commandés : </p>
                 </div>
-                <div *ngFor="let produit of contenuCommande.produits"> 
+                <div *ngFor="let produit of contenuCommande.produits">
                     <div class="row">
                         <div class="col-8">
                             <p class="font-weight-light">{{produit.libelle}}</p>
@@ -25,13 +25,19 @@
                             <p class="font-weight-light">x{{produit.quantite}}</p>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div *ngIf="commande.etat == 'EN_PREPARATION'" class="row">
-                <button type="button" class="btn btn-info  position-valider" (click)="laCommandeEstPrete()">La commande est prête</button>
+                <button type="button" class="btn btn-info  position-valider" (click)="laCommandeEstPrete()">La commande
+                    est prête</button>
             </div>
-            <div *ngIf="commande.etat == 'A_RECUPERER'" >
-                <button type="button" class="btn btn-success position-valider" (click)="laCommandeEstRecuperee()">La commande est récupérée</button>
+            <div *ngIf="commande.etat == 'A_RECUPERER'">
+                <button type="button" class="btn btn-success position-valider" (click)="laCommandeEstRecuperee()">La
+                    commande est récupérée</button>
+            </div>
+            <div *ngIf="commande.etat == 'EN_ATTENTE_DE_PAIEMENT_DIRECT'">
+                <button type="button" class="btn btn-success position-valider" (click)="paiementDirect()">La commande
+                    est payée et récupérée</button>
             </div>
             <div *ngIf="commande.etat == 'RECUPEREE'" class="mt-5">
                 <div class="row justify-content-center d-flex">
@@ -42,7 +48,7 @@
                 <div class="row mt-2 justify-content-center d-flex">
                     <h4 class="font-weight-light text-success text-center">La commande a été récupérée</h4>
                 </div>
-            </div>  
+            </div>
         </div>
         <div *ngIf="!isReady" class="mt-20">
             <div class="row">
@@ -50,7 +56,7 @@
                     <mat-spinner class="shoploc-spinner"></mat-spinner>
                 </div>
             </div>
-        </div>   
+        </div>
     </div>
 </div>
 <app-navbar></app-navbar>

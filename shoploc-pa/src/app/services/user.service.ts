@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { CommercantRequestBody } from '../models/http/requestBody/CommercantRequestBody.model';
 import { CommercantResponseBody } from '../models/http/responseBody/CommercantResponseBody.model';
 import { CommercantData } from '../models/data/CommercantData.model';
+import { VfpResponseBody } from '../models/http/responseBody/VfpResponseBody.model';
+import { VfpAvantageResponseBody } from '../models/http/responseBody/VfpAvantageResponseBody.model';
 
 /**
  * Service qui gère les actions liées aux User
@@ -85,6 +87,40 @@ export class UserService {
         const url = environment.shopLocApiURL
             .concat("/commercant/listall");
         return this.http.get<CommercantData[]>(url);
+    }
+
+    estVfp(username : string) : Observable<VfpResponseBody> {
+        const url = environment.shopLocApiURL
+            .concat("/client/")
+            .concat(username)
+            .concat("/estVfp");
+        return this.http.get<VfpResponseBody>(url); 
+    }
+
+    addParkingAvantage(username : string, plaque : string) : Observable<VfpAvantageResponseBody>{
+        const url = environment.siMairieURL
+            .concat("/avantage/parking/add?username=") 
+            .concat(username)
+            .concat("&plaque=")
+            .concat(plaque);
+        
+        return this.http.post<VfpAvantageResponseBody>(url, this.httpOptions);
+    }
+
+    addTransportAvantage(username : string) : Observable<VfpAvantageResponseBody>{
+        const url = environment.siMairieURL
+            .concat("/avantage/transport/add?username=") 
+            .concat(username);
+        
+        return this.http.post<VfpAvantageResponseBody>(url, this.httpOptions);
+    }
+
+    getUserAdvantage(username : string) : Observable<string[]>{
+        const url = environment.siMairieURL
+        .concat("/avantage/?username=") 
+        .concat(username);
+    
+    return this.http.get<string[]>(url);
     }
 
 }

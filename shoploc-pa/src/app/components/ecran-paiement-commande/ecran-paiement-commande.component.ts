@@ -15,31 +15,40 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EcranPaiementCommandeComponent implements OnInit {
 
-  commande : CommandeResponseBody;
-  showModal : boolean;
-  contenuCommande : ContenuCommandeResponseBody;
-  contenuReady : boolean;
-  prixTotalCommande : number;
-  prixTotalFidelite : number;
-  soldeClient : number;
-  soldeFidelite : number;
-  assezDargent : boolean;
-  assezDePointsFidelite : boolean;
-  isReady : boolean;
+  commande: CommandeResponseBody;
+  showModal: boolean;
+  contenuCommande: ContenuCommandeResponseBody;
+  contenuReady: boolean;
+  prixTotalCommande: number;
+  prixTotalFidelite: number;
+  soldeClient: number;
+  soldeFidelite: number;
+  assezDargent: boolean;
+  assezDePointsFidelite: boolean;
+  isReady: boolean;
+  origineCommande: string;
+  usernameClient: string;
 
   constructor(
-    private _location : Location,
+    private _location: Location,
     private activateRoute: ActivatedRoute,
-    private commandeService : CommandeService,
-    private porteMonnaieService : PorteMonnaieService,
-    private router : Router,
-    private authService : AuthService
+    private commandeService: CommandeService,
+    private porteMonnaieService: PorteMonnaieService,
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.assezDePointsFidelite = false;
     this.isReady = false;
     this.activateRoute.queryParams.subscribe(params => {
+      this.origineCommande = params['origineCommande'];
+      if ("commercant" == this.origineCommande) {
+        this.usernameClient = params['usernameClient'];
+      } else {
+        this.origineCommande = "client";
+        this.usernameClient = this.authService.currentUserValue.username;
+      }
       this.commandeService.getCommande(Number(params['commande'])).subscribe(commande => {
         this.commande = commande;
         this.showModal = false;
@@ -48,11 +57,10 @@ export class EcranPaiementCommandeComponent implements OnInit {
           this.contenuCommande = response;
           this.prixTotalCommande = this.commande.total;
           this.prixTotalFidelite = this.commande.totalPointsFidelite;
-          let username = this.authService.currentUserValue.username;
-          this.porteMonnaieService.getSoldeClient(username).subscribe(mapSolde => {
+          this.porteMonnaieService.getSoldeClient(this.usernameClient).subscribe(mapSolde => {
             this.soldeClient = mapSolde["solde"];
             this.assezDargent = this.soldeClient >= this.prixTotalCommande;
-            this.porteMonnaieService.getSoldeFidelite(username).subscribe(mapSoldeFidelite => {
+            this.porteMonnaieService.getSoldeFidelite(this.usernameClient).subscribe(mapSoldeFidelite => {
               this.soldeFidelite = mapSoldeFidelite["soldeFidelite"];
               this.assezDePointsFidelite = this.soldeFidelite >= this.prixTotalFidelite;
               this.contenuReady = true;
@@ -64,26 +72,48 @@ export class EcranPaiementCommandeComponent implements OnInit {
     });
   }
 
-  back(){
+  back() {
     this._location.back();
   }
 
-  hide(){
+  hide() {
     this.showModal = false;
   }
 
-  afficheDetail(){
+  afficheDetail() {
     this.showModal = true;
   }
 
-  navigateToRechargementPorteMonnaie(){
+  navigateToRechargementPorteMonnaie() {
     this.router.navigate(['client-portemonnaie']);
   }
 
-  payerCommande(){
-    let username = this.authService.currentUserValue.username;
-    this.commandeService.payerCommande(username,this.commande.cid).subscribe(response => {
+  payerCommande() {
+    if ("commercant" == this.origineCommande) {
+      this.payerCommandeEnDirect();
+    } else {
+      this.payerCommandeClickAndCollect();
+    }
+  }
+
+  payerCommandeClickAndCollect() {
+    this.commandeService.payerCommande(this.usernameClient, this.commande.cid).subscribe(response => {
       this.router.navigate(['commande-list']);
     });
+  }
+
+  payerCommandeEnDirect() {
+    this.commandeService.payerCommande(this.usernameClient, this.commande.cid).subscribe(response => {
+      this.commandeService.passerCommandeAARecuperee(response.cid).subscribe(commandeARecuperer => {
+        this.router.navigate(['detail-commande-commercant'], { queryParams: { commande: commandeARecuperer.cid } });
+      });
+    });
+  }
+
+  modifierCommande() {
+    this.commandeService.passerCommandeAPanier(this.commande.cid).subscribe(response => {
+      this.commande = response;
+      this.router.navigate(['creation-commande-client'], { queryParams: { commercant: this.commande.commercant, commande: this.commande.cid } });
+    })
   }
 }

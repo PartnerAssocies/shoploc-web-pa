@@ -55,10 +55,10 @@ export class CommandeListComponent implements OnInit {
     if(commande.etat == 'PANNIER'){
       this.router.navigate(['creation-commande-client'],{queryParams: { commercant: commande.commercant, commande : commande.cid }});
     }
-    if(commande.etat == 'EN_ATTENTE_DE_PAIEMENT'){
+    if(commande.etat == 'EN_ATTENTE_DE_PAIEMENT_SHOPLOC'){
       this.router.navigate(['paiement-commande-client'],{queryParams: { commande : commande.cid }});
     }
-    if(commande.etat == 'EN_PREPARATION'){
+    if(commande.etat == 'EN_PREPARATION' || commande.etat == 'A_RECUPERER' || commande.etat == 'EN_ATTENTE_DE_PAIEMENT_DIRECT'){
       this.router.navigate(['qrcode-commande'],{queryParams: { commande : commande.cid }});
     }
   }

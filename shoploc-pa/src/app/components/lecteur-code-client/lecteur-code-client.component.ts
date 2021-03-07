@@ -62,6 +62,9 @@ export class LecteurCodeClientComponent implements OnInit {
     if(resultSplited[0] == 'COMMANDE'){
       this.router.navigate(['detail-commande-commercant'],{queryParams: { commande : resultSplited[1]}})
     }
+    if(resultSplited[0] == 'CLIENT'){
+      this.router.navigate(['creation-commande-client'],{queryParams: { commandeendirect : 'true',usernameClient : resultSplited[1], }})
+    }
   }
 
   back(){

@@ -155,5 +155,8 @@
       }
     }
   },
-  "defaultProject": "shoploc-pa"
+  "defaultProject": "shoploc-pa",
+  "cli": {
+    "analytics": "80ec1541-2ed9-48e8-84a6-113596151a63"
+  }
 }

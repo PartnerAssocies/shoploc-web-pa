@@ -1,10 +1,10 @@
 // Import Services
-import { AuthService }  from './services/auth.service';
+import { AuthService } from './services/auth.service';
 import { HashService } from './services/hash.service';
 import { HelloService } from './services/hello.service';
 import { UserService } from './services/user.service';
 import { LieuService } from './services/lieu.service';
-import { ProduitService} from './services/produit.service';
+import { ProduitService } from './services/produit.service';
 import { CommandeService } from './services/commande.service';
 import { PorteMonnaieService } from './services/porteMonnaie.service';
 
@@ -36,30 +36,36 @@ import { CommercantCommandeListElementComponent } from './components/commercant-
 import { CarteUserComponent } from './components/carte-user/carte-user.component';
 import { LecteurCodeClientComponent } from './components/lecteur-code-client/lecteur-code-client.component';
 import { QrcodeCommandeComponent } from './components/qrcode-commande/qrcode-commande.component';
+import { CommercantAchatMagasinComponent } from './components/commercant-achat-magasin/commercant-achat-magasin.component';
+import { LecteurCodeCommercantComponent } from './components/lecteur-code-commercant/lecteur-code-commercant.component';
+import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
+import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
+import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
+import { ClientMapComponent } from './components/client-map/client-map.component';
+
 
 // Import Module
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatButtonModule} from '@angular/material/button'; 
-import {MatIconModule} from '@angular/material/icon'; 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatListModule} from '@angular/material/list';
-import {MatDividerModule} from '@angular/material/divider';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { QRCodeModule } from 'angularx-qrcode'; //generation des qr code 
 import { ZXingScannerModule } from '@zxing/ngx-scanner'; //lecture des qrcode
 
 // Import Autres
 import { environment } from '../environments/environment';
 import { JwtInterceptor } from './helpers/jwt-interceptor.interceptor';
-import {DatePipe} from '@angular/common';
 import { ClientStatsComponent } from './components/client-stats/client-stats.component';
 
 //PRIMENG
@@ -68,6 +74,8 @@ import {TableModule} from 'primeng/table';
 import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
 import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
 import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -104,7 +112,13 @@ import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.com
     ClientStatsComponent,
     CommercantStatsComponent,
     AssocommerceStatsComponent,
-    MairieStatsComponent
+    MairieStatsComponent,
+    CommercantAchatMagasinComponent,
+    LecteurCodeCommercantComponent,
+    StatutVfpComponent,
+    ActivationBonusVfpComponent,
+    ParkingBonusComponent,
+    ClientMapComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -137,7 +151,7 @@ import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.com
     DatePipe,
     ProduitService,
     PorteMonnaieService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }  
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

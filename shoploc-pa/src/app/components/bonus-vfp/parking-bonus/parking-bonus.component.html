@@ -1,0 +1,35 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-2 float-left">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col-7 ml-4">
+            <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Statut VFP</p>
+        </div>
+    </div>
+</div> 
+<div class="card-body">
+    <div class="row">
+        <div class="col-8">
+            <h4>Place de parking</h4>
+        </div>
+        <div class="col-4">
+            <mat-icon class="green-icon">
+                directions_car
+            </mat-icon>
+        </div>
+    </div>
+    <form class="form" [formGroup]="bonusParkingForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <label for="plaque">Plaque d'immatriculation : </label>                                   
+            <input type="text" class="form-control form-control-lg rounded-0" id="plaque" formControlName="plaque">
+        </div>
+        <div class="form-group">
+            <p>Votre place de parking sera payé pour les 20 prochaines minutes</p>
+        </div>
+        <button type="submit" class="btn btn-info btn-lg float-right" id="btnParking" [disabled]="bonusParkingForm.invalid">Lancer</button>
+    </form>
+</div>
+<app-navbar></app-navbar>
