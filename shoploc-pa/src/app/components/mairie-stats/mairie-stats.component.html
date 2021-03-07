@@ -1,0 +1,39 @@
+<div class="card-header">
+    <div class="row">
+        <div class="col-2 float-left">
+            <button mat-icon-button (click)="back()" class="float-left">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </div>
+        <div class="col-10 float-left">
+            <p class="mb-0 h4 text-align-left pb-0 pt-1 float-left">Stats mairie</p>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="mairieStatsMois">
+    <h3>Mois</h3>
+    <p>Nombre de clients avec la carte fidélité : {{mairieStatsMois.nbCarteFidelite}}</p>
+    <p>Nombre de clients ayant un statut VFP : {{mairieStatsMois.nbClientsStatutVfp}}</p>
+    <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsMois.nbTransportVfp}}</p>
+    <p>Nombre de places de parking VFP obtenues : {{mairieStatsMois.nbParkingVfp}}</p>
+</div>
+
+<div *ngIf="mairieStatsAnnee">
+    <h3>Annee</h3>
+    <p>Nombre de clients avec la carte fidélité : {{mairieStatsAnnee.nbCarteFidelite}}</p>
+    <p>Nombre de clients ayant un statut VFP : {{mairieStatsAnnee.nbClientsStatutVfp}}</p>
+    <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsAnnee.nbTransportVfp}}</p>
+    <p>Nombre de places de parking VFP obtenues : {{mairieStatsAnnee.nbParkingVfp}}</p>
+</div>
+
+<div *ngIf="mairieStatsCinqAns">
+    <h3>5 ans</h3>
+    <p>Nombre de clients avec la carte fidélité : {{mairieStatsCinqAns.nbCarteFidelite}}</p>
+    <p>Nombre de clients ayant un statut VFP : {{mairieStatsCinqAns.nbClientsStatutVfp}}</p>
+    <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsCinqAns.nbTransportVfp}}</p>
+    <p>Nombre de places de parking VFP obtenues : {{mairieStatsCinqAns.nbParkingVfp}}</p>
+</div>
+
+<app-navbar></app-navbar>

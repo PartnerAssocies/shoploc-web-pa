@@ -24,6 +24,10 @@ import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
 import { ClientMapComponent } from './components/client-map/client-map.component';
+import { ClientStatsComponent } from './components/client-stats/client-stats.component';
+import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
+import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
+import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent, canActivate: [AuthGuard], data: { expectedRole: 'NONE' } },
@@ -49,7 +53,13 @@ const routes: Routes = [
   { path: 'statut-vfp', component: StatutVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp', component: ActivationBonusVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
-  { path: 'map', component: ClientMapComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } }
+  { path: 'map', component: ClientMapComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
+  { path: 'stats', component: ClientStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'commercantStats', component: CommercantStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'assoCommercantStats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path: 'mairieStats', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
+  { path: 'mairieStatsCommercant', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}}
+
 ];
 
 
