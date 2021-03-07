@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CommandeService } from 'src/app/services/commande.service';
 import { PorteMonnaieService } from 'src/app/services/porteMonnaie.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { isObservable } from 'rxjs';
 
 @Component({
   selector: 'app-creation-commande-client',
@@ -142,8 +141,8 @@ export class CreationCommandeClientComponent implements OnInit {
           this.commande = commandeSuite;
           this.commandeCreated = true;
           this.mapProduitQuantite.set(idProduct, quantite);
-        }, (err : HttpErrorResponse) => {
-          if(err.status === 404){
+        }, (err: HttpErrorResponse) => {
+          if (err.status === 404) {
             this.showModal = false;
             this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock.";
             this.showError = true;
@@ -156,8 +155,8 @@ export class CreationCommandeClientComponent implements OnInit {
         let nb = Number(this.mapProduitQuantiteFidelite[idProduct]);
         if (!nb) { nb = 0; }
         this.mapProduitQuantite.set(idProduct, nb + Number(quantite));
-      }, (err : HttpErrorResponse) => {
-        if(err.status === 404){
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 404) {
           this.showModal = false;
           this.messageError = "La quantité demandé pour ce produit est supérieur à la quantité disponible en stock. ";
           this.showError = true;
