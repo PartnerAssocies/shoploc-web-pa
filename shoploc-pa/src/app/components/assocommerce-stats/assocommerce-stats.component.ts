@@ -15,9 +15,18 @@ export class AssocommerceStatsComponent implements OnInit {
   statsAssoCommercantCinqAns: AssoCommercantStats;
   cols: any[];
 
+  unMoisActive: boolean;
+  unAnActive: boolean;
+  cinqAnsActive: boolean;
+
   constructor(private _location : Location, private assoCommerceStatsService: AssocommercestatsService) { }
 
   ngOnInit(): void {
+
+    this.unMoisActive = true;
+    this.unAnActive = false;
+    this.cinqAnsActive = false;
+    
     this.assoCommerceStatsService.getAllStats('MOIS').subscribe(value => {
       this.statsAssoCommercantMois = value;
       console.log(this.statsAssoCommercantMois);
@@ -33,6 +42,25 @@ export class AssocommerceStatsComponent implements OnInit {
       {field: 'montant', header: 'Montant'}
   ];
   }
+
+  swapToMonth(): void{
+    this.unMoisActive = true;
+    this.unAnActive = false;
+    this.cinqAnsActive = false;
+  }
+
+  swapToYear(): void{
+    this.unMoisActive = false;
+    this.unAnActive = true;
+    this.cinqAnsActive = false;
+  }
+
+  swapToFiveYears(): void{
+    this.unMoisActive = false;
+    this.unAnActive = false;
+    this.cinqAnsActive = true;
+  }
+
 
   back(){
     this._location.back();

@@ -11,9 +11,15 @@
     </div>
 </div>
 
+<div class="btn-container">
+    <p-button class=btn-style label="Mois" (click)="swapToMonth()"></p-button>
+    <p-button class=btn-style label="Annee" (click)="swapToYear()"></p-button>
+    <p-button class=btn-style label="5 ans" (click)="swapToFiveYears()"></p-button>
+</div>
 
-<div *ngIf='statsAssoCommercantMois'>
-    <h3>MOIS</h3>
+<p-card header="Stats sur un mois" class="card-style" *ngIf="statsAssoCommercantMois && unMoisActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients fidélité : {{statsAssoCommercantMois.nbClientCarteDeFidelite}} </p>
     <p>Nombre de clients VFP : {{statsAssoCommercantMois.nbClientsVfp}} </p>
     <p-table [columns]="cols" [value]="statsAssoCommercantMois.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
@@ -33,9 +39,11 @@
             </tr>
         </ng-template>
     </p-table>
-</div>
-<div *ngIf='statsAssoCommercantAnnee'>
-    <h3>ANNEE</h3>
+</p-card>
+
+<p-card header="Stats sur un an" class="card-style" *ngIf="statsAssoCommercantAnnee && unAnActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients fidélité : {{statsAssoCommercantAnnee.nbClientCarteDeFidelite}}</p>
     <p>Nombre de clients VFP : {{statsAssoCommercantAnnee.nbClientsVfp}}</p>
     <p-table [columns]="cols" [value]="statsAssoCommercantAnnee.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
@@ -55,9 +63,11 @@
             </tr>
         </ng-template>
     </p-table>
-</div>
-<div *ngIf='statsAssoCommercantCinqAns'>
-    <h3>5 ANS</h3>
+</p-card>
+
+<p-card header="Stats sur un cinq ans" class="card-style" *ngIf="statsAssoCommercantAnnee && cinqAnsActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients fidélité : {{statsAssoCommercantCinqAns.nbClientCarteDeFidelite}}</p>
     <p>Nombre de clients VFP : {{statsAssoCommercantCinqAns.nbClientsVfp}} </p>
     <p-table [columns]="cols" [value]="statsAssoCommercantCinqAns.clientValues" [scrollable]="true" [rows]="100" scrollHeight="250px"
@@ -70,14 +80,14 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr style="height:34px">
-                <td *ngFor="let col of columns">
+            <tr style="height:34px;">
+                <td *ngFor="let col of columns" class="temp">
                     {{rowData[col.field]}}
                 </td>
             </tr>
         </ng-template>
     </p-table>
-</div>
+</p-card>
 
 
 <app-navbar></app-navbar>

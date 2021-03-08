@@ -51,7 +51,6 @@ export class ClientStatsComponent implements OnInit {
         }
         this.histoClickAndCollect.push(itemHisto);
       });
-      console.log(this.histoAchats);
     });
   }
 
