@@ -59,7 +59,7 @@ export class CommandeListComponent implements OnInit {
       this.router.navigate(['paiement-commande-client'],{queryParams: { commande : commande.cid }});
     }
     if(commande.etat == 'EN_PREPARATION' || commande.etat == 'A_RECUPERER' || commande.etat == 'EN_ATTENTE_DE_PAIEMENT_DIRECT'){
-      this.router.navigate(['qrcode-commande'],{queryParams: { commande : commande.cid }});
+      this.router.navigate(['qrcode-commande'],{queryParams: { commande : commande.cid, commercant : commande.commercant }});
     }
   }
   

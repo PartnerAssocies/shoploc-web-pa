@@ -28,6 +28,7 @@ import { ClientStatsComponent } from './components/client-stats/client-stats.com
 import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
 import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
 import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
+import { ClientTrajetComponent } from './components/client-trajet/client-trajet.component';
 
 const routes: Routes = [
   { path: 'hello', component: HelloComponent, canActivate: [AuthGuard], data: { expectedRole: 'NONE' } },
@@ -58,7 +59,8 @@ const routes: Routes = [
   { path: 'commercantStats', component: CommercantStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'assoCommercantStats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'mairieStats', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
-  { path: 'mairieStatsCommercant', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}}
+  { path: 'mairieStatsCommercant', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
+  { path : 'trajet-commercant', component: ClientTrajetComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
 
 ];
 

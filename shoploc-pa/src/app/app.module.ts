@@ -42,6 +42,8 @@ import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
 import { ClientMapComponent } from './components/client-map/client-map.component';
+import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
+import { ClientTrajetComponent } from './components/client-trajet/client-trajet.component';
 
 
 // Import Module
@@ -77,7 +79,7 @@ import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.com
 import { DatePipe } from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
-import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
+
 
 
 @NgModule({
@@ -123,6 +125,7 @@ import { ClientMapEcranComponent } from './components/client-map-ecran/client-ma
     ParkingBonusComponent,
     ClientMapComponent,
     ClientMapEcranComponent,
+    ClientTrajetComponent,
   ],
   imports: [
     AppRoutingModule,
