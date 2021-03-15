@@ -78,6 +78,8 @@ import { DatePipe } from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 @NgModule({
   declarations: [
@@ -144,6 +146,7 @@ import {CardModule} from 'primeng/card';
     TableModule,
     ButtonModule,
     CardModule,
+    NgApexchartsModule,
     
   ],
   providers: [
