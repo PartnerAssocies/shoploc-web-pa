@@ -56,23 +56,21 @@ export class ClientTrajetComponent implements AfterViewInit {
             plan : new L.Routing.Plan([L.latLng(user_x, user_y), L.latLng(res.lieu.coordx, res.lieu.coordy)], {
               createMarker: function (i: number, waypoint: any, n: number) {
                 if(i === 0){
-                  const marker = L.marker(waypoint.latLng, {
+                  return L.marker(waypoint.latLng, {
                     icon: L.icon({
                       iconUrl: 'assets/icons/localisation-icon.png',
                       popupAnchor: [0, -20],
                       iconSize: [42, 54]
                     })
                   }).bindPopup("Vous êtes ici").addTo(map).openPopup();
-                  return marker;
                 } else {
-                  const marker = L.marker(waypoint.latLng, {
+                  return L.marker(waypoint.latLng, {
                     icon: L.icon({
                       iconUrl: 'assets/icons/commercant-localisation.png',
                       popupAnchor: [0, -20],
                       iconSize: [37, 45]
                     })
                   });
-                  return marker;
                 }  
               }
             }),
