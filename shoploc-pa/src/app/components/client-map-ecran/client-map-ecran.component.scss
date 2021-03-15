@@ -1,0 +1,41 @@
+#div-map{
+    padding-top: 2%;
+    justify-content: center;
+    display:flex;
+}
+
+#info-selected-commercant{
+    justify-content: left;
+    transition : all 0.5s ease-out;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 0.25rem;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 1%;
+    height: 30vh;
+}
+
+h2{
+    clear : both;
+    margin-bottom: 0;
+}
+
+p{
+    clear : both;
+    margin-bottom: 0;
+}
+
+#zone-text{
+    display: block;
+    margin:2%;
+}
+
+.btn-down{
+    position:fixed;
+    bottom: 10%;
+    width: 90%;
+    box-shadow: 0 5px 25px 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,4 +1,4 @@
-.map-container {
+/*.map-container {
     position: absolute;
     top: 10%;
     left: 0;
@@ -12,7 +12,20 @@
     height: 80%;
     width: 100%;
   }
-  
-  #map {
-    height: 100%;
-  }
+  */
+#map {
+  height: 100%;
+}
+
+#map-container{
+  width: 95vw;
+  overflow: hidden;
+}
+
+.taille90{
+  height: 90vh;
+}
+
+.taille60{
+  height: 60vh;
+}

@@ -22,39 +22,6 @@
     margin-right: 5px;
 }
 
-.solde_container {
-    margin: 1em auto;
-    padding-top: 1em;
-    width: 95%;
-    background-color: #E9ECEF;
-    font-size: 1.5em;
-    display:flex;
-    justify-content: space-evenly;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 0 0.01em 0.05em lightgray;
-    color: #495057;
-}
-
-.fidelite_header {
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: black;
-    border-radius: 25px;
-    color: white;
-    position: absolute;
-    z-index: 999;
-    top: -0.8em;
-}
-
-h3 {
-    text-align: center;
-}
-
-.histo_wrapper {
-    padding-bottom: 8%;
-}
-
-td {
-    word-break: break-all;
+.all-container {
+    margin-bottom: 10%;
 }

@@ -11,29 +11,38 @@
     </div>
 </div>
 
+<div class="btn-container">
+    <p-button class=btn-style label="Mois" (click)="swapToMonth()"></p-button>
+    <p-button class=btn-style label="Annee" (click)="swapToYear()"></p-button>
+    <p-button class=btn-style label="5 ans" (click)="swapToFiveYears()"></p-button>
+</div>
 
-<div *ngIf="mairieStatsMois">
-    <h3>Mois</h3>
+
+<p-card header="Stats sur un mois" class="card-style" *ngIf="mairieStatsMois && unMoisActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients avec la carte fidélité : {{mairieStatsMois.nbCarteFidelite}}</p>
     <p>Nombre de clients ayant un statut VFP : {{mairieStatsMois.nbClientsStatutVfp}}</p>
     <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsMois.nbTransportVfp}}</p>
     <p>Nombre de places de parking VFP obtenues : {{mairieStatsMois.nbParkingVfp}}</p>
-</div>
+</p-card>
 
-<div *ngIf="mairieStatsAnnee">
-    <h3>Annee</h3>
+<p-card header="Stats sur un an" class="card-style" *ngIf="mairieStatsAnnee && unAnActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients avec la carte fidélité : {{mairieStatsAnnee.nbCarteFidelite}}</p>
     <p>Nombre de clients ayant un statut VFP : {{mairieStatsAnnee.nbClientsStatutVfp}}</p>
     <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsAnnee.nbTransportVfp}}</p>
     <p>Nombre de places de parking VFP obtenues : {{mairieStatsAnnee.nbParkingVfp}}</p>
-</div>
+</p-card>
 
-<div *ngIf="mairieStatsCinqAns">
-    <h3>5 ans</h3>
+<p-card header="Stats sur cinq ans" class="card-style" *ngIf="mairieStatsCinqAns && cinqAnsActive">
+    <ng-template pTemplate="header">
+    </ng-template>
     <p>Nombre de clients avec la carte fidélité : {{mairieStatsCinqAns.nbCarteFidelite}}</p>
     <p>Nombre de clients ayant un statut VFP : {{mairieStatsCinqAns.nbClientsStatutVfp}}</p>
     <p>Nombre d'avantages VFP transport obtenus : {{mairieStatsCinqAns.nbTransportVfp}}</p>
     <p>Nombre de places de parking VFP obtenues : {{mairieStatsCinqAns.nbParkingVfp}}</p>
-</div>
+</p-card>
 
 <app-navbar></app-navbar>
