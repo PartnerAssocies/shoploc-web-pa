@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
    */
   public navigateClickAndCollect() {
     if (this.role == 'ROLE_CLIENT') {
-      this.router.navigate(['commande-list']);
+      this.router.navigate(['commercant-list']);
     } else {
       this.router.navigate(['lecteur-carte']);
     }
@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
     if (this.role == 'ROLE_COMMERCANT') {
       this.router.navigate(['commercant-home']);
     } else if (this.role == 'ROLE_CLIENT') {
-      this.router.navigate(['commercant-list'], { queryParams: { fromHome: true } });
+      this.router.navigate(['map']);
     } else {
       this.router.navigate(['']);
 

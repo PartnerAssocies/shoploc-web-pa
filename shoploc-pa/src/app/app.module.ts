@@ -77,6 +77,7 @@ import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.com
 import { DatePipe } from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
+import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import {CardModule} from 'primeng/card';
     ActivationBonusVfpComponent,
     ParkingBonusComponent,
     ClientMapComponent,
+    ClientMapEcranComponent,
   ],
   imports: [
     AppRoutingModule,

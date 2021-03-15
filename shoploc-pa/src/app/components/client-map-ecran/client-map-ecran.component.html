@@ -1,0 +1,11 @@
+<div id="div-map">
+    <app-client-map (selected)="onSelectCommercant($event)"></app-client-map>
+</div>
+<div id="info-selected-commercant" *ngIf="commercant">
+    <div id="zone-text">
+        <h2 class="text-left text-info font-weight-light">{{commercant.libelleMagasin}}</h2>
+        <p class="text-left">{{commercant.lieu.adresse}} - {{commercant.lieu.ville}}</p>
+    </div>
+    <button type="button" class="btn btn-success btn-down" (click)="commander()">Commander</button>
+</div>
+<app-navbar></app-navbar>
