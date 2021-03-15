@@ -13,143 +13,124 @@
 
 
 <div>
-    <h3>ptitMarchand@ptitmarchand.fr</h3>
-    <p>Montant des ventes fidélité : {{statsDuJour.montantVentesFidelite}}€</p>
-    <p>Nombre de clients fidélité : {{statsDuJour.nbClientsFidelite}}</p>
-    <p>Montant des click & collect : {{statsDuJour.montantClickAndCollect}}€</p>
-    <p>Montant des points de fidélité obtenues : {{statsDuJour.montantPointsFidelitesObtenues}}</p>
-    <p>Montant des points de fidélité dépensés : {{statsDuJour.montantPointsFidelitesDepenses}}</p>
-    <h3>Historiques</h3>
-    <p><a href="#">JOUR</a> | <a href="#">MOIS</a> | <a href="#">ANNEE</a></p>
-    <p-accordion>
-        <p-accordionTab header="Historique des ventes réalisées avec la carte de fidélité">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-        <p-accordionTab header="Historique des du nombre de cleitns avec carte de fidélité">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-        <p-accordionTab header="Historique des montants des clics & collect">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-        <p-accordionTab header="Historique du nombre de clients en clic & collect">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-        <p-accordionTab header="Historique des points cadeaux obtenues par les clients">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-        <p-accordionTab header="Historique des points cadeaux depensées par les clients">
-            <ng-template pTemplate="content">
-                <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                    [virtualScroll]="true" [virtualRowHeight]="34">
-                    <ng-template pTemplate="header" let-columns>
-                        <tr>
-                            <th *ngFor="let col of columns">
-                                {{col.header}}
-                            </th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr style="height:34px">
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </ng-template>
-        </p-accordionTab>
-    </p-accordion>        
-    <h3>Seuil d'alerte</h3>
+    <p-card [header]="title" class="card-style" *ngIf="statsDuJour">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p>Montant des ventes fidélité : {{statsDuJour.montantVentesFidelite}}€</p>
+        <p>Nombre de clients fidélité : {{statsDuJour.nbClientsFidelite}} points</p>
+        <p>Montant des click & collect : {{statsDuJour.montantClickAndCollect}}€</p>
+        <p>Montant des points de fidélité obtenues : {{statsDuJour.montantPointsFidelitesObtenues}} points</p>
+        <p>Montant des points de fidélité dépensés : {{statsDuJour.montantPointsFidelitesDepenses}} points</p>
+    </p-card>
+    <p-card header="Historiques du mois" class="card-style" *ngIf="commercantStatsMois && unMoisActive">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p>Nombre de clients avec la carte de fidélité : {{commercantStatsMois.nbDeClients}}</p>
+        <p>Montant des clic & collect :  {{commercantStatsMois.montantClicAndCollect}}€</p>
+        <p>Montant des points fidélités obtenus par les clients : {{commercantStatsMois.pointsFideliteObtenus}} points</p>
+        <p>Montant des points fidélités dépensés par les clients : {{commercantStatsMois.pointsFideliteDepenses}} points</p>
+        <p-accordion>
+            <p-accordionTab header="Historique des ventes réalisées avec la carte de fidélité">
+                <ng-template pTemplate="content">
+                    <p-table [columns]="cols" [value]="commercantStatsMois.histoVentes" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                        [virtualScroll]="true" [virtualRowHeight]="34">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr style="height:34px">
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </ng-template>
+            </p-accordionTab>
+        </p-accordion>
+    </p-card>
+    <p-card header="Historiques de l'année" class="card-style" *ngIf="commercantStatsAnnee && unAnActive">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p>Nombre de clients avec la carte de fidélité : {{commercantStatsAnnee.nbDeClients}}</p>
+        <p>Montant des clic & collect :  {{commercantStatsAnnee.montantClicAndCollect}}€</p>
+        <p>Montant des points fidélités obtenus par les clients : {{commercantStatsAnnee.pointsFideliteObtenus}} points</p>
+        <p>Montant des points fidélités dépensés par les clients : {{commercantStatsAnnee.pointsFideliteDepenses}} points</p>
+        <p-accordion>
+            <p-accordionTab header="Historique des ventes réalisées avec la carte de fidélité">
+                <ng-template pTemplate="content">
+                    <p-table [columns]="cols" [value]="commercantStatsAnnee.histoVentes" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                        [virtualScroll]="true" [virtualRowHeight]="34">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr style="height:34px">
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </ng-template>
+            </p-accordionTab>
+        </p-accordion>
+    </p-card>
+    <p-card header="Historiques sur 5 ans" class="card-style" *ngIf="commercantStatsAnnees && cinqAnsActive">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p>Nombre de clients avec la carte de fidélité : {{commercantStatsAnnees.nbDeClients}}</p>
+        <p>Montant des clic & collect :  {{commercantStatsAnnees.montantClicAndCollect}}€</p>
+        <p>Montant des points fidélités obtenus par les clients : {{commercantStatsAnnees.pointsFideliteObtenus}} points</p>
+        <p>Montant des points fidélités dépensés par les clients : {{commercantStatsAnnees.pointsFideliteDepenses}} points</p>
+        <p-accordion>
+            <p-accordionTab header="Historique des ventes réalisées avec la carte de fidélité">
+                <ng-template pTemplate="content">
+                    <p-table [columns]="cols" [value]="commercantStatsAnnees.histoVentes" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                        [virtualScroll]="true" [virtualRowHeight]="34">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr style="height:34px">
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </ng-template>
+            </p-accordionTab>
+        </p-accordion>
+    </p-card>
+    
+    <div class="btn-container">
+        <p-button class=btn-style label="Mois" (click)="swapToMonth()"></p-button>
+        <p-button class=btn-style label="Annee" (click)="swapToYear()"></p-button>
+        <p-button class=btn-style label="5 ans" (click)="swapToFiveYears()"></p-button>
+    </div>
+
+    <p-card header="Seuil d'alerte" class="card-style" *ngIf="statsDuJour">
+        <ng-template pTemplate="header">
+        </ng-template>
+    </p-card>
+
+    <p-card header="Graphiques" class="card-style" *ngIf="statsDuJour">
+        <ng-template pTemplate="header">
+        </ng-template>
+    </p-card>
 </div>
 
 <app-navbar></app-navbar>

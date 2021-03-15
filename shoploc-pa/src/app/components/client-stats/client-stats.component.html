@@ -11,33 +11,24 @@
     </div>
 </div>
 
-<div>
-    <div class="user_stats_header">
-        <h2 class="user_name">
-            {{ authentifiedUser }}
-        </h2>
-        <div *ngIf='infos.joursRestant>0' class="vfp_days">  
-            <span class="vfp_number">{{infos.joursRestant}}</span>jours avant VFP
-        </div>
-        <div *ngIf='infos.joursRestant<=0' class="vfp_days">  
-            <span class="vfp_on">VFP</span>
-        </div>
-    </div>
-    <div class="solde_container">
-        <p class="fidelite_header">Fidélité</p>
-        <div class="solde_title">
-            <p>Solde fidélité</p>
-            <p>Total collecté</p>
-        </div>
-        <div class="solde_value">
-            <p>{{infos.soldeFidelite}}</p>
-            <p>{{infos.totalFidelite}}</p>
-        </div>
-    </div>
-    <div class="histo_wrapper">
-        <h3>
-            Historiques
-        </h3>
+<div class="all-container">
+    <p-card [header]="authentifiedUser" class="card-style" *ngIf="infos">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p *ngIf="infos.joursRestant>0"><span class="vfp_number">{{infos.joursRestant}}</span> jours avant VFP</p>
+        <p *ngIf="infos.joursRestant<=0" style="color: green">VFP</p>
+    </p-card>
+
+    <p-card header="Soldes" class="card-style" *ngIf="infos">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <p>Solde fidélité : {{infos.soldeFidelite}} points</p>
+        <p>Total collecté : {{infos.totalFidelite}} points</p>
+    </p-card>
+
+    <p-card header="Historiques" class="card-style" *ngIf="infos">
+        <ng-template pTemplate="header">
+        </ng-template>
         <p-accordion>
             <p-accordionTab header="Historique des achats">
                 <ng-template pTemplate="content">
@@ -62,7 +53,7 @@
             </p-accordionTab>
             <p-accordionTab header="Historique des click & collect">
                 <ng-template pTemplate="content">
-                    <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
+                    <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
                         [virtualScroll]="true" [virtualRowHeight]="34">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
@@ -102,29 +93,32 @@
                     </p-table>
                 </ng-template>
             </p-accordionTab>
-            <p-accordionTab header="Historique du statut VFP">
-                <ng-template pTemplate="content">
-                    <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                        [virtualScroll]="true" [virtualRowHeight]="34">
-                        <ng-template pTemplate="header" let-columns>
-                            <tr>
-                                <th *ngFor="let col of columns">
-                                    {{col.header}}
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-rowData let-columns="columns">
-                            <tr style="height:34px">
-                                <td *ngFor="let col of columns">
-                                    {{rowData[col.field]}}
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </ng-template>
-            </p-accordionTab>
-        </p-accordion>        
-    </div>
+        </p-accordion>   
+    </p-card>
+</div>
+
+<div class="btn-container">
+    <p-button class=btn-style label="Mois" (click)="updateCharts('MOIS')"></p-button>
+    <p-button class=btn-style label="Annee" (click)="updateCharts('ANNEE')"></p-button>
+    <p-button class=btn-style label="5 ans" (click)="updateCharts('ANNEES')"></p-button>
+</div>
+
+<div style="text-align:center;">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [title]="chartOptions.title"
+    ></apx-chart>
+</div>
+
+<div style="text-align:center; padding-bottom: 15%;">
+    <apx-chart
+      [series]="chartOptions2.series"
+      [chart]="chartOptions2.chart"
+      [xaxis]="chartOptions2.xaxis"
+      [title]="chartOptions2.title"
+    ></apx-chart>
 </div>
 
 <app-navbar></app-navbar>

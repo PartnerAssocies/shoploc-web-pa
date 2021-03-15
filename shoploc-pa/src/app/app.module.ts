@@ -75,6 +75,10 @@ import { CommercantStatsComponent } from './components/commercant-stats/commerca
 import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
 import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
 import { DatePipe } from '@angular/common';
+import {ButtonModule} from 'primeng/button';
+import {CardModule} from 'primeng/card';
+
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -139,7 +143,11 @@ import { DatePipe } from '@angular/common';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CommonModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    ButtonModule,
+    CardModule,
+    NgApexchartsModule,
+    
   ],
   providers: [
     HelloService,
