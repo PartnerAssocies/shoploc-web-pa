@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
@@ -12,7 +12,7 @@ import "leaflet/dist/images/marker-shadow.png";
   templateUrl: './client-trajet.component.html',
   styleUrls: ['./client-trajet.component.scss']
 })
-export class ClientTrajetComponent implements AfterViewInit {
+export class ClientTrajetComponent implements OnInit {
 
   commercant : CommercantData;
 
@@ -20,7 +20,7 @@ export class ClientTrajetComponent implements AfterViewInit {
               private userService : UserService,
               private activateRoute: ActivatedRoute) { }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.initMap();
   }
 
@@ -46,12 +46,15 @@ export class ClientTrajetComponent implements AfterViewInit {
         function onLocationFound(e) {
           user_x = e.latitude;
           user_y = e.longitude;
-              
+
           L.Routing.control({
             waypoints: [
                 L.latLng(user_x, user_y),
                 L.latLng(res.lieu.coordx, res.lieu.coordy)
             ],
+            router: L.Routing.osrmv1({
+              language: 'fr'
+            }),
             addWaypoints: false,
             plan : new L.Routing.Plan([L.latLng(user_x, user_y), L.latLng(res.lieu.coordx, res.lieu.coordy)], {
               createMarker: function (i: number, waypoint: any, n: number) {
@@ -78,7 +81,8 @@ export class ClientTrajetComponent implements AfterViewInit {
             ),
             showAlternatives: false,
             lineOptions: {styles: [{color: '#242c81', weight: 5}], extendToWaypoints : false, missingRouteTolerance: 0}
-          }).addTo(map);    
+          }).addTo(map);   
+         
         }
     
         function onLocationError(e) {
@@ -93,6 +97,7 @@ export class ClientTrajetComponent implements AfterViewInit {
         }).addTo(map);
 
       })
+      
     });
     
   }
