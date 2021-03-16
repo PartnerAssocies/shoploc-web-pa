@@ -60,7 +60,8 @@ const routes: Routes = [
   { path: 'assoCommercantStats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
   { path: 'mairieStats', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
   { path: 'mairieStatsCommercant', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
-  { path : 'trajet-commercant', component: ClientTrajetComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+  { path: 'trajet-commercant', component: ClientTrajetComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+
 
 ];
 
