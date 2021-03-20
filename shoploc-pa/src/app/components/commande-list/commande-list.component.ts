@@ -37,6 +37,9 @@ export class CommandeListComponent implements OnInit {
       for(let commande of response){
         this.listeCommande.push(commande);
       }
+      this.listeCommande.sort((a, b) => {
+        return b.cid - a.cid
+      })
       this.isEmpty = this.listeCommande.length == 0;
       this.isLoading = false;
     });
