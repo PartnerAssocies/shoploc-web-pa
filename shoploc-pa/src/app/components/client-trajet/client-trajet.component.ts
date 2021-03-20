@@ -52,7 +52,7 @@ export class ClientTrajetComponent implements OnInit {
                 L.latLng(user_x, user_y),
                 L.latLng(res.lieu.coordx, res.lieu.coordy)
             ],
-            router: L.Routing.osrmv1({
+            router: L.Routing.mapbox('pk.eyJ1IjoibWFyZmlsciIsImEiOiJja21odjFxM24wYjJuMnpuemIxeGhmd2FxIn0.NWYgMG31huNzvNOp_yWWfg', {
               language: 'fr'
             }),
             addWaypoints: false,
