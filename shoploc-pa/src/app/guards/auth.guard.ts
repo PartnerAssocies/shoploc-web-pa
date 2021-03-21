@@ -35,7 +35,11 @@ export class AuthGuard implements CanActivate {
             if((currentUser.role == expectedRole) || ("NONE" == expectedRole) || ("ROLE_BOTH" == expectedRole)){
                 return true;
             }
-            this.router.navigate(['/'],{ queryParams: { returnUrl: state.url }});
+            if(currentUser.role == 'ROLE_CLIENT'){
+                this.router.navigate(['map'],{ queryParams: { returnUrl: state.url }});
+            } else if(currentUser.role == 'ROLE_ADMIN'){
+                this.router.navigate(['gestionCommercant'],{ queryParams: { returnUrl: state.url }});
+            }
         }else{
             if("NOT_LOGGED" == expectedRole){
                 return true;
