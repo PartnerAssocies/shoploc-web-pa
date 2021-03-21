@@ -47,7 +47,7 @@ export class AuthGuard implements CanActivate {
         return false;
     }
 
-    private redirectEmptyUrl(currentUser : CurrentUser, url : String){
+    private redirectEmptyUrl(currentUser : CurrentUser, url : string){
         if(url == '' || url == '/' && currentUser.role == 'ROLE_COMMERCANT'){
             this.router.navigate(['commercant-home']);
         } else if(url == '' || url == '/' && currentUser.role == 'ROLE_CLIENT'){
