@@ -1,6 +1,7 @@
 import { AuthService } from '../services/auth.service';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { CurrentUser } from '../models/CurrentUser.model';
 
 /**
  * Guard qui permet de rediriger vers la mire de connexion si on a pas de user connecté
@@ -27,11 +28,7 @@ export class AuthGuard implements CanActivate {
         const expectedRole = route.data.expectedRole;
 
         if(currentUser){
-            if(state.url == ''){
-                if(currentUser.role == 'ROLE_COMMERCANT'){
-                    this.router.navigate(['commercant-home']);
-                }
-            } 
+            this.redirectEmptyUrl(currentUser, state.url);
             if((currentUser.role == expectedRole) || ("NONE" == expectedRole) || ("ROLE_BOTH" == expectedRole)){
                 return true;
             }
@@ -48,5 +45,15 @@ export class AuthGuard implements CanActivate {
             }
         }
         return false;
+    }
+
+    private redirectEmptyUrl(currentUser : CurrentUser, url : String){
+        if(url == '' || url == '/' && currentUser.role == 'ROLE_COMMERCANT'){
+            this.router.navigate(['commercant-home']);
+        } else if(url == '' || url == '/' && currentUser.role == 'ROLE_CLIENT'){
+            this.router.navigate(['map']);
+        } else if(url == '' || url == '/' && currentUser.role == 'ROLE_ADMIN'){
+            this.router.navigate(['gestionCommercant']);
+        } 
     }
 }
