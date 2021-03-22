@@ -3,7 +3,8 @@ import { Location } from '@angular/common';
 import { CommandeResponseBody } from 'src/app/models/http/responseBody/CommandeResponseBody.model';
 import { ContenuCommandeResponseBody } from 'src/app/models/http/responseBody/ContenuCommandeResponseBody.model';
 import { CommandeService } from 'src/app/services/commande.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommercantResponseBody } from 'src/app/models/http/responseBody/CommercantResponseBody.model';
 
 @Component({
   selector: 'app-qrcode-commande',
@@ -13,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class QrcodeCommandeComponent implements OnInit {
 
   commande : CommandeResponseBody;
+  commercant : CommercantResponseBody;
   contenuCommande : ContenuCommandeResponseBody;
   isReady : boolean;
   showModal : boolean;
@@ -22,7 +24,8 @@ export class QrcodeCommandeComponent implements OnInit {
   constructor(
     private _location : Location,
     private commandeService : CommandeService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,7 @@ export class QrcodeCommandeComponent implements OnInit {
           this.generated =true;
         });
       });
+      this.commercant = params['commercant'];
     });
   }
 
@@ -48,6 +52,10 @@ export class QrcodeCommandeComponent implements OnInit {
 
   afficheDetail(){
     this.showModal = true;
+  }
+
+  goToTrajet(){
+    this.router.navigate(['trajet-commercant'],{queryParams: { commercant : this.commercant }});
   }
 
   hide(){

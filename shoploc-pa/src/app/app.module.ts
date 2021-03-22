@@ -42,6 +42,8 @@ import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
 import { ClientMapComponent } from './components/client-map/client-map.component';
+import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
+import { ClientTrajetComponent } from './components/client-trajet/client-trajet.component';
 
 
 // Import Module
@@ -123,6 +125,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ActivationBonusVfpComponent,
     ParkingBonusComponent,
     ClientMapComponent,
+    ClientMapEcranComponent,
+    ClientTrajetComponent,
   ],
   imports: [
     AppRoutingModule,

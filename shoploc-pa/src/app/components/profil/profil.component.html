@@ -32,10 +32,10 @@
             <a mat-list-item *ngIf="'ROLE_ADMIN' == role" href="mairie-stats">
                 <mat-icon class="mr-3">query_stats</mat-icon>
                 <h4 class="font-weight-light mb-0">Stats mairie</h4>
-            </a>
-            <a mat-list-item *ngIf="'ROLE_CLIENT' == role" href="map">
-                <mat-icon class="mr-3">place</mat-icon>
-                <h4 class="font-weight-light mb-0">Les commerçants autour de moi</h4>
+          </a>
+            <a mat-list-item *ngIf="'ROLE_CLIENT' == role" href="commande-list">
+                <mat-icon class="mr-3">receipt</mat-icon>
+                <h4 class="font-weight-light mb-0">Mes commandes</h4>
             </a>
             <a mat-list-item *ngIf="'ROLE_COMMERCANT' == role" href="lecteur-carte">
                 <mat-icon class="mr-3">qr_code_2</mat-icon>
