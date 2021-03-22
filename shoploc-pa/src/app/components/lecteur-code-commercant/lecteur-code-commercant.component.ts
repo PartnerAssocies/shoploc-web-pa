@@ -58,7 +58,7 @@ export class LecteurCodeCommercantComponent implements OnInit {
 
   handleQrCodeResult(resultString: string) {
     this.result = resultString;
-    this.router.navigate(['creation-commande-commercant'],{queryParams: { client : this.result}})
+    this.router.navigate(['creation-commande-client'],{queryParams: { usernameClient : this.result, commandeendirect : true}})
   }
 
   back(){

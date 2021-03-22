@@ -1,0 +1,27 @@
+/*.map-container {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 30px;
+  } 
+  
+  .map-frame {
+    border: 2px solid black;
+    height: 80%;
+    width: 100%;
+  }
+  */
+  #map {
+    height: 100%;
+  }
+  
+  #map-container{
+    width: 95vw;
+    overflow: hidden;
+  }
+  
+  .taille90{
+    height: 90vh;
+  }

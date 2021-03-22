@@ -95,6 +95,31 @@
             </p-accordionTab>
         </p-accordion>   
     </p-card>
+
+</div>
+
+<div class="btn-container">
+    <p-button class=btn-style label="Mois" (click)="updateCharts('MOIS')"></p-button>
+    <p-button class=btn-style label="Annee" (click)="updateCharts('ANNEE')"></p-button>
+    <p-button class=btn-style label="5 ans" (click)="updateCharts('ANNEES')"></p-button>
+</div>
+
+<div style="text-align:center;">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [title]="chartOptions.title"
+    ></apx-chart>
+</div>
+
+<div style="text-align:center; padding-bottom: 15%;">
+    <apx-chart
+      [series]="chartOptions2.series"
+      [chart]="chartOptions2.chart"
+      [xaxis]="chartOptions2.xaxis"
+      [title]="chartOptions2.title"
+    ></apx-chart>
 </div>
 
 <app-navbar></app-navbar>

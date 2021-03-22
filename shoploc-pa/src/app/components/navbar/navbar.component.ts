@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
     if (this.role == 'ROLE_CLIENT') {
       this.router.navigate(['commercant-list']);
     } else {
-      this.router.navigate(['lecteur-carte']);
+      this.router.navigate(['lecteur-carte-commercant']);
     }
   }
 
@@ -49,7 +49,11 @@ export class NavbarComponent implements OnInit {
    * ADMIN : 
    */
   public navigateStats() {
-
+    if(this.role == 'ROLE_COMMERCANT'){
+      this.router.navigate(['commercantStats']);
+    } else {
+      this.router.navigate(['mairieStats']);
+    }
   }
 
   /**
@@ -70,8 +74,7 @@ export class NavbarComponent implements OnInit {
     } else if (this.role == 'ROLE_CLIENT') {
       this.router.navigate(['map']);
     } else {
-      this.router.navigate(['']);
-
+      this.router.navigate(['gestionCommercant']);
     }
   }
 
