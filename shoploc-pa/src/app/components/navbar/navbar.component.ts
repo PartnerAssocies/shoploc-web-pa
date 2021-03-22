@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
    * ADMIN : 
    */
   public navigateStats() {
-    if (this.role == 'ROLE_COMMERCANT') {
+    if(this.role == 'ROLE_COMMERCANT'){
       this.router.navigate(['commercant-stats']);
     } else {
       this.router.navigate(['mairie-stats']);
