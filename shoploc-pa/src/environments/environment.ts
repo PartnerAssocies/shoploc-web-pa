@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   shopLocApiURL: 'http://172.28.100.2:8080',
   siMairieURL: 'http://172.28.100.2:8081',
-  shopdataURL: 'http://localhost:8383'
+  shopdataURL: 'http://172.28.100.102:8383'
 };
 
 /*
