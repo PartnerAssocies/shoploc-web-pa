@@ -30,8 +30,8 @@ export class ClientTrajetComponent implements OnInit {
       this.userService.getCommercant(params['commercant']).subscribe(res => {
         this.commercant = res;
 
-        var map = L.map('map', {
-          center: [50, 3],
+        var map = L.map('map-trajet', {
+          center: [50.636778, 3.063888],
           zoom: 10
         });
    

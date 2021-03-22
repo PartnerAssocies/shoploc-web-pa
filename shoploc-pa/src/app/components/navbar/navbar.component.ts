@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
     if (this.role == 'ROLE_CLIENT') {
       this.router.navigate(['commercant-list']);
     } else {
-      this.router.navigate(['lecteur-carte-commercant']);
+      this.router.navigate(['lecteur-carte']);
     }
   }
 

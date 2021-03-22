@@ -13,9 +13,15 @@
     width: 100%;
   }
   */
-  #map {
+  #map-trajet {
     height: 100%;
   }
+
+  #div-map{
+    padding-top: 2%;
+    justify-content: center;
+    display:flex;
+}
   
   #map-container{
     width: 95vw;
