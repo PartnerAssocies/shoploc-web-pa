@@ -20,7 +20,7 @@
     <div class="col-4">
         <div class="row">
             <div *ngIf="hasImage">
-                <img src="assets/produits/{{produit.cid.libelleMagasin}}/{{produit.image}}" class="img-fluid rounded" alt="image introuvable"/>
+                <img src="assets/produits/{{produit.cid.username}}/{{produit.pid}}.jpg" class="img-fluid rounded img-custom" alt="image introuvable"/>
             </div>
             <div *ngIf="!hasImage">
                 <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded" alt="image introuvable"/>
@@ -68,7 +68,7 @@
                         <div class="col-6">
                             <div class="row">
                                 <div *ngIf="hasImage">
-                                    <img src="assets/produits/{{produit.cid.libelleMagasin}}/{{produit.image}}" class="img-fluid rounded" alt="image introuvable"/>
+                                    <img src="assets/produits/{{produit.cid.username}}/{{produit.pid}}.jpg" class="img-fluid rounded" alt="image introuvable"/>
                                 </div>
                                 <div *ngIf="!hasImage">
                                     <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded" alt="image introuvable"/>
