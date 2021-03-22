@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { MairieStats } from '../models/data/MairieStats.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class MairiestatsService {
 
   getStatsDays(typeDuree: string): Observable<MairieStats> {
     const params = new HttpParams().set('typeDuree', typeDuree);
-    return this.http.get<MairieStats>('http://172.28.100.102:8383/mairie/stats', {params})
+    return this.http.get<MairieStats>(`${environment.shopdataURL}/mairie/stats`, {params})
   }
 
 }
