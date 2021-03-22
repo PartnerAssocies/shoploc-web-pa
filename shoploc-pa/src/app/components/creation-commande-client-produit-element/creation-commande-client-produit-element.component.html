@@ -12,18 +12,20 @@
             </div>
             <div class="col-2">
                 <div class="row" *ngIf="quantite > 0">
-                        <p>x {{quantite}}</p> 
-                </div>            
+                    <p>x {{quantite}}</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-4">
         <div class="row">
             <div *ngIf="hasImage">
-                <img src="assets/produits/{{produit.cid.libelleMagasin}}/{{produit.image}}" class="img-fluid rounded" alt="image introuvable"/>
+                <img src="assets/produits/{{produit.cid.username}}/{{produit.pid}}.jpg"
+                    class="img-fluid rounded img-custom" alt="image introuvable" />
             </div>
             <div *ngIf="!hasImage">
-                <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded" alt="image introuvable"/>
+                <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded"
+                    alt="image introuvable" />
             </div>
         </div>
     </div>
@@ -31,21 +33,23 @@
 
 <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
     <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title text-info font-weigth-ligth">{{produit.libelle}} : </h4>
-          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
-        </div>
+        <div class="modal-content">
 
-        <div class="modal-body">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-info font-weigth-ligth">{{produit.libelle}} : </h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+            </div>
+
+            <div class="modal-body">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6 align-self-center">
                             <div class="row mb-1">
                                 <div class="col-12">
-                                    <input type="text" class="form-control form-control-lg rounded-1 mr-auto mb-auto" name="quantite" id="quantiteInput-{{produit.pid}}" value={{quantite}} (blur)="checkInput()">
+                                    <input type="text" class="form-control form-control-lg rounded-1 mr-auto mb-auto"
+                                        name="quantite" id="quantiteInput-{{produit.pid}}" value={{quantite}}
+                                        (blur)="checkInput()">
                                 </div>
                             </div>
                             <div class="row">
@@ -55,34 +59,36 @@
                                             add
                                         </mat-icon>
                                     </button>
-                                </div>  
+                                </div>
                                 <div class="col-6 justify-content-center">
                                     <button type="button" class="btn btn-info" (click)="minus()">
                                         <mat-icon>
                                             remove
                                         </mat-icon>
                                     </button>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="row">
                                 <div *ngIf="hasImage">
-                                    <img src="assets/produits/{{produit.cid.libelleMagasin}}/{{produit.image}}" class="img-fluid rounded" alt="image introuvable"/>
+                                    <img src="assets/produits/{{produit.cid.username}}/{{produit.pid}}.jpg"
+                                        class="img-fluid rounded" alt="image introuvable" />
                                 </div>
                                 <div *ngIf="!hasImage">
-                                    <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded" alt="image introuvable"/>
+                                    <img src="assets/produits/defaut/produit-defaut.png" class="img-fluid rounded"
+                                        alt="image introuvable" />
                                 </div>
                             </div>
                         </div>
-                    </div>                  
+                    </div>
                 </div>
-        </div>
+            </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "valider()">Valider</button>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="valider()">Valider</button>
+            </div>
+
         </div>
-        
-      </div>
     </div>
