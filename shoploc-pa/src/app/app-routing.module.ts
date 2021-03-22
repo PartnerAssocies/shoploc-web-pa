@@ -23,11 +23,11 @@ import { LecteurCodeCommercantComponent } from './components/lecteur-code-commer
 import { StatutVfpComponent } from './components/statut-vfp/statut-vfp.component';
 import { ActivationBonusVfpComponent } from './components/activation-bonus-vfp/activation-bonus-vfp.component';
 import { ParkingBonusComponent } from './components/bonus-vfp/parking-bonus/parking-bonus.component';
-import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
 import { ClientStatsComponent } from './components/client-stats/client-stats.component';
 import { CommercantStatsComponent } from './components/commercant-stats/commercant-stats.component';
 import { AssocommerceStatsComponent } from './components/assocommerce-stats/assocommerce-stats.component';
 import { MairieStatsComponent } from './components/mairie-stats/mairie-stats.component';
+import { ClientMapEcranComponent } from './components/client-map-ecran/client-map-ecran.component';
 import { ClientTrajetComponent } from './components/client-trajet/client-trajet.component';
 
 const routes: Routes = [
@@ -55,11 +55,11 @@ const routes: Routes = [
   { path: 'bonus-vfp', component: ActivationBonusVfpComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'bonus-vfp/parking', component: ParkingBonusComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
   { path: 'map', component: ClientMapEcranComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
-  { path: 'clien-stats', component: ClientStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}},
-  { path: 'commercant-stats', component: CommercantStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
-  { path: 'asso-commercant-stats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_COMMERCANT'}},
-  { path: 'mairie-stats', component: MairieStatsComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_ADMIN'}},
-  { path: 'trajet-commercant', component: ClientTrajetComponent, canActivate: [AuthGuard], data: {expectedRole: 'ROLE_CLIENT'}}
+  { path: 'clien-stats', component: ClientStatsComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } },
+  { path: 'commercant-stats', component: CommercantStatsComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
+  { path: 'asso-commercant-stats', component: AssocommerceStatsComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_COMMERCANT' } },
+  { path: 'mairie-stats', component: MairieStatsComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_ADMIN' } },
+  { path: 'trajet-commercant', component: ClientTrajetComponent, canActivate: [AuthGuard], data: { expectedRole: 'ROLE_CLIENT' } }
 
 ];
 

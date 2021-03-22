@@ -34,7 +34,7 @@ export class ClientMapComponent implements AfterViewInit {
 
 
     var map = L.map('map', {
-      center: [39.73, -104.99],
+      center: [50, 3],
       zoom: 10
     });
     this.userService.getListCommercant().subscribe(response => {
