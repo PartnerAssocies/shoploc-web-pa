@@ -6,6 +6,7 @@ import 'leaflet-routing-machine';
 import { CommercantData } from 'src/app/models/data/CommercantData.model';
 import { UserService } from 'src/app/services/user.service';
 import "leaflet/dist/images/marker-shadow.png";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-client-trajet',
@@ -52,7 +53,7 @@ export class ClientTrajetComponent implements OnInit {
                 L.latLng(user_x, user_y),
                 L.latLng(res.lieu.coordx, res.lieu.coordy)
             ],
-            router: L.Routing.mapbox('pk.eyJ1IjoibWFyZmlsciIsImEiOiJja21odjFxM24wYjJuMnpuemIxeGhmd2FxIn0.NWYgMG31huNzvNOp_yWWfg', {
+            router: L.Routing.mapbox(environment.tokenMap, {
               language: 'fr'
             }),
             addWaypoints: false,

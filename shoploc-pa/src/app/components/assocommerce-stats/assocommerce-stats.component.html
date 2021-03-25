@@ -33,7 +33,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr style="height:34px">
-                <td *ngFor="let col of columns">
+                <td *ngFor="let col of columns" style="word-wrap: break-word;">
                     {{rowData[col.field]}}
                 </td>
             </tr>
@@ -57,7 +57,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr style="height:34px">
-                <td *ngFor="let col of columns">
+                <td *ngFor="let col of columns" style="word-wrap: break-word;">
                     {{rowData[col.field]}}
                 </td>
             </tr>
@@ -81,7 +81,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr style="height:34px;">
-                <td *ngFor="let col of columns" class="temp">
+                <td *ngFor="let col of columns" class="temp" style="word-wrap: break-word;">
                     {{rowData[col.field]}}
                 </td>
             </tr>
