@@ -1,9 +1,13 @@
-import { CommercantStats } from "./CommercantStats.model";
+
+interface AssoCommerceItem {
+    magasin?: string,
+    montant?: string
+  }
 
 export class AssoCommercantStats {
     constructor(
         public nbClientCarteDeFidelite: number,
-        public clientValues: CommercantStats[],
+        public clientValues: AssoCommerceItem[],
         public nbClientsVfp: number
     ){}
 }

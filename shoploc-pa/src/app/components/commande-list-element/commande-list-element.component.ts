@@ -20,6 +20,8 @@ export class CommandeListElementComponent implements OnInit {
   color : string;
   etatAffiche : string;
   clicked : boolean;
+  @Input()
+  totalCommande: number;
 
   constructor(
     private datePipe: DatePipe

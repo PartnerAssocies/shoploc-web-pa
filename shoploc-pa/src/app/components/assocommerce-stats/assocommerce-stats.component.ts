@@ -29,13 +29,21 @@ export class AssocommerceStatsComponent implements OnInit {
     
     this.assoCommerceStatsService.getAllStats('MOIS').subscribe(value => {
       this.statsAssoCommercantMois = value;
-      console.log(this.statsAssoCommercantMois);
+      this.statsAssoCommercantMois.clientValues.forEach(res => {
+        res.montant = res.montant + '€';
+      });
     });
     this.assoCommerceStatsService.getAllStats('ANNEE').subscribe(value => {
       this.statsAssoCommercantAnnee = value;
+      this.statsAssoCommercantAnnee.clientValues.forEach(res => {
+        res.montant = res.montant + '€';
+      });
     });
     this.assoCommerceStatsService.getAllStats('ANNEES').subscribe(value => {
       this.statsAssoCommercantCinqAns = value;
+      this.statsAssoCommercantCinqAns.clientValues.forEach(res => {
+        res.montant = res.montant + '€';
+      });
     });
     this.cols = [
       {field: 'magasin', header: 'Magasin'},
