@@ -12,6 +12,7 @@ export class CarteUserComponent implements OnInit {
   public level: number;
   public qrValue: string;
   public generated: boolean;
+  public username: string;
 
   constructor(
     private _location: Location,
@@ -19,8 +20,9 @@ export class CarteUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.username = this.authService.currentUserValue.username;
     this.generated = false;
-    this.qrValue = "CLIENT;".concat(this.authService.currentUserValue.username);
+    this.qrValue = "CLIENT;".concat(this.username);
     this.generated = true;
   }
 

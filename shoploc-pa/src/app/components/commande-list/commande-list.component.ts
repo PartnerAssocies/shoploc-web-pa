@@ -37,6 +37,9 @@ export class CommandeListComponent implements OnInit {
       for(let commande of response){
         this.listeCommande.push(commande);
       }
+      this.listeCommande.sort((a, b) => {
+        return b.cid - a.cid
+      })
       this.isEmpty = this.listeCommande.length == 0;
       this.isLoading = false;
     });
@@ -59,7 +62,7 @@ export class CommandeListComponent implements OnInit {
       this.router.navigate(['paiement-commande-client'],{queryParams: { commande : commande.cid }});
     }
     if(commande.etat == 'EN_PREPARATION' || commande.etat == 'A_RECUPERER' || commande.etat == 'EN_ATTENTE_DE_PAIEMENT_DIRECT'){
-      this.router.navigate(['qrcode-commande'],{queryParams: { commande : commande.cid }});
+      this.router.navigate(['qrcode-commande'],{queryParams: { commande : commande.cid, commercant : commande.commercant }});
     }
   }
   

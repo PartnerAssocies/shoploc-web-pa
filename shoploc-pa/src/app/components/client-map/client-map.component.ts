@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { UserService } from 'src/app/services/user.service';
-import { Location } from '@angular/common';
+import { CommercantData } from 'src/app/models/data/CommercantData.model';
 
 @Component({
   selector: 'app-client-map',
@@ -10,17 +10,16 @@ import { Location } from '@angular/common';
 })
 export class ClientMapComponent implements AfterViewInit {
 
+  @Output()
+  selected = new EventEmitter<CommercantData>();
 
-  constructor(private userService: UserService, private _location: Location) { }
+  constructor(private userService: UserService) { }
 
-  back() {
-    this._location.back();
-  }
   ngAfterViewInit(): void {
-    this.initMap();
+    this.initMap(this.selected);
   }
 
-  private initMap(): void {
+  private initMap(selectionEventEmitter: EventEmitter<CommercantData>): void {
     const myIcon = L.icon({
       iconUrl: 'assets/icons/localisation-icon.png',
       popupAnchor: [0, -20],
@@ -33,9 +32,8 @@ export class ClientMapComponent implements AfterViewInit {
       iconSize: [37, 45]
     });
 
-
     var map = L.map('map', {
-      center: [39.73, -104.99],
+      center: [50.636778, 3.063888],
       zoom: 10
     });
     this.userService.getListCommercant().subscribe(response => {
@@ -43,10 +41,11 @@ export class ClientMapComponent implements AfterViewInit {
         var marker = L.marker([(commercant.lieu.coordx), (commercant.lieu.coordy)], { icon: commercantIcon }).bindPopup(commercant.libelleMagasin)
         marker.on('click', function (e) {
           this.openPopup();
-          this.showSelectedCommerceInfo = commercant.username
-
+          this.showSelectedCommerceInfo = commercant.username;
+          selectionEventEmitter.emit(commercant);
         })
         marker.addTo(map);
+
       }
     });
 
@@ -77,7 +76,4 @@ export class ClientMapComponent implements AfterViewInit {
 
     map.on('locationerror', onLocationError);
   }
-
-
-
 }

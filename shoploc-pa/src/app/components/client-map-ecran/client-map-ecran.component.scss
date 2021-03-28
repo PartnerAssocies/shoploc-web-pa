@@ -1,0 +1,106 @@
+#div-map{
+    padding-top: 2%;
+    justify-content: center;
+    display:flex;
+}
+
+#info-commercant-reduit{
+    justify-content: left;
+    transition : all 0.5s ease-out;
+    background-color: rgba(0, 0, 0, 0.01);
+    border-radius: 0.25rem;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 1%;
+    height: 30vh;
+}
+
+#ecran-sans-map{
+    justify-content: left;
+    transition : all 0.5s ease-out;
+    border-radius: 0.25rem;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 2%;
+    height: 90vh;
+}
+
+#info-commercant-total{
+    border-radius: 0.25rem;
+}
+
+#info-commercant-total #zone-titre{
+    padding : 2%;
+    background-color: white;
+}
+
+h2{
+    clear : both;
+    margin-bottom: 0;
+}
+
+p{
+    clear : both;
+    margin-bottom: 0;
+}
+
+#zone-text{
+    display: block;
+    margin:2%;
+}
+
+.btn-down{
+    position:fixed;
+    bottom: 10%;
+    width: 90%;
+    box-shadow: 0 5px 25px 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btn-down2{
+    position:fixed;
+    bottom: 16%;
+    width: 90%;
+    box-shadow: 0 5px 25px 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#zone-produits{
+    height: 60vh;
+    overflow-y : auto;
+    overflow-x: hidden;
+    margin-left : 2%;
+    margin-right: 2%;
+}
+
+.produit{
+    height: auto;
+    text-align: right;
+    margin-bottom: 5%;
+    display: inline-grid;
+    grid-template-columns: 70% 30%;
+    width: fit-content;
+}
+
+.zone-text-produit{
+    grid-column: 1 ;
+    grid-row: 1;
+}
+
+.zone-image{
+    grid-column : 2;
+    grid-row: 1;
+}
+
+.produit img{
+    max-width: 100%;
+    float:right;
+} 
+
+#zone-titre{
+    margin-bottom: 5%;
+    border-bottom: 1px solid #17a2b8;
+}

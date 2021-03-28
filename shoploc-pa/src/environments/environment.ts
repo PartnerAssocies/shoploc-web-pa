@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  shopLocApiURL: 'http://172.28.100.2:8080',
+  shopLocApiURL: 'http://127.0.0.1:8080',
   siMairieURL: 'http://172.28.100.2:8081',
-  shopdataURL: 'http://172.28.100.102:8383'
+  shopdataURL: 'http://172.28.100.102:8383',
+  tokenMap: 'pk.eyJ1IjoibWFyZmlsciIsImEiOiJja21odjFxM24wYjJuMnpuemIxeGhmd2FxIn0.NWYgMG31huNzvNOp_yWWfg'
 };
 
 /*

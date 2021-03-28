@@ -1,16 +1,18 @@
-#map {
+#map-trajet {
   height: 100%;
 }
 
+#div-map{
+  padding-top: 2%;
+  justify-content: center;
+  display:flex;
+}
+  
 #map-container{
   width: 95vw;
   overflow: hidden;
 }
-
+  
 .taille90{
   height: 90vh;
-}
-
-.taille60{
-  height: 60vh;
 }

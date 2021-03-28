@@ -1,0 +1,46 @@
+<div id="ecran-avec-map" *ngIf="!detailCommercant">
+    <div id="div-map">
+        <app-client-map (selected)="onSelectCommercant($event)"></app-client-map>
+    </div>
+    <div id="info-commercant-reduit" *ngIf="commercant && infosCommercantReduit">
+        <div id="zone-text">
+            <h2 class="text-left text-info font-weight-light">{{commercant.libelleMagasin}}</h2>
+            <p class="text-left">{{commercant.lieu.adresse}} - {{commercant.lieu.ville}}</p>
+            <p class="text-left font-weight-light">{{commercant.description}}</p>
+        </div>
+        <button type="button" class="btn btn-info btn-down2" (click)="detailsCommercant()">Voir les produits</button>
+        <button type="button" class="btn btn-success btn-down" (click)="commander()">Commander</button>
+    </div>
+</div>
+<div id="ecran-sans-map" *ngIf="detailCommercant">
+    <div id="info-commercant-total">
+        <div id="zone-titre">
+            <h2 class="text-left text-info font-weight-light">{{commercant.libelleMagasin}}</h2>
+            <p class="text-left">{{commercant.lieu.adresse}} - {{commercant.lieu.ville}}</p>
+        </div>
+        <div id="zone-produits">
+            <div *ngFor="let produit of produitsCommercant">
+                <div id="produit-{{produit.pid}}" class="produit">
+                    <div class="zone-text-produit">
+                        <h4 class="text-left text-info font-weight-light mb-0">{{produit.libelle}}</h4>
+                        <p class="text-left font-weight-light" *ngIf="produit.prix > 0">{{produit.prix}}€</p>
+                        <p class="text-left font-weight-light" *ngIf="produit.fidelitePointsRequis > 0">
+                            {{produit.fidelitePointsRequis}} points de
+                            fildélités</p>
+                    </div>
+                    <div *ngIf="produit.image" class="zone-image">
+                        <img src="assets/produits/{{produit.cid.libelleMagasin}}/{{produit.image}}" class="rounded"
+                            alt="image introuvable" />
+                    </div>
+                    <div *ngIf="!produit.image" class="zone-image">
+                        <img src="assets/produits/defaut/produit-defaut.png" class="rounded" alt="image introuvable" />
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info btn-down2" (click)="goBackToMap()">Retourner à la
+                navigation</button>
+            <button type="button" class="btn btn-success btn-down" (click)="commander()">Commander</button>
+        </div>
+    </div>
+</div>
+<app-navbar></app-navbar>

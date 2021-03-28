@@ -80,6 +80,14 @@ export class UserService {
         console.log(accept);
         return this.http.post<CommercantData>(url,params);
     }
+
+    getCommercant(username : string) : Observable<CommercantData> {
+        const url = environment.shopLocApiURL
+            .concat("/commercant/getCommercant/")
+            .concat(username);
+        return this.http.get<CommercantData>(url);
+    }
+
     /*
      * Récupère la liste de tous les commerçants
      */

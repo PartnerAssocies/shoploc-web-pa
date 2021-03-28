@@ -12,6 +12,15 @@
             <a class="nav-link active" [ngClass]="{'active': takeActive}" (click)="showARecuperer()">A récupérer</a>
           </li>
         </ul>
+        <div *ngIf="prepaActive && listeCommandeEnPrepa.length == 0">
+          <p class="h4 text-info font-weight-light">Aucune commande en préparation</p>
+        </div>
+        <div *ngIf="waitActive && listeCommandeWaitPaiement.length == 0">
+          <p class="h4 text-info font-weight-light">Aucune commande en attente de paiement</p>
+        </div>
+        <div *ngIf="takeActive && listeCommandeARecuperer.length == 0">
+          <p class="h4 text-info font-weight-light">Aucune commande à récupérer</p>
+        </div>
         <div *ngIf="!isLoadingPrepa && prepaActive">
             <div *ngFor="let commande of listeCommandeEnPrepa">
                <app-commercant-commande-list-element [nomClient]="commande.client" [numeroCommande]="commande.cid" 

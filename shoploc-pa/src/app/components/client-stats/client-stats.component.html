@@ -44,7 +44,7 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr style="height:34px">
-                                <td *ngFor="let col of columns">
+                                <td *ngFor="let col of columns" style="word-wrap: break-word;">
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
@@ -65,7 +65,7 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr style="height:34px">
-                                <td *ngFor="let col of columns">
+                                <td *ngFor="let col of columns" style="word-wrap: break-word;">
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
@@ -75,6 +75,7 @@
             </p-accordionTab>
         </p-accordion>   
     </p-card>
+
 </div>
 
 <div class="btn-container">
