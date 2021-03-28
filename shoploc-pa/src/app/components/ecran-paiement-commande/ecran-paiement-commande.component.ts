@@ -58,11 +58,11 @@ export class EcranPaiementCommandeComponent implements OnInit {
           this.prixTotalCommande = this.commande.total;
           this.prixTotalFidelite = this.commande.totalPointsFidelite;
           this.porteMonnaieService.getSoldeClient(this.usernameClient).subscribe(mapSolde => {
-            this.soldeClient = mapSolde["solde"];
-            this.assezDargent = this.soldeClient >= this.prixTotalCommande;
+            this.soldeClient = +parseFloat(mapSolde["solde"]).toFixed(2);
+            this.assezDargent = mapSolde["solde"] >= this.prixTotalCommande;
             this.porteMonnaieService.getSoldeFidelite(this.usernameClient).subscribe(mapSoldeFidelite => {
-              this.soldeFidelite = mapSoldeFidelite["soldeFidelite"];
-              this.assezDePointsFidelite = this.soldeFidelite >= this.prixTotalFidelite;
+              this.soldeFidelite = +parseFloat(mapSoldeFidelite["soldeFidelite"]).toFixed(2);
+              this.assezDePointsFidelite = mapSoldeFidelite["soldeFidelite"] >= this.prixTotalFidelite;
               this.contenuReady = true;
               this.isReady = true;
             });

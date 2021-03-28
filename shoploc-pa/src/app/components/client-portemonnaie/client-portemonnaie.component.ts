@@ -34,11 +34,11 @@ export class ClientPortemonnaieComponent implements OnInit {
     this.username = this.authService.currentUserValue.username;
     this.porteMonnaieService.getSoldeClient(this.username).subscribe(res => {
       let solde = res;
-      this.soldeClient = solde['solde'];
+      this.soldeClient = +parseFloat(solde['solde']).toFixed(2);
     });
     this.porteMonnaieService.getSoldeFidelite(this.username).subscribe(res => {
       let solde = res;
-      this.soldeFidelite = solde['soldeFidelite'];
+      this.soldeFidelite = +parseFloat(solde['soldeFidelite']).toFixed(2);
     });
   }
 

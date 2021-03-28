@@ -16,10 +16,10 @@
     <p-card [header]="title" class="card-style" *ngIf="statsDuJour">
         <ng-template pTemplate="header">
         </ng-template>
-        <p>Montant des ventes fidélité : {{statsDuJour.montantVentesFidelite}}€</p>
-        <p>Nombre de clients fidélité : {{statsDuJour.nbClientsFidelite}} points</p>
-        <p>Montant des click & collect : {{statsDuJour.montantClickAndCollect}}€</p>
-        <p>Montant des points de fidélité obtenues : {{statsDuJour.montantPointsFidelitesObtenues}} points</p>
+        <p>Montant des ventes fidélité : {{statsDuJour.montantVentesFidelite}} points</p>
+        <p>Nombre de clients fidélité : {{statsDuJour.nbClientsFidelite}}</p>
+        <p>CA aujourd'hui : {{statsDuJour.montantClickAndCollect}}€</p>
+        <p>Montant des points de fidélité générés : {{statsDuJour.montantPointsFidelitesObtenues}} points</p>
         <p>Montant des points de fidélité dépensés : {{statsDuJour.montantPointsFidelitesDepenses}} points</p>
     </p-card>
     <p-card header="Historiques du mois" class="card-style" *ngIf="commercantStatsMois && unMoisActive">

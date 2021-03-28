@@ -4,6 +4,12 @@ import { ClientstatsService } from 'src/app/services/clientstats.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ItemHisto } from 'src/app/models/data/ItemHisto.model';
 
+interface ClientBonusInfo {
+  prenom: string;
+  nom: string;
+  statut: string;
+}
+
 interface StatsInfos {
   joursRestant?: number,
   soldeFidelite?: number,
@@ -42,6 +48,8 @@ export class ClientStatsComponent implements OnInit {
   cols: any[];
   authentifiedUser : string;
 
+  clientBonusInfo: ClientBonusInfo;
+
 
   constructor(private _location : Location, private clientstatsService : ClientstatsService, private authService : AuthService) { 
   }
@@ -50,12 +58,19 @@ export class ClientStatsComponent implements OnInit {
     this.chartsInit();
     this.authentifiedUser = this.authService.currentUserValue.username;
     this.setInitialData();
+    this.clientstatsService.getBonusInfoClient(this.authentifiedUser).subscribe(res => {
+      this.clientBonusInfo = {
+        prenom: res.prenom,
+        nom: res.nom.toUpperCase(),
+        statut: res.statut
+      }
+    });
     this.histoClickAndCollect = [];
     this.clientstatsService.getAllStats(this.authentifiedUser).subscribe(re => {
       this.infos = {
         joursRestant : re.jourVfpRestant,
-        soldeFidelite : re.soldeFidelite,
-        totalFidelite : re.totalFidelite
+        soldeFidelite : +parseFloat(""+re.soldeFidelite).toFixed(2),
+        totalFidelite : +parseFloat(""+re.totalFidelite).toFixed(2)
       }
       this.histoAchats = [];
       re.histoAchats.forEach(res => {
@@ -121,16 +136,15 @@ export class ClientStatsComponent implements OnInit {
 
 
   updateCharts(typeDuree: string): void {
-    const monthTransfo = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     this.clientstatsService.getDataGrid(this.authentifiedUser, typeDuree).subscribe(res => {
       var xAxisDepenses = [];
       var yAxisDepenses = [];
-      Object.keys(res.historyPointsDepenses).forEach(key=>{ 
+      Object.keys(res.historyPointsDepenses).forEach(key=>{
         if(typeDuree === "ANNEE")
-          xAxisDepenses = monthTransfo;
+          xAxisDepenses = this.formatMonth();
         else
           xAxisDepenses.push(key);
-        yAxisDepenses.push(res.historyPointsDepenses[key]);
+        yAxisDepenses.push(parseFloat(res.historyPointsDepenses[key]).toFixed(2));
       })
 
       this.chartOptions = {
@@ -155,10 +169,10 @@ export class ClientStatsComponent implements OnInit {
       var yAxisObtenus = [];
       Object.keys(res.historyPointsObtenus).forEach(key=>{
         if(typeDuree === "ANNEE")
-          xAxisObtenus = monthTransfo;
+          xAxisObtenus = this.formatMonth();
         else
           xAxisObtenus.push(key);
-        yAxisObtenus.push(parseFloat(res.historyPointsObtenus[key]).toFixed(0));
+        yAxisObtenus.push(parseFloat(res.historyPointsObtenus[key]).toFixed(2));
       })
 
       this.chartOptions2 = {
@@ -180,6 +194,20 @@ export class ClientStatsComponent implements OnInit {
         }
       };
     });
+  }
+
+  formatMonth(): string[] {
+    const monthTransfo = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let toRet = [];
+    const today = new Date();
+    let valToCount = today.getMonth()+1;
+    if(valToCount == 12)
+      valToCount = 0;
+    for(var i = valToCount ; i < monthTransfo.length ; i++)
+      toRet.push(monthTransfo[i]);
+    for(var i = 0 ; i < valToCount  ; i++)
+      toRet.push(monthTransfo[i]);
+    return toRet;
   }
 
 

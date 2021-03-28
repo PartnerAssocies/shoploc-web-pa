@@ -12,8 +12,9 @@
 </div>
 
 <div class="all-container">
-    <p-card [header]="authentifiedUser" class="card-style" *ngIf="infos">
+    <p-card class="card-style" *ngIf="infos && clientBonusInfo">
         <ng-template pTemplate="header">
+            <span class="client-infos">{{clientBonusInfo.prenom}} {{clientBonusInfo.nom}}</span><span class="text-statut">{{clientBonusInfo.statut}}</span>
         </ng-template>
         <p *ngIf="infos.joursRestant>0"><span class="vfp_number">{{infos.joursRestant}}</span> jours avant VFP</p>
         <p *ngIf="infos.joursRestant<=0" style="color: green">VFP</p>
@@ -54,27 +55,6 @@
             <p-accordionTab header="Historique des click & collect">
                 <ng-template pTemplate="content">
                     <p-table [columns]="cols" [value]="histoAchats" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                        [virtualScroll]="true" [virtualRowHeight]="34">
-                        <ng-template pTemplate="header" let-columns>
-                            <tr>
-                                <th *ngFor="let col of columns">
-                                    {{col.header}}
-                                </th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-rowData let-columns="columns">
-                            <tr style="height:34px">
-                                <td *ngFor="let col of columns">
-                                    {{rowData[col.field]}}
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </ng-template>
-            </p-accordionTab>
-            <p-accordionTab header="Historique de points collectés et des cadeaux obtenus">
-                <ng-template pTemplate="content">
-                    <p-table [columns]="cols" [value]="histoClickAndCollect" [scrollable]="true" [rows]="100" scrollHeight="250px"
                         [virtualScroll]="true" [virtualRowHeight]="34">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
